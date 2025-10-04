@@ -1,0 +1,33 @@
+$branco: #fff;
+$preto: #262323;
+$cinza-claro: #EEEEEE;
+$marrom-claro: #B48967;
+$marrom-escuro: #432B27;
+$rosa-claro: #F9BDB5;
+$rosa-medio: #EF7A71;
+$rosa-escuro: #C31644;
+$vermelho: red;
+$azul: #1A7892;
+
+$padding: 0 50px;
+
+@mixin flex($direction, $justify-content, $align-items) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
+
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-family: 'Inter';
+  font-weight: normal;
+}
+
