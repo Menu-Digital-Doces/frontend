@@ -25,6 +25,7 @@
 </script>
 
 <template>
+    
     <nav>
         <a href="#"><img src="@/assets/logo.png" alt="logo confeitaria da cris"/></a>
         <ul v-show="menuOn">
@@ -55,6 +56,9 @@
         color: $preto;
         box-shadow: 0px 2px 10px -5px $preto;
         @include flex(row, space-between, center);
+        width: 100%;
+        position: sticky;
+        top: 0;
 
         img{
             width: 60px;
@@ -89,7 +93,7 @@
         #menu-btn{
             display: block;
         }
-        
+
         nav{
             ul{
                 background-color: $branco;
@@ -100,7 +104,7 @@
                 padding: 50px;
                 flex-direction: column;
                 justify-content: space-between;
-                border: 1px solid black;
+                border: 1px solid $preto;
                 border-radius: 20px;
 
                 a:hover{

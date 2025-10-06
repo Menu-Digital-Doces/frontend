@@ -1,6 +1,7 @@
 $branco: #fff;
 $preto: #262323;
 $cinza-claro: #EEEEEE;
+$cinza-escuro: #a1a1a1;
 $marrom-claro: #B48967;
 $marrom-escuro: #432B27;
 $rosa-claro: #F9BDB5;
@@ -9,7 +10,7 @@ $rosa-escuro: #C31644;
 $vermelho: red;
 $azul: #1A7892;
 
-$padding: 0 50px;
+$padding: 0 50px; /*Padding wrapper da página*/
 
 @mixin flex($direction, $justify-content, $align-items) {
     display: flex;
@@ -17,9 +18,6 @@ $padding: 0 50px;
     justify-content: $justify-content;
     align-items: $align-items;
 }
-
-
-
 
 *{
   margin: 0;
@@ -31,3 +29,30 @@ $padding: 0 50px;
   font-weight: normal;
 }
 
+.titulo{
+    font-weight: 100;
+    color: $marrom-claro;
+}
+
+.destaque{
+    font-weight: bold;
+    color: $rosa-escuro;
+}
+
+p{
+    color: $marrom-escuro;
+    font-size: clamp(1rem, 3vw, 1.25rem);
+}
+
+.container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.wrapper{
+    width: 100%;
+    position: absolute;
+    left: 0;
+}
