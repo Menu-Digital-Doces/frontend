@@ -22,6 +22,8 @@
     onUnmounted(() => {
         window.removeEventListener('resize', toggleMenuOnResizeScreen);
     })
+
+
 </script>
 
 <template>
