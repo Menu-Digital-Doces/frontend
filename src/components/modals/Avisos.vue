@@ -1,5 +1,6 @@
 <script setup>
 import { XMarkIcon } from '@heroicons/vue/24/solid';
+import FundoModal from './FundoModal.vue';
 
 
 
@@ -8,7 +9,7 @@ import { XMarkIcon } from '@heroicons/vue/24/solid';
 
 <template>
     <div id="avisos">
-        <div class="fundo-modal"></div>
+        <FundoModal></FundoModal>
         <div id="box">
             <img src="../../assets/avisos.png" alt="">
             <span><XMarkIcon class="btn-close"/></span>
