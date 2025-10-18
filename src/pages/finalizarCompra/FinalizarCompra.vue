@@ -1,4 +1,5 @@
 <script setup>
+import Confirmacao from "@/components/finalizarCompra/Confirmacao.vue";
 import Entrega from "@/components/finalizarCompra/Entrega.vue";
 import Pagamento from "@/components/finalizarCompra/Pagamento.vue";
 </script>
@@ -6,7 +7,8 @@ import Pagamento from "@/components/finalizarCompra/Pagamento.vue";
 <template>
   <div class="container" id="container-finalizarCompra">
     <!-- <Entrega></Entrega> -->
-    <Pagamento></Pagamento>
+    <!-- <Pagamento></Pagamento> -->
+    <Confirmacao></Confirmacao>
 
     <a href="" class="btn">Continuar</a>
   </div>

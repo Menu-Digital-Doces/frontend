@@ -10,6 +10,9 @@ import Login from './components/modals/Login.vue';
 import Cadastro from './components/modals/Cadastro.vue';
 import AlertaPagamento from './components/modals/AlertaPagamento.vue';
 import FinalizarCompra from './pages/finalizarCompra/FinalizarCompra.vue';
+import Pedidos from './pages/pedidos/Pedidos.vue';
+import CarrinhoModal from './components/modals/CarrinhoModal.vue';
+import Catalogo from './pages/catalogo/Catalogo.vue';
 
 
 
@@ -30,7 +33,7 @@ import FinalizarCompra from './pages/finalizarCompra/FinalizarCompra.vue';
   <!-- Modais -->
   <CentralDoUsuario v-if="StateModalAvisos"></CentralDoUsuario> <!-- Criar variavel própria depois -->
   <!-- <Login></Login> -->
-   <!-- <Cadastro></Cadastro> -->
+  <!-- <Cadastro></Cadastro> -->
   <!-- <Avisos v-if="StateModalAvisos"></Avisos> -->
 
   <!-- <AlertaPagamento></AlertaPagamento> Provisório aqui -->
@@ -38,7 +41,12 @@ import FinalizarCompra from './pages/finalizarCompra/FinalizarCompra.vue';
 
 
   <!--  -->
-  <FinalizarCompra></FinalizarCompra>
+  <!-- <FinalizarCompra></FinalizarCompra> -->
+  <!-- <Pedidos v-bind:prop-page-pedidos=true></Pedidos> -->
+
+  <!-- <CarrinhoModal></CarrinhoModal> -->
+
+  <!-- <Catalogo></Catalogo> -->
 
 
   <Footer></Footer>
