@@ -9,6 +9,7 @@
     <FundoModal></FundoModal>
   <div id="modal-login" class="box-modal">
     <a href="#" class="btn-close">X</a>
+    <img src="../../assets/logo.png" alt="" id="login-logo">
 
     <form class="box-form">
       <label for="login-email">Login</label>
@@ -22,7 +23,7 @@
 
     <a href="#" class="btn">Login</a>
 
-    <a href="#" class="link">Cadastre-se</a>
+    <a href="#" class="link" id="link-cadastro">Cadastre-se</a>
   </div>
 </template>
 
@@ -35,6 +36,11 @@
     @media (max-width: 768px){
         inset: 0;
         margin: auto;
+    }
+
+    #login-logo{
+      width: 100px;
+      margin-bottom: 64px;
     }
 
 
