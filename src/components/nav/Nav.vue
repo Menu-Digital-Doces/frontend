@@ -2,9 +2,18 @@
     import { UserCircleIcon } from '@heroicons/vue/24/solid'
     import { ShoppingCartIcon, Bars3Icon } from '@heroicons/vue/24/outline'
     import { ref, onMounted, onUnmounted, watchEffect } from 'vue'
+import Avisos from '../modals/Avisos.vue';
+import CarrinhoModal from '../modals/CarrinhoModal.vue';
+import CentralDoUsuario from '../modals/CentralDoUsuario.vue';
     
-    var menuOn = ref(true);
 
+    var menuOn = ref(true);
+    var avisosOn = ref(false);
+    var cartOn = ref(false);
+    var userCentralOn = ref(false);
+
+    /* menu */
+    
     function toggleMenu(){
         menuOn.value = !menuOn.value;
     }
@@ -24,6 +33,23 @@
     })
 
 
+
+    /* avisos */
+
+    function toggleAvisos(){
+        avisosOn.value = !avisosOn.value
+    }
+
+    /* carrinho */
+    function toggleCart(){
+        cartOn.value = !cartOn.value
+    }
+
+    /* central do usuario */
+    function toggleUserCentral(){
+        userCentralOn.value = !userCentralOn.value
+    }
+
 </script>
 
 <template>
@@ -31,14 +57,19 @@
     <nav>
         <a href="#"><img src="@/assets/logo.png" alt="logo confeitaria da cris"/></a>
         <ul v-show="menuOn">
-            <li><a href='#'>Home</a></li>
-            <li><a href='#'>Cardápio</a></li>
-            <li><a href='#'>Avisos</a></li>
-            <li><a href="#"><ShoppingCartIcon class="icone"/></a></li>
-            <li><a href="#"><UserCircleIcon class="icone"/></a></li>
+            <li><a href='#'><RouterLink to="Home">Home</RouterLink></a></li>
+            <li><a href='#'><RouterLink to="Catalogo">Catalogo</RouterLink></a></li>
+            <li><a href='#' @click.prevent="toggleAvisos">Avisos</a></li>
+            <li><a href="#" @click.prevent="toggleCart"><ShoppingCartIcon class="icone"/></a></li>
+            <li><a href="#" @click.prevent="toggleUserCentral"><UserCircleIcon class="icone"/></a></li>
         </ul>
         <span id="menu-btn" @click="toggleMenu"><Bars3Icon class="icone"/></span>
     </nav>
+
+    <Avisos v-if="avisosOn" v-bind:toggle-avisos="toggleAvisos"></Avisos>
+    <CarrinhoModal v-if="cartOn" v-bind:toggle-cart="toggleCart"></CarrinhoModal>
+    <CentralDoUsuario v-if="userCentralOn" v-bind:toggle-user-central="toggleUserCentral"></CentralDoUsuario>
+
 </template>
 
 <style lang="scss">

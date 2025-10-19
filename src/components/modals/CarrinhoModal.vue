@@ -2,16 +2,17 @@
 import Pedidos from '@/pages/pedidos/Pedidos.vue';
 import FundoModal from './FundoModal.vue';
 
+const { toggleCart } = defineProps({toggleCart: Function})
 
 </script>
 
 <template>
-    <FundoModal></FundoModal>
+    <FundoModal @click="toggleCart()"></FundoModal>
     <div id="container-modal-carrinho" class="box-modal">
         <Pedidos v-bind:prop-page-pedidos=true></Pedidos>
-        <a href="#" class="btn-close" id="btn-close-modal">X</a>
+        <a href="#" class="btn-close" id="btn-close-modal" @click.prevent="toggleCart()">X</a>
         <p>ou</p>
-        <a href="#" class="link" id="link-pagina-carrinho">Ir para a página do carrinho</a>
+        <a href="#" class="link" id="link-pagina-carrinho"><RouterLink to="carrinho"> ir para a página do carrinho</RouterLink></a>
     </div>
 </template>
 

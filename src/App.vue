@@ -17,6 +17,7 @@ import Catalogo from './pages/catalogo/Catalogo.vue';
 
 
 
+
   var StateModalAvisos = ref(false);
 
   function toggleAvisos(){
@@ -28,7 +29,7 @@ import Catalogo from './pages/catalogo/Catalogo.vue';
 <template>
   <Nav></Nav>
 
-  <!-- <Home></Home> -->
+  <RouterView></RouterView>
 
   <!-- Modais -->
   <CentralDoUsuario v-if="StateModalAvisos"></CentralDoUsuario> <!-- Criar variavel própria depois -->
@@ -48,6 +49,7 @@ import Catalogo from './pages/catalogo/Catalogo.vue';
 
   <!-- <Catalogo></Catalogo> -->
 
+  <!-- <Login ></Login> -->
 
   <Footer></Footer>
 </template>

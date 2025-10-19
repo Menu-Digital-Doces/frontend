@@ -1,6 +1,8 @@
 <script setup>
     import FundoModal from './FundoModal.vue';
 
+    
+
 </script>
 
 <template>

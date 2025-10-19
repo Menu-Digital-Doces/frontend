@@ -9,10 +9,12 @@ import router from './router'
 
 
 
-const app = createApp(App)
+createApp(App).use(router).mount('#app')
 
-app.use(router)
+// const app = createApp(App)
 
-app.mount('#app')
+// app.use(router)
+
+// app.mount('#app')
 
 
