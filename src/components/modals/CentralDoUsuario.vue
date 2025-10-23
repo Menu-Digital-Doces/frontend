@@ -3,7 +3,7 @@
     import FundoModal from './FundoModal.vue';
     import AlertaConfirmacao from './AlertaConfirmacao.vue';
 
-    const { toggleUserCentral } = defineProps({toggleUserCentral: Function})
+    const { changeActiveComponent } = defineProps({changeActiveComponent: Function})
 
     // var propAlerta = "Sua conta foi criada com sucesso!"
     // var propAlerta2 = "Seu pedido foi pago! Ele começara a ser separado, te informaremos quando estiver pronto."
@@ -11,9 +11,9 @@
 </script>
 
 <template>
-    <FundoModal @click="toggleUserCentral()"></FundoModal>
+    <FundoModal @click="changeActiveComponent()"></FundoModal>
   <div class="box-modal" id="modal-centralDoUsuario">
-    <span @click="toggleUserCentral()"><XMarkIcon class="btn-close"/></span>
+    <span @click="changeActiveComponent()"><XMarkIcon class="btn-close"/></span>
     <img src="https://images.tcdn.com.br/img/img_prod/849569/berloque_robozinho_5417_1_20231121121518.jpg" alt="foto do robo"/>
     <p class="modal-login-saudacoes">Olá, usuário!</p>
     <hr />

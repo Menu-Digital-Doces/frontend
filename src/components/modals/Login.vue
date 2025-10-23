@@ -1,14 +1,14 @@
 <script setup>
     import FundoModal from './FundoModal.vue';
 
-    
+    var { changeActiveComponent } = defineProps({changeActiveComponent: Function})
 
 </script>
 
 <template>
-    <FundoModal></FundoModal>
+    <FundoModal @click="changeActiveComponent()"></FundoModal>
   <div id="modal-login" class="box-modal">
-    <a href="#" class="btn-close">X</a>
+    <a href="#" class="btn-close" @click="changeActiveComponent()">X</a>
     <img src="../../assets/logo.png" alt="" id="login-logo">
 
     <form class="box-form">

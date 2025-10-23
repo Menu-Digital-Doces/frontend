@@ -2,16 +2,16 @@
 import { XMarkIcon } from '@heroicons/vue/24/solid';
 import FundoModal from './FundoModal.vue';
 
-var { toggleAvisos } = defineProps({toggleAvisos: Function})
+var { changeActiveComponent } = defineProps({changeActiveComponent: Function})
 
 </script>
 
 <template>
     <div id="avisos">
-        <FundoModal @click="toggleAvisos()"></FundoModal>
+        <FundoModal @click="changeActiveComponent()"></FundoModal>
         <div id="box">
             <img src="../../assets/avisos.png" alt="">
-            <span @click="toggleAvisos()"><XMarkIcon class="btn-close"/></span>
+            <span @click="changeActiveComponent()"><XMarkIcon class="btn-close"/></span>
 
         </div>
     </div>

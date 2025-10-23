@@ -1,21 +1,32 @@
 <script setup>
     import { UserCircleIcon } from '@heroicons/vue/24/solid'
     import { ShoppingCartIcon, Bars3Icon } from '@heroicons/vue/24/outline'
-    import { ref, onMounted, onUnmounted, watchEffect } from 'vue'
+    import { ref, onMounted, onUnmounted, watchEffect, reactive } from 'vue'
 import Avisos from '../modals/Avisos.vue';
 import CarrinhoModal from '../modals/CarrinhoModal.vue';
 import CentralDoUsuario from '../modals/CentralDoUsuario.vue';
+import Login from '../modals/Login.vue';
     
 
     var menuOn = ref(true);
-    var avisosOn = ref(false);
-    var cartOn = ref(false);
-    var userCentralOn = ref(false);
+    var isLogged = ref(true)
+
+    const activeComponent = reactive({
+        avisos: false,
+        cart: false,
+        login: false,
+        userCentral: false,
+    });
+
+    
 
     /* menu */
     
     function toggleMenu(){
         menuOn.value = !menuOn.value;
+        for(let element in activeComponent){
+            activeComponent[element] = false
+        }
     }
     function toggleMenuOnResizeScreen(){
         const widthScreen = window.innerWidth;
@@ -32,22 +43,20 @@ import CentralDoUsuario from '../modals/CentralDoUsuario.vue';
         window.removeEventListener('resize', toggleMenuOnResizeScreen);
     })
 
+    function changeActiveComponent(component){
+        const widthScreen = window.innerWidth;
 
-
-    /* avisos */
-
-    function toggleAvisos(){
-        avisosOn.value = !avisosOn.value
+        for(let element in activeComponent){
+            element === component ? activeComponent[element] = !activeComponent[element] : activeComponent[element] = false
+        }
+    
+        if(widthScreen < 768 && menuOn.value === true){
+            menuOn.value = false;
+        }
     }
 
-    /* carrinho */
-    function toggleCart(){
-        cartOn.value = !cartOn.value
-    }
-
-    /* central do usuario */
-    function toggleUserCentral(){
-        userCentralOn.value = !userCentralOn.value
+    function verifyIsLogged(){
+        return isLogged.value === true ? 'userCentral' : 'login'
     }
 
 </script>
@@ -55,20 +64,24 @@ import CentralDoUsuario from '../modals/CentralDoUsuario.vue';
 <template>
     
     <nav>
+        
         <a href="#"><img src="@/assets/logo.png" alt="logo confeitaria da cris"/></a>
         <ul v-show="menuOn">
-            <li><a href='#'><RouterLink to="Home">Home</RouterLink></a></li>
-            <li><a href='#'><RouterLink to="Catalogo">Catalogo</RouterLink></a></li>
-            <li><a href='#' @click.prevent="toggleAvisos">Avisos</a></li>
-            <li><a href="#" @click.prevent="toggleCart"><ShoppingCartIcon class="icone"/></a></li>
-            <li><a href="#" @click.prevent="toggleUserCentral"><UserCircleIcon class="icone"/></a></li>
+            <li><a href='#'><RouterLink to="Home" @click="changeActiveComponent('')">Home</RouterLink></a></li>
+            <li><a href='#'><RouterLink to="Catalogo" @click="changeActiveComponent('')">Catalogo</RouterLink></a></li>
+            <li><a href='#' @click.prevent="changeActiveComponent('avisos')">Avisos</a></li>
+            <li><a href="#" @click.prevent="changeActiveComponent('cart')"><ShoppingCartIcon class="icone"/></a></li>
+            <li><a href="#" @click.prevent="changeActiveComponent(verifyIsLogged())"><UserCircleIcon class="icone"/></a></li>
         </ul>
         <span id="menu-btn" @click="toggleMenu"><Bars3Icon class="icone"/></span>
     </nav>
 
-    <Avisos v-if="avisosOn" v-bind:toggle-avisos="toggleAvisos"></Avisos>
-    <CarrinhoModal v-if="cartOn" v-bind:toggle-cart="toggleCart"></CarrinhoModal>
-    <CentralDoUsuario v-if="userCentralOn" v-bind:toggle-user-central="toggleUserCentral"></CentralDoUsuario>
+    <Avisos v-if="activeComponent.avisos" v-bind:change-active-component="() => changeActiveComponent('avisos')"></Avisos>
+    <CarrinhoModal v-if="activeComponent.cart" v-bind:change-active-component="() => changeActiveComponent('cart')"></CarrinhoModal>
+    
+    <!-- Componentes que alternarão se o usuário estiver logado ou não -->
+    <Login v-if="activeComponent.login" v-bind:change-active-component="() => changeActiveComponent('login')"></Login>
+    <CentralDoUsuario v-if="activeComponent.userCentral" v-bind:change-active-component="() => changeActiveComponent('userCentral')"></CentralDoUsuario>
 
 </template>
 
