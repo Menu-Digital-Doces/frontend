@@ -6,16 +6,18 @@ import Avisos from '../modals/Avisos.vue';
 import CarrinhoModal from '../modals/CarrinhoModal.vue';
 import CentralDoUsuario from '../modals/CentralDoUsuario.vue';
 import Login from '../modals/Login.vue';
+import Cadastro from '../modals/Cadastro.vue';
     
 
     var menuOn = ref(true);
-    var isLogged = ref(true)
+    var isLogged = ref(false)
 
     const activeComponent = reactive({
         avisos: false,
         cart: false,
         login: false,
         userCentral: false,
+        cadastro: false,
     });
 
     
@@ -55,8 +57,25 @@ import Login from '../modals/Login.vue';
         }
     }
 
+    function changeLoginCadastro(component){
+        if(component === 'login'){
+            activeComponent['cadastro'] = true
+            activeComponent['login'] = false
+        } else{
+            activeComponent['login'] = true
+            activeComponent['cadastro'] = false
+        }
+    }
+
     function verifyIsLogged(){
-        return isLogged.value === true ? 'userCentral' : 'login'
+        // return isLogged.value === true ? 'userCentral' : 'login'
+
+        if(isLogged.value === true){
+            return 'userCentral'
+        }else if(activeComponent.cadastro === true){
+            return 'cadastro'
+        }
+        return 'login'
     }
 
 </script>
@@ -80,7 +99,9 @@ import Login from '../modals/Login.vue';
     <CarrinhoModal v-if="activeComponent.cart" v-bind:change-active-component="() => changeActiveComponent('cart')"></CarrinhoModal>
     
     <!-- Componentes que alternarão se o usuário estiver logado ou não -->
-    <Login v-if="activeComponent.login" v-bind:change-active-component="() => changeActiveComponent('login')"></Login>
+    <!-- <Login v-if="activeComponent.login" v-bind:change-active-component="() => changeActiveComponent('login')"></Login> -->
+    <Login v-if="activeComponent.login" v-bind:="{changeActiveComponent: () => changeActiveComponent('login'), changeLoginCadastro: () => changeLoginCadastro('login')}"></Login>
+    <Cadastro v-if="activeComponent.cadastro" v-bind:="{changeActiveComponent: () => changeActiveComponent('cadastro'), changeLoginCadastro: () => changeLoginCadastro('cadastro')}"></Cadastro>
     <CentralDoUsuario v-if="activeComponent.userCentral" v-bind:change-active-component="() => changeActiveComponent('userCentral')"></CentralDoUsuario>
 
 </template>
