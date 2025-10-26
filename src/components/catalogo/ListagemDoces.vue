@@ -1,15 +1,28 @@
 <script setup>
+import { onMounted, ref } from 'vue';
 import Card from './Card.vue';
 
 import axios from 'axios';
 
+let data = ref([])
 
 
-
-
-
-
-
+onMounted(() => {
+    axios.request({
+        method: 'GET',
+        url: '/produtos',
+        headers: {
+            "Content-Type": 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    })
+    .then(response => {
+        data.value = response.data
+    })
+    .catch(error => {
+        console.log(error)
+    })
+})
 
 
 </script>
@@ -20,21 +33,14 @@ import axios from 'axios';
             <h3>Doces</h3>
             <hr>
             <div class="wrapper-cards">
-                <Card></Card>
-                <Card></Card>
-                <Card></Card>
+                <Card v-for="productData in data" v-bind:productData="productData"></Card>
             </div>
         </div>
         <div class="container-cards">
             <h3>Bolos</h3>
             <hr>
             <div class="wrapper-cards">
-                <Card></Card>
-                <Card></Card>
-                <Card></Card>
-                <Card></Card>
-                <Card></Card>
-                <Card></Card>
+
             </div>
         </div>
     </div>
