@@ -2,12 +2,17 @@
 import { ref } from 'vue';
 import FundoModal from './FundoModal.vue';
 import axios from 'axios';
+import * as seila from './Login.vue';
 
-  var { changeActiveComponent, changeLoginCadastro } = defineProps({changeActiveComponent: Function, changeLoginCadastro: Function})
+  var { changeActiveComponent, changeLoginCadastro} = defineProps({
+    changeActiveComponent: Function, 
+    changeLoginCadastro: Function,
+  })
   
   var wrongPasswordState = ref(false)
   var lengthPasswordState = ref(false)
   var msgEmailState = ref(false)
+  var msgAccCreatedState = ref(false)
   var inputNameValue = ref('')
   var inputEmailValue = ref('')
   var inputPasswordValue = ref('')
@@ -51,8 +56,7 @@ import axios from 'axios';
       }
     })
     .then(response => {
-      console.log(response.data)
-      // Encaminhar para a central do usuário
+      msgAccCreatedState.value = true;
     })
     .catch(error => {
       console.log(error)
@@ -87,6 +91,7 @@ import axios from 'axios';
       <p v-if="wrongPasswordState">As senhas não coincidem</p>
       <p v-if="lengthPasswordState">A senha deve ter no mínimo 6 caracteres</p>
       <p v-if="msgEmailState">Esse email já existe. Faça login.</p>
+      <p v-if="msgAccCreatedState">A sua conta foi criada. Fazer login.</p>
 
       
       <input type="submit" class="btn" href="#"/>

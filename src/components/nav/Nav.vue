@@ -20,7 +20,6 @@ import Cadastro from '../modals/Cadastro.vue';
         cadastro: false,
     });
 
-    
 
     /* menu */
     
@@ -40,6 +39,11 @@ import Cadastro from '../modals/Cadastro.vue';
     onMounted(() => {
         toggleMenuOnResizeScreen();
         window.addEventListener('resize', toggleMenuOnResizeScreen)
+
+
+        if(localStorage.getItem('token') !== null){
+            isLogged.value = true;
+        }
     })
     onUnmounted(() => {
         window.removeEventListener('resize', toggleMenuOnResizeScreen);
@@ -78,6 +82,10 @@ import Cadastro from '../modals/Cadastro.vue';
         return 'login'
     }
 
+    function changeIsLogged(){
+        isLogged.value = !isLogged.value
+    }
+
 </script>
 
 <template>
@@ -100,9 +108,9 @@ import Cadastro from '../modals/Cadastro.vue';
     
     <!-- Componentes que alternarão se o usuário estiver logado ou não -->
     <!-- <Login v-if="activeComponent.login" v-bind:change-active-component="() => changeActiveComponent('login')"></Login> -->
-    <Login v-if="activeComponent.login" v-bind:="{changeActiveComponent: () => changeActiveComponent('login'), changeLoginCadastro: () => changeLoginCadastro('login')}"></Login>
+    <Login v-if="activeComponent.login" v-bind:="{changeActiveComponent: () => changeActiveComponent('login'), changeLoginCadastro: () => changeLoginCadastro('login'), changeIsLogged: () => changeIsLogged()}"></Login>
     <Cadastro v-if="activeComponent.cadastro" v-bind:="{changeActiveComponent: () => changeActiveComponent('cadastro'), changeLoginCadastro: () => changeLoginCadastro('cadastro')}"></Cadastro>
-    <CentralDoUsuario v-if="activeComponent.userCentral" v-bind:change-active-component="() => changeActiveComponent('userCentral')"></CentralDoUsuario>
+    <CentralDoUsuario v-if="activeComponent.userCentral" v-bind:="{changeActiveComponent: () => changeActiveComponent('userCentral'), changeIsLogged: () => changeIsLogged()}"></CentralDoUsuario>
 
 </template>
 

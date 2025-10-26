@@ -1,22 +1,21 @@
 <script setup>
-    import { ref } from 'vue';
+    import { isShallow, ref } from 'vue';
 import FundoModal from './FundoModal.vue';
 import axios from 'axios';
 
-    var { changeActiveComponent, changeLoginCadastro } = defineProps({
+    var { changeActiveComponent, changeLoginCadastro, changeIsLogged } = defineProps({
       changeActiveComponent: Function,
-      changeLoginCadastro: Function
+      changeLoginCadastro: Function,
+      changeIsLogged: Function
     })
 
-    var emailDoesntExist = ref(false)
-    var wrongPasswordState = ref(false)
+    var nonAutorizhedState = ref(false)
     var inputEmailValue = ref('')
     var inputPasswordValue = ref('')
 
 
-    function sendData(email, password){
-      emailDoesntExist.value = false;
-      wrongPasswordState.value = false;
+    function sendData(email, password){ /*Login*/
+      nonAutorizhedState.value = false;
 
       axios.request({
         method: 'POST',
@@ -30,10 +29,17 @@ import axios from 'axios';
         }
       })
       .then(response => {
-        console.log(response.data)
+        localStorage.removeItem('token')
+        localStorage.setItem('token', response.data.token)
+        localStorage.setItem('name', response.data.user.name)
+        localStorage.setItem('email', response.data.user.email)
+        changeActiveComponent()
+        changeIsLogged();
       })
       .catch(error => {
-        console.log(error)
+        if(error.status === 401){
+          nonAutorizhedState.value = true;
+        }
       })
     }
 
@@ -54,8 +60,7 @@ import axios from 'axios';
       <input type="password" id="login-password" required v-model="inputPasswordValue"/>
       <a href="#" class="link link-forget-password">Esqueci minha senha</a>
 
-      <p v-if="emailDoesntExist">Email não encontrado. Cadastre-se</p>
-      <p v-if="wrongPasswordState">A senha está incorreta</p>
+      <p v-if="nonAutorizhedState">Algo deu errado. Tente novamente.</p>
 
       <input type="submit" class="btn"/>
 
