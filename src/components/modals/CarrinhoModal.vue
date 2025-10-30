@@ -1,6 +1,7 @@
 <script setup>
-import Pedidos from '@/pages/pedidos/Pedidos.vue';
 import FundoModal from './FundoModal.vue';
+import { onMounted } from 'vue';
+import Carrinho from '@/pages/carrinho/Carrinho.vue';
 
 const { changeActiveComponent } = defineProps({changeActiveComponent: Function})
 
@@ -9,7 +10,7 @@ const { changeActiveComponent } = defineProps({changeActiveComponent: Function})
 <template>
     <FundoModal @click="changeActiveComponent()"></FundoModal>
     <div id="container-modal-carrinho" class="box-modal">
-        <Pedidos v-bind:prop-page-pedidos=true></Pedidos>
+        <Carrinho></Carrinho>
         <a href="#" class="btn-close" id="btn-close-modal" @click.prevent="changeActiveComponent()">X</a>
         <p>ou</p>
         <a href="#" class="link" id="link-pagina-carrinho"><RouterLink to="carrinho"> ir para a página do carrinho</RouterLink></a>

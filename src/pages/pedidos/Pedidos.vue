@@ -38,6 +38,7 @@ var statePagePedidos = ref(propPagePedidos.propPagePedidos); /* true: página ca
 
 <style lang="scss">
     #pedidos{
+        width: 100%;
         @include flex(column, start, start);
 
         #titulo-pedidos{

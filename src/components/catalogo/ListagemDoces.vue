@@ -4,7 +4,7 @@ import Card from './Card.vue';
 
 import axios from 'axios';
 
-let data = ref([])
+let data = ref()
 
 
 onMounted(() => {
@@ -33,14 +33,17 @@ onMounted(() => {
             <h3>Doces</h3>
             <hr>
             <div class="wrapper-cards">
-                <Card v-for="productData in data" v-bind:productData="productData"></Card>
+                <Card v-for="productData in data" v-bind:productData="productData" :key="productData.id"></Card>
+                <Card v-for="productData in data" v-bind:productData="productData" :key="productData.id"></Card>
+                <Card v-for="productData in data" v-bind:productData="productData" :key="productData.id"></Card>
+                <Card v-for="productData in data" v-bind:productData="productData" :key="productData.id"></Card>
             </div>
         </div>
         <div class="container-cards">
             <h3>Bolos</h3>
             <hr>
             <div class="wrapper-cards">
-
+                <Card v-for="productData in data" v-bind:productData="productData" :key="productData.id"></Card>
             </div>
         </div>
     </div>

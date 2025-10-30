@@ -15,7 +15,7 @@ import Login from '@/components/modals/Login.vue';
     #wrapper-login-adm{
         width: 100%;
         height: calc(100vh - 60px);
-        background-color: bisque;
+        background-color: rgb(248, 248, 242);
         @include flex(row, center, center);
         
         

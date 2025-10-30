@@ -1,9 +1,32 @@
 <script setup>
+import { ref } from 'vue';
+
 
 
 const { productData } = defineProps({productData: Object})
 
-console.log(productData.imagem)
+const desiredQuantity = ref(0);
+
+function changeDesiredQuantity(operation){
+    if(operation === 'aumentar'){
+        desiredQuantity.value === productData.quantidade ? none : desiredQuantity.value++
+    }else if(operation === 'diminuir'){
+        desiredQuantity.value === 0 ? none : desiredQuantity.value--
+    }
+}
+
+function addProductToCart(product){
+    product.quantidadeDesejada = desiredQuantity;
+
+    if(localStorage.getItem('cart') === null){
+        localStorage.setItem('cart', JSON.stringify([product]))
+    }else{
+        let cart = JSON.parse(localStorage.getItem('cart') || "[]")
+        cart.push(product)
+        localStorage.setItem('cart', JSON.stringify(cart))
+    }
+    // console.log(JSON.parse(localStorage.getItem('cart') || "[]"))
+}
 
 </script>
 
@@ -16,9 +39,12 @@ console.log(productData.imagem)
             <p class="estoque">Estoque: {{ productData.quantidade }}</p>
             <div class="baixo">
                 <div class="controles-pedido">
-                    <a href="#" class="btn-option">-</a><span>0</span><a href="#" class="btn-option">+</a>
+                    <a href="#" class="btn-option" @click.prevent="changeDesiredQuantity('diminuir')">-</a>
+                    <!-- <span>{{desiredQuantity}}</span> -->
+                     <input type="value" :value="desiredQuantity"/>
+                    <a href="#" class="btn-option" @click.prevent="changeDesiredQuantity('aumentar')">+</a>
                 </div>
-                <a href="#" class="btn">Adicionar</a>
+                <a href="#" class="btn" @click.prevent="addProductToCart(productData)">Adicionar</a>
             </div>
         </div>
     </div>
@@ -76,6 +102,12 @@ console.log(productData.imagem)
                 .controles-pedido{
                     width: 90px;
                     @include flex(row, space-between, center);
+
+                    input[type="value"]{
+                        width: 10px;
+                        /* background-color: red; */
+                        border: none;
+                    }
 
                     .btn-option{
                         border: 2px solid $cinza-escuro;

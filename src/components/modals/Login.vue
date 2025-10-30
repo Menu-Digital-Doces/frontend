@@ -109,6 +109,10 @@ import axios from 'axios';
         border: 2px solid $preto;
         color: $preto;
         margin-bottom: 16px;
+        margin: 0 auto;
+        background-color: transparent;
+        border: 2px solid $preto;
+        
     }
 
 

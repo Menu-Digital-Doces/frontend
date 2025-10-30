@@ -1,6 +1,6 @@
 <script setup>
 import ListagemDoces from '@/components/catalogo/ListagemDoces.vue';
-import Topo from '@/components/catalogo/topo.vue';
+import Topo from '@/components/catalogo/Topo.vue';
 
 </script>
 

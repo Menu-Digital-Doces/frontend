@@ -3,9 +3,13 @@ import { TrashIcon } from '@heroicons/vue/24/solid';
 import { ref } from 'vue';
 
 
-const propStatePedido = defineProps({propStatePedido: Boolean})
-var statePedido = ref(propStatePedido.propStatePedido); /* true: item do carrinho aberto | false: item do carrinho finalizado */
+const { propStatePedido, productData, removeItemFromCart} = defineProps({
+    propStatePedido: Boolean, 
+    productData: Object,
+    removeItemFromCart: Function
+})
 
+var statePedido = ref(propStatePedido); /* true: item do carrinho aberto | false: item do carrinho finalizado */
 
 
 
@@ -16,24 +20,17 @@ var statePedido = ref(propStatePedido.propStatePedido); /* true: item do carrinh
         <img src="../../assets/1 - bolo de banana.png"/>
         <div class="direita">
             <div class="topo">
-                <h6>Título</h6>
-                <a href="#" class="btn-close" v-show="statePedido==true"><TrashIcon/></a>
+                <h6>{{productData.nome}}</h6>
+                <a href="#" class="btn-close" v-show="statePedido==true" @click.prevent="removeItemFromCart(productData.id)"><TrashIcon/></a>
             </div>
-            <p class="meio item-pedido-descricao">
-                
-
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-
-            </p>
-            <p class="meio">Estoque</p>
+            <p class="meio item-pedido-descricao">{{ productData.descricao }}</p>
+            <p class="meio">Estoque: {{ productData.quantidade }}</p>
             <div class="baixo">
                 <div class="controles-pedido" v-show="statePedido==true">
-                    <a href="#" class="btn">-</a><span>0</span><a href="#" class="btn">+</a>
+                    <a href="#" class="btn">-</a><span>{{ productData.quantidadeDesejada }}</span><a href="#" class="btn">+</a>
                 </div>
-                <p class="quantidade" v-show="statePedido==false">Quantidade: 5</p>
-                <h6>R$00,00</h6>
+                <p class="quantidade" v-show="statePedido==false">Quantidade: {{ productData.quantidadeDesejada }}</p>
+                <h6>R${{ productData.preco }}</h6>
             </div>
         </div>
     </div>

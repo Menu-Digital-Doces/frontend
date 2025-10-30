@@ -14,7 +14,7 @@ import Topo from '@/components/gestaoPedidos/Topo.vue';
 
 <style lang="scss">
     #wrapper-gestao-pedidos{
-        background-color: bisque;
+        /* background-color: #f7f7f1; */
 
     }
 

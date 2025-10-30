@@ -29,27 +29,7 @@ import Catalogo from './pages/catalogo/Catalogo.vue';
 <template>
   <Nav></Nav>
 
-  <RouterView></RouterView>
-
-  <!-- Modais -->
-  <CentralDoUsuario v-if="StateModalAvisos"></CentralDoUsuario> <!-- Criar variavel própria depois -->
-  <!-- <Login></Login> -->
-  <!-- <Cadastro></Cadastro> -->
-  <!-- <Avisos v-if="StateModalAvisos"></Avisos> -->
-
-  <!-- <AlertaPagamento></AlertaPagamento> Provisório aqui -->
-
-
-
-  <!--  -->
-  <!-- <FinalizarCompra></FinalizarCompra> -->
-  <!-- <Pedidos v-bind:prop-page-pedidos=true></Pedidos> -->
-
-  <!-- <CarrinhoModal></CarrinhoModal> -->
-
-  <!-- <Catalogo></Catalogo> -->
-
-  <!-- <Login ></Login> -->
+    <RouterView></RouterView>
 
   <Footer></Footer>
 </template>

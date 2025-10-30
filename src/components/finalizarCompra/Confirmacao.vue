@@ -7,13 +7,13 @@
     <ul>
       <div>
         <p>Resumo de itens</p>
-        <li>Doce 5 <span>Oi</span></li>
-        <li>Doce 5 <span>Oi</span></li>
-        <li>Doce 5 <span>Oi</span></li>
+        <li>Brigadeiro<span>qtd</span></li>
+        <li>Bolo de laranja<span>qtd</span></li>
+        <li>Bolo de banana<span>qtd</span></li>
       </div>
       <div>
         <p>Entrega</p>
-        <li>Retirar no local <span>oi</span></li>
+        <li>Retirar no local <span>R$0</span></li>
       </div>
       <div>
         <p>Forma de pagamento</p>
