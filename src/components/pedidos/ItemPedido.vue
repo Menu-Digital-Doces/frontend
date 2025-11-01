@@ -11,7 +11,7 @@ const { propStatePedido, productData, removeItemFromCart} = defineProps({
 
 var statePedido = ref(propStatePedido); /* true: item do carrinho aberto | false: item do carrinho finalizado */
 
-
+console.log(productData)
 
 </script>
 

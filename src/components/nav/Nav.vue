@@ -1,3 +1,7 @@
+<script>
+    export const isLogged = ref(false);
+</script>
+
 <script setup>
     import { UserCircleIcon } from '@heroicons/vue/24/solid'
     import { ShoppingCartIcon, Bars3Icon } from '@heroicons/vue/24/outline'
@@ -10,7 +14,7 @@ import Cadastro from '../modals/Cadastro.vue';
     
 
     var menuOn = ref(true);
-    var isLogged = ref(false)
+    // var isLogged = ref(false)
 
     const activeComponent = reactive({
         avisos: false,
@@ -87,6 +91,7 @@ import Cadastro from '../modals/Cadastro.vue';
     }
 
 </script>
+
 
 <template>
     

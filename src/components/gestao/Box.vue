@@ -2,7 +2,7 @@
 
 
 
-const { icon, text, num } = defineProps({icon: [Object, Function], text: String, num: Number})
+const { icon, text, num } = defineProps({icon: [Object, Function], text: String, num: [Number, String]})
 
 
 

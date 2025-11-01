@@ -1,6 +1,10 @@
 <script setup>
 import FundoModal from './FundoModal.vue';
 
+const { payRequest } = defineProps({
+    payRequest: Function
+})
+
 </script>
 
 <template>
@@ -11,6 +15,7 @@ import FundoModal from './FundoModal.vue';
     <img id="qr-code" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Link_pra_pagina_principal_da_Wikipedia-PT_em_codigo_QR_b.svg"/>
     <p>R$00,00</p>
     <b><p>Aguardando pagamento</p></b>
+    <a href="#" class="btn" id="pago" @click.prevent="payRequest()">Pago</a>
   </div>
 </template>
 
@@ -21,6 +26,8 @@ import FundoModal from './FundoModal.vue';
         width: 350px;
         align-items: start;
         padding-top: 75px;
+
+
 
         .btn-close{
             position: absolute;
@@ -41,6 +48,10 @@ import FundoModal from './FundoModal.vue';
 
         p:last-child{
             font-weight: bold;
+        }
+
+        #pago{
+            margin-bottom: 0;
         }
     }
 </style>

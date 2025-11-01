@@ -1,6 +1,8 @@
 <script setup>
+import { RouterLink } from 'vue-router';
 
-    const { status } = defineProps({status: Number})
+
+    const { pedido } = defineProps({pedido: Object})
 
     const statusList = {
         2: "Pendente",
@@ -8,8 +10,10 @@
         4: "Entregue",
     }
 
-    function compare(){
-        return status === 2 ? 'st-red' : status === 3 ? 'st-yellow' : 'st-green'
+    function compare(status){
+        return status === statusList[2] ? 'st-red' : 
+        status === 3 ? statusList[3] :
+        'st-green'
     }
 
 </script>
@@ -17,13 +21,13 @@
 <template>
     <li class="list-item-pedido">
         <div>
-            <span class="link"><a href="#">Ver</a></span>
-            <span class="item-num-pedido">Nº pedido</span>
+            <span class="link"><a href="#" class="link"><RouterLink :to="{name: 'pedidoADM', params: {orderId: pedido.id}}">Ver</RouterLink></a></span>
+            <span class="item-num-pedido">{{ pedido.codigo }}</span>
 
         </div>
         <div>
             <span class="item-valor-pedido">Valor</span>
-            <span class="item-status-pedido" :class="compare()">{{ statusList[status] }}</span>
+            <span class="item-status-pedido" :class="compare(pedido.status)">{{ pedido.status }}</span>
         </div>
     </li>
 </template>

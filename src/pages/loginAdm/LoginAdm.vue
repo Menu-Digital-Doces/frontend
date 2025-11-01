@@ -1,11 +1,17 @@
 <script setup>
 import Login from '@/components/modals/Login.vue';
+import { ref } from 'vue';
+import { isLogged } from '@/components/nav/Nav.vue';
 
+    function changeIsLogged(){
+        isLogged.value = !isLogged.value
+    }
 </script>
 
 <template>
     <div id="wrapper-login-adm">
-        <Login></Login>
+        <Login v-bind:="{changeIsLogged: () => changeIsLogged(), isAdmLogin: true}"></Login>
+        
         
     </div>
 </template>

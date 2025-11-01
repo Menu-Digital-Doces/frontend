@@ -1,15 +1,15 @@
 <script setup>
+import { ref, watch } from 'vue';
 import ListItemCliente from './ListItemCliente.vue';
+
+const props = defineProps({data: Object});
+console.log(props.data)
 </script>
 
 <template>
         <ul id="baixo">
             <li id="legenda"><span>Nº do pedido</span><span>Total</span></li>
-            <ListItemCliente v-bind:num-pedido="'0123456'"total-pedido="201"></ListItemCliente>
-            <ListItemCliente v-bind:num-pedido="'0123456'"total-pedido="201"></ListItemCliente>
-            <ListItemCliente v-bind:num-pedido="'0123456'"total-pedido="201"></ListItemCliente>
-            <ListItemCliente v-bind:num-pedido="'0123456'"total-pedido="201"></ListItemCliente>
-            <ListItemCliente v-bind:num-pedido="'0123456'"total-pedido="201"></ListItemCliente>
+            <ListItemCliente v-for="pedido in props.data" v-bind:="{idPedido: pedido.id, numPedido: pedido.codigo, totalPedido: pedido.total}"></ListItemCliente>
         </ul>
 </template>
 

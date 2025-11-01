@@ -1,43 +1,62 @@
+
 <script setup>
 import CardPedido from '@/components/pedidos/CardPedido.vue';
 import ItemPedido from '@/components/pedidos/ItemPedido.vue';
 import axios from 'axios';
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
+ 
+const propPagePedidos = defineProps({propPagePedidos: Boolean})
+var statePagePedidos = ref(propPagePedidos.propPagePedidos); /* true: página carrinho aberto | false: página carrinho finalizado */
 
-
-// const propPagePedidos = defineProps({propPagePedidos: Boolean})
-// var statePagePedidos = ref(propPagePedidos.propPagePedidos); /* true: página carrinho aberto | false: página carrinho finalizado */
-
-const data = ref([])
+const actualRote3 = useRoute()
+const orderId3 = ref(actualRote3.params.orderId)
+const orderData3 = ref()
 
 onMounted(() => {
     axios.request({
         method: 'GET',
-        url: '/pedidos',
+        url: `/pedidos/${orderId3.value}`,
         headers: {
             "Content-Type": 'application/json',
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     })
     .then(response => {
-        data.value = response.data
+        orderData3.value = response.data
+        console.log(response.data)
     })
     .catch(error => {
         console.log(error)
     })
 })
 
-
 </script>
 
 <template>
-    <div class="container" id="pedidos" v-if="data">
-        <h1 class="titulo" id="titulo-pedidos">Pedidos realizados</h1>
+    <div class="container" id="pedidos" v-if="orderData3">
+        <h1 class="titulo" id="titulo-pedidos">{{ orderData3.codigo }}</h1>
         <hr>
-        <div id="pedidos">
-            <CardPedido v-for="pedido in data" v-bind:="{data: pedido}"></CardPedido>
+        <div id="pedido">
+        <div class="item-pedido">
+            <img src="../../assets/1 - bolo de banana.png"/>
+            <div class="direita">
+            <div class="topo">
+                <h6>{{orderData3.nome}}</h6>
+            </div>
+            <p class="meio item-pedido-descricao">{{ orderData3.descricao }}</p>
+            <p class="meio">Estoque: {{ orderData3.quantidade }}</p>
+            <div class="baixo">
+                <p class="quantidade">Quantidade: {{ orderData3.quantidade }}</p>
+                <h6>R${{ orderData3.preco }}</h6>
+            </div>
         </div>
+        </div>
+        </div>
+        <hr class="divisor">
+        <p id="pedido-subtotal">Subtotal <span>R$00</span></p>
 
+        <a href="#" class="btn" id="pedido-finalizar-btn" v-show="statePagePedidos">Finalizar pedido</a>
         
     </div>
 </template>
@@ -58,6 +77,7 @@ onMounted(() => {
             padding-top: 30px;
             @include flex(column, center, center);
             gap: 30px; 
+            width: 100%;
         }
     
         .divisor{
@@ -84,4 +104,4 @@ onMounted(() => {
             margin: 40px 0 20px 0;
         }
     }
-</style>
+</style> -->

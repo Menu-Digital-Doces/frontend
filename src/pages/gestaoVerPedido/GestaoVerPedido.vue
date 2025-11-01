@@ -1,18 +1,44 @@
 <script setup>
 import GestaoEditarItem from '@/components/modals/GestaoEditarItem.vue';
+import axios from 'axios';
+import { onMounted, ref, watch } from 'vue';
+import { RouterLink, useRoute } from 'vue-router';
 
+const actualRote = useRoute()
+const orderId = ref(actualRote.params.orderId)
+const orderData = ref()
+
+onMounted(() => {
+    axios.request({
+        method: 'GET',
+        url: `/pedidos/${orderId.value}`,
+        headers: {
+            "Content-Type": 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    })
+    .then(response => {
+        orderData.value = response.data
+        console.log(response.data)
+    })
+    .catch(error => {
+        console.log(error)
+    })
+})
 
 </script>
 
 <template>
     <div class="container" id="wrapper-pedido">
-        <div id="box-pedido">
+        <div id="box-pedido" v-if="orderData">
             <div class="topo">
                 <img src="../../assets/logo.png" alt="">
-                <h1 class="titulo-gestao">Pedido nº 0123456</h1>
-                <p>Cliente<a href="#" class="link">Felipe Santos</a></p>
+                <h1 class="titulo-gestao">{{ orderData.codigo }}</h1>
+                <!-- <p>Cliente<a href="#" class="link">{{ orderData.user_name }}</a></p> -->
+                <p>Cliente<a href="#" class="link"><RouterLink :to="{name: 'pedidosADM', params: {cliente: orderData.user_name}}">{{ orderData.user_name }}</RouterLink></a></p>
+                <p>Status<a href="#" class="link">{{ orderData.status }}</a></p>
             </div>
-            <div class="itens">
+            <!-- <div class="itens">
                 <ul>
                     <li>Itens</li>
 
@@ -37,7 +63,7 @@ import GestaoEditarItem from '@/components/modals/GestaoEditarItem.vue';
 
                     <li class="end inv">.</li>                    
                 </ul>
-            </div>
+            </div> -->
             <div class="entrega">
                 <p>Entrega<b>Tarifa</b></p>
                 <p>Retirada no local<b>R$00,00</b></p>
@@ -46,12 +72,11 @@ import GestaoEditarItem from '@/components/modals/GestaoEditarItem.vue';
                 <p>Forma de pagamento<b>Tarifa</b></p>
                 <p>PIX<b>R$00,00</b></p>
             </div>
-            <p id="total">Total<b>R$20,00</b></p>
+            <p id="total">Total<b>R${{ orderData.total }}</b></p>
             <a href="#" class="btn">Imprimir</a>
         </div>
     </div>
 
-    <GestaoEditarItem></GestaoEditarItem> <!-- Provisório aqui -->
 </template>
 
 <style lang="scss">

@@ -18,17 +18,9 @@ const activeProductsInCart = reactive({
 })
 
 onMounted(() => {
-  // const localCart = JSON.parse(localStorage.getItem('cart') || '[]');
-  // cart.value = Array.isArray(localCart) ? localCart : [];
-
-  const localCartString = localStorage.getItem('cart');
-  console.log('Valor bruto do localStorage (cart):', localCartString);
-  
+  const localCartString = localStorage.getItem('cart');  
   const localCart = JSON.parse(localCartString || '[]');
-  console.log('Valor PARSEADO (localCart):', localCart);
-  
   cart.value = Array.isArray(localCart) ? localCart : [];
-  console.log('Valor final do cart.value:', cart.value);
 })
 
 function removeItemFromCart(id){
@@ -49,6 +41,7 @@ function removeItemFromCart(id){
     <h1>Carrinho</h1>  
     <hr>
     <ItemPedido v-for="productData in filteredCart" :key="productData.id" v-bind:="{propStatePedido: true, productData: productData, removeItemFromCart: removeItemFromCart}"></ItemPedido>
+    <a href="" class="btn"><RouterLink to="finalizar-pedido">Confirmar</RouterLink></a>
   </div>
 </template>
 

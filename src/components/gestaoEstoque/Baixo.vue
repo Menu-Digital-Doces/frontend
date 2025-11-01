@@ -1,35 +1,50 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import ListItemProduto from './ListItemProduto.vue';
+import GestaoEditarItem from '../modals/GestaoEditarItem.vue';
+
+const props = defineProps({data: {type: Array, default: () => [] }, resetData: Function});
+const activeProducts = ref(props.data);
+const activeFilter = ref(1);
+const modalState = ref(false)
+
+const productObj = {
+    "id": 0,
+    "nome": "",
+    "descricao": "",
+    "preco": "",
+    "quantidade": 0,
+    "imagem": "",
+    "status": "Ativo",
+    "categoria": "",
+    "created_at": "",
+    "updated_at": ""
+}
 
 
 
-    /* 
-        1 - Todos
-        2 - Pendente
-        3 - Em produção
-        4 - Entregue
-    */
+
+watch(() => props.data, (newValue) => { activeProducts.value = newValue; }, { immediate: true });
+
+function changeActiveFilter(num){
+    activeFilter.value = num;
+}
+
+function toggleEdit(){
+    modalState.value = !modalState.value
+}
 
 
-    var dados = {
-        nome: 'Bolo de banana',
-        descricao: 'Bolo de banana',
-        valor: '40',
-        img: "../../../src/assets/1 - bolo de banana.png",
-        unidade: 'UN',
-        quantidade: '60',
-    }
-    var activeFilter = ref(1)
-
-
-    function changeActiveFilter(num){
-        activeFilter.value = num;
-    }
 
 </script>
 
 <template>
+    <div id="modal-estoque">
+        <GestaoEditarItem
+            v-if="modalState"
+            v-bind:="{data: productObj, toggleEdit: () => toggleEdit(), resetData: resetData, mode: 'Criar'}"
+        ></GestaoEditarItem>
+    </div>
     <div id="gestao-de-estoque-baixo">
         <p>
             <a href="#" @click.prevent="changeActiveFilter(1)">Todos</a>
@@ -47,15 +62,15 @@ import ListItemProduto from './ListItemProduto.vue';
             <span>Ações</span>
         </p>
         <ul>
-            <ListItemProduto v-bind:dados="dados"></ListItemProduto>
-            <ListItemProduto v-bind:dados="dados"></ListItemProduto>
-            <ListItemProduto v-bind:dados="dados"></ListItemProduto>
-            <ListItemProduto v-bind:dados="dados"></ListItemProduto>
-            <ListItemProduto v-bind:dados="dados"></ListItemProduto>
-            <ListItemProduto v-bind:dados="dados"></ListItemProduto>
+            <ListItemProduto 
+                v-for="pedidoItem in activeProducts" 
+                v-bind:="{data: pedidoItem, resetData: resetData}" 
+                :key="pedidoItem.id">
+            </ListItemProduto>
+
          
         </ul>
-
+        <a href="#" class="btn" @click.prevent="toggleEdit()">Adicionar</a>
     </div>
 </template>
 

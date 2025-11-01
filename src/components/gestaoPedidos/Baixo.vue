@@ -4,6 +4,8 @@ import ListItemPedido from './ListItemPedido.vue';
 
 
 
+    const { data } = defineProps({data: Array})
+
     /* 
         1 - Todos
         2 - Pendente
@@ -28,14 +30,12 @@ import ListItemPedido from './ListItemPedido.vue';
             <a href="#" @click.prevent="changeActiveFilter(4)">Entregue</a>
         </p>
         <ul>
-            <ListItemPedido>a</ListItemPedido>
+            <!-- <ListItemPedido></ListItemPedido>         -->
             <!--  -->
-            <ListItemPedido v-if="activeFilter === 1 || activeFilter === 2" v-bind:status=2>b</ListItemPedido>
-            <ListItemPedido v-if="activeFilter === 1 || activeFilter === 3" v-bind:status=3>b</ListItemPedido>
-            <ListItemPedido v-if="activeFilter === 1 || activeFilter === 3" v-bind:status=3>b</ListItemPedido>
-            <ListItemPedido v-if="activeFilter === 1 || activeFilter === 3" v-bind:status=3>b</ListItemPedido>
-            <ListItemPedido v-if="activeFilter === 1 || activeFilter === 4" v-bind:status=4>b</ListItemPedido>
-            <ListItemPedido v-if="activeFilter === 1 || activeFilter === 4" v-bind:status=4>b</ListItemPedido>
+            <!-- <ListItemPedido v-if="activeFilter === 1 || activeFilter === 2" v-bind:status=2>b</ListItemPedido> -->
+            <ListItemPedido v-for="pedidoItem in data" v-bind:pedido="pedidoItem"></ListItemPedido>
+            
+
          
         </ul>
     </div>

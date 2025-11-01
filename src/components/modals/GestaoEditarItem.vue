@@ -1,13 +1,84 @@
 <script setup>
+import axios from 'axios';
 import FundoModal from './FundoModal.vue';
+import { ref, watch } from 'vue';
+
+const props = defineProps({data: {type: Object, default: () => ({}) }, toggleEdit: Function, resetData: Function, mode: String});
+
+const product = ref(JSON.parse(JSON.stringify(props.data)));
+// const product = ref(props.data);
+watch(() => props.data, (newValue) => { product.value = JSON.parse(JSON.stringify(newValue)); }, { immediate: true });
+// watch(() => props.data, (newValue) => { product.value = newValue; }, { immediate: true });
+
+// 
+
+
+
+function editarProduto(){
+    if(props.mode === 'Criar'){
+        console.log(product.value)
+        axios.request({
+            method: 'POST',
+            url: `/produtos`,
+            data: {
+                'nome': product.value.nome,
+                'descricao': product.value.descricao,
+                'preco': product.value.preco,
+                'quantidade': product.value.quantidade,
+                'imagem': product.value.img,
+                'status': product.value.status,
+            },
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            props.resetData()
+            props.toggleEdit()
+            
+        })
+        .catch(error => {
+            console.log(product.value)
+            console.log(error)
+        })
+    } else if(props.mode === 'Editar'){
+        axios.request({
+            method: 'PUT',
+            url: `/produtos/${product.value.id}`,
+            data: {
+                'nome': product.value.nome,
+                'preco': product.value.preco,
+                'status': product.value.status,
+                'quantidade': product.value.quantidade,
+                'imagem': product.value.img,
+                'descricao': product.value.descricao
+            },
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            props.resetData()
+            props.toggleEdit()
+
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+
 
 
 </script>
 
 <template>
-    <FundoModal></FundoModal>
+    <FundoModal @click.prevent="props.toggleEdit()"></FundoModal>
     <div class="box-modal" id="modal-gestao-editar-item">
-        <a href="" class="btn-close">X</a>
+        <a href="" class="btn-close" @click.prevent="props.toggleEdit()">X</a>
         <div class="topo">
             <h2>Editar item</h2>
             <hr>
@@ -15,25 +86,25 @@ import FundoModal from './FundoModal.vue';
         <form>
             <div>
                 <label for="nome-produto">Nome</label>
-                <input type="text" id="nome-produto" value="Brigadeiro">
+                <input type="text" id="nome-produto" v-model="product.nome">
 
             </div>
 
             <div>
                 <label for="descricao-produto">Descrição</label>
-                <textarea name="" id="descricao-produto"></textarea>
+                <textarea name="" id="descricao-produto" v-model="product.descricao"></textarea>
 
             </div>
 
             <div>
                 <label for="">Valor</label>
-                <input type="number" id="valor-produto">
+                <input type="number" id="valor-produto" v-model="product.preco">
 
             </div>
 
             <div>
                 <label>Imagem</label>
-                <img src="../../assets/1 - bolo de banana.png" alt="">
+                <img :src="product.imagem" alt="">
                 <div class="controles-imagem">
                     <a href="" id="upload">Fazer upload</a><a href="" id="deletar">Deletar imagem</a>
 
@@ -50,13 +121,13 @@ import FundoModal from './FundoModal.vue';
                 </div>
                 <div>
                     <label for="quantidade-produto">Quantidade</label>
-                    <input type="number" name="" id="quantidade-produto">
+                    <input type="number" name="" id="quantidade-produto" v-model="product.quantidade">
                 </div>
             </div>
 
             <div class="botoes-form">
-                <a href="#" class="btn" id="cancelar">Cancelar</a>
-                <a href="#" class="btn" id="confirmar">Confirmar</a>
+                <a href="#" class="btn" id="cancelar" @click.prevent="props.toggleEdit()">Cancelar</a>
+                <a href="#" class="btn" id="confirmar" @click.prevent="editarProduto()">Confirmar</a>
 
             </div>
         </form>

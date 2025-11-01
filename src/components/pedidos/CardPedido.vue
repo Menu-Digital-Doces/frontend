@@ -1,12 +1,16 @@
-<script setup></script>
+<script setup>
+
+const { data } = defineProps({data: Object})
+
+</script>
 
 <template>
   <div id="card-pedido">
     <div>
-      <p>Pedido n°0123458</p>
-      <p>Status do pedido</p>
+      <p>{{ data.codigo }}</p>
+      <p>{{ data.status }}</p>
     </div>
-    <a href="#">VER</a>
+    <a href="#"><RouterLink :to="{name: 'pedido', params: {orderId: data.id}}">Ver</RouterLink></a>
   </div>
 </template>
 

@@ -1,18 +1,20 @@
 <script setup>
     import { isShallow, ref } from 'vue';
+    import { useRouter } from 'vue-router';
 import FundoModal from './FundoModal.vue';
 import axios from 'axios';
 
-    var { changeActiveComponent, changeLoginCadastro, changeIsLogged } = defineProps({
+    var { changeActiveComponent, changeLoginCadastro, changeIsLogged, isAdmLogin } = defineProps({
       changeActiveComponent: Function,
       changeLoginCadastro: Function,
-      changeIsLogged: Function
+      changeIsLogged: Function,
+      isAdmLogin: Boolean
     })
 
     var nonAutorizhedState = ref(false)
     var inputEmailValue = ref('')
     var inputPasswordValue = ref('')
-
+    const router = useRouter();
 
     function sendData(email, password){ /*Login*/
       nonAutorizhedState.value = false;
@@ -33,8 +35,13 @@ import axios from 'axios';
         localStorage.setItem('token', response.data.token)
         localStorage.setItem('name', response.data.user.name)
         localStorage.setItem('email', response.data.user.email)
-        changeActiveComponent()
         changeIsLogged();
+        if(isAdmLogin){
+          router.push('/painel-do-admin/gestao-de-pedidos')
+        }else{
+          changeActiveComponent()
+          
+        }
       })
       .catch(error => {
         if(error.status === 401){

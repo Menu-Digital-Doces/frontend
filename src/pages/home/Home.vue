@@ -5,9 +5,9 @@ import Historia from "@/components/home/Historia.vue";
 </script>
 
 <template>
-  <div class="container">
+  <div>
     <Apresentacao></Apresentacao>
-    <!-- <Doces></Doces>     -->
+    <Doces></Doces>    
     <Historia></Historia>
   </div>
 </template>

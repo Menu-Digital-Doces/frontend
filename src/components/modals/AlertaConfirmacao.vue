@@ -1,4 +1,6 @@
 <script setup>
+    import { RouterLink } from 'vue-router';
+
     const props = defineProps({text: ""})
 
 
@@ -8,7 +10,7 @@
 <template>
     <div class="box-modal" id="modal-alerta">
     <p>{{text}}</p>
-    <a href="#" class="btn">Ok</a>
+    <a href="#" class="btn" id="ok"><RouterLink to="/meus-pedidos-view">Ok</RouterLink></a>
   </div>
 </template>
 
@@ -17,6 +19,8 @@
         inset: 0;
         margin: auto;
         width: 350px;
+        height: 200px;
+        border: 1px solid black;
 
         p{
             font-size: 14px;
@@ -28,6 +32,11 @@
         .btn{
             border: 2px solid $preto;
             color: $preto;
+            margin-bottom: 0;
+        }
+
+        #ok{
+            margin-bottom: 0;
         }
     }
 </style>

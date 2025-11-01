@@ -4,7 +4,7 @@
 </script>
 
 <template>
-    <section id="apresentacao">
+    <section id="apresentacao" class="container">
         <div>
           <h1 class="titulo">Confeitaria da <span class="destaque">Cris</span></h1>
           <p style="font-weight: bold;">Prepare-se para uma experiência deliciosa!</p>

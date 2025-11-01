@@ -8,6 +8,7 @@ import GestaoVerPedido from '@/pages/gestaoVerPedido/GestaoVerPedido.vue'
 import Home from '@/pages/home/Home.vue'
 import LoginAdm from '@/pages/loginAdm/LoginAdm.vue'
 import Pedidos from '@/pages/pedidos/Pedidos.vue'
+import PedidosView from '@/pages/pedidos/PedidosView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -17,12 +18,13 @@ const router = createRouter({
     {path: '/catalogo', component: Catalogo},
     {path: '/finalizar-pedido', component: FinalizarCompra},
     {path: '/meus-pedidos', component: Pedidos},
+    {path: '/meus-pedidos/:orderId', component: PedidosView, name: 'pedido'},
     {path: '/carrinho', component: Carrinho},
     {path: '/painel-do-admin/login', component: LoginAdm},
     {path: '/painel-do-admin/gestao-de-pedidos', component: GestaoPedidos},
     {path: '/painel-do-admin/gestao-de-estoque', component: GestaoEstoque},
-    {path: '/painel-do-admin/pedido/0123456', component: GestaoVerPedido},
-    {path: '/painel-do-admin/cliente/', component: GestaoVerCliente},
+    {path: '/painel-do-admin/pedido/:orderId', component: GestaoVerPedido, name: 'pedidoADM'},
+    {path: '/painel-do-admin/cliente/:cliente', component: GestaoVerCliente, name: 'pedidosADM'},
     {path: '/:pathMatch(.*)*', component: Home} /* Endereço não encontrado */
   ],
 })
