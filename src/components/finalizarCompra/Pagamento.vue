@@ -57,6 +57,9 @@ function savePaymentMethod(){
         /* background-color: $branco; */
         border-radius: 15px;
         /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+        padding-top: 60px;
+        min-height: calc(100vh - 160px);
+
 
         .titulo-secao{
             font-size: 32px;
@@ -76,6 +79,7 @@ function savePaymentMethod(){
         form{
           @include flex(column, center, center);
           gap: 60px;
+          padding-top: 60px;
           
             .boxes{
               @include flex(row, center, center);
@@ -141,7 +145,7 @@ function savePaymentMethod(){
             }
 
             .btn-btn{
-                margin: auto;
+                margin: 70px auto 0 auto;
             }
         }
     }

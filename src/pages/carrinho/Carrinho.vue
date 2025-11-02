@@ -3,6 +3,8 @@ import ItemPedido from '@/components/pedidos/ItemPedido.vue';
 import { computed, onMounted, reactive, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
+const { changeActiveComponent } = defineProps({changeActiveComponent: Function})
+
 const isModal = !(useRoute().path === '/carrinho')
 const cart = ref([])
 const filteredCart = computed(() =>
@@ -45,12 +47,13 @@ function removeItemFromCart(id){
     <div class="lista-itens-carrinho">
         <!-- <ItemPedido v-for="productData in filteredCart" :key="productData.id" v-bind:="{propStatePedido: true, productData: productData, removeItemFromCart: removeItemFromCart}"></ItemPedido> -->
         <ItemPedido v-for="productData in filteredCart" :key="productData.id" v-bind:="{propStatePedido: true, productData: productData, removeItemFromCart: removeItemFromCart}"></ItemPedido>
-    </div>
-    <div class="resumo-carrinho">
+        <p v-if="cart.length===0" id="notOrder">Não há itens no carrinho</p>
+      </div>
+    <div v-if="cart.length!==0" class="resumo-carrinho">
         <p class="subtotal">Subtotal: <span>R$10,00</span></p> <!-- Calcular subtotal -->
-        <RouterLink to="finalizar-pedido" class="btn-btn">Finalizar Compra</RouterLink>
+        <RouterLink to="finalizar-pedido" class="btn-btn">Finalizar pedido</RouterLink>
         <p v-if="isModal">ou</p>
-        <a v-if="isModal" href="#" class="link" id="link-pagina-carrinho"><RouterLink to="carrinho"> ir para a página do carrinho</RouterLink></a>
+        <RouterLink to="carrinho" v-if="isModal" href="#" class="link" id="link-pagina-carrinho" @click="changeActiveComponent()"> ir para a página do carrinho</RouterLink>
     </div>
   </div>
 </template>
@@ -60,7 +63,7 @@ function removeItemFromCart(id){
         @include flex(column, start, start);
         width: 100%;
         padding-top: 30px;
-        
+        padding-bottom: 64px;
 
         .titulo-pagina {
           margin-bottom: 10px;
@@ -82,6 +85,8 @@ function removeItemFromCart(id){
             @include flex(column, start, start);
             gap: 15px;
             margin-bottom: 30px;
+            min-height: calc(100vh - 240px);
+
         }
 
         .resumo-carrinho{
@@ -106,6 +111,12 @@ function removeItemFromCart(id){
             }
 
             
+        }
+
+       
+
+        #notOrder{
+          color: $cinza-claro;
         }
     }
 </style>

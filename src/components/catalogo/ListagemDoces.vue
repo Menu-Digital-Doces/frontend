@@ -80,7 +80,7 @@ onMounted(() => {
                 @include flex(row, center, stretch); /* Alinhamento centralizado e altura esticada */
                 flex-wrap: wrap;
                 padding: 32px 0;
-                gap: 32px; /* Espaçamento entre os cards */
+                gap: 100px 48px; /* Espaçamento entre os cards */
 
                 /* Responsividade */
                 @media (min-width: 1200px){

@@ -14,5 +14,6 @@
         position: fixed;
         top: 60px;  
         z-index: 10;
+        left: 0;
     }
 </style>

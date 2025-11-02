@@ -15,12 +15,13 @@ const { payRequest } = defineProps({
     <img id="qr-code" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Link_pra_pagina_principal_da_Wikipedia-PT_em_codigo_QR_b.svg"/>
     <p>R$00,00</p>
     <b><p>Aguardando pagamento</p></b>
-    <a href="#" class="btn" id="pago" @click.prevent="payRequest()">Pago</a>
+    <a href="#" class="btn-btn" id="pago" @click.prevent="payRequest()">Pago</a>
   </div>
 </template>
 
 <style lang="scss">
     #box-alertaPagamento{
+        z-index: 11;
         inset: 0;
         margin: auto;
         width: 350px;

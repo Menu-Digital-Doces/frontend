@@ -10,12 +10,13 @@
 <template>
     <div class="box-modal" id="modal-alerta">
     <p>{{text}}</p>
-    <a href="#" class="btn" id="ok"><RouterLink to="/meus-pedidos-view">Ok</RouterLink></a>
+    <RouterLink to="/meus-pedidos-view" class="btn">Ok</RouterLink>
   </div>
 </template>
 
 <style lang="scss">
     #modal-alerta{
+        z-index: 11;
         inset: 0;
         margin: auto;
         width: 350px;

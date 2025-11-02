@@ -44,11 +44,11 @@ import axios from 'axios';
     <FundoModal @click="changeActiveComponent()"></FundoModal>
   <div class="box-modal" id="modal-centralDoUsuario">
     <span @click="changeActiveComponent()"><XMarkIcon class="btn-close"/></span>
-    <img src="https://images.tcdn.com.br/img/img_prod/849569/berloque_robozinho_5417_1_20231121121518.jpg" alt="foto do robo"/>
+    <img src="@/assets/logo-confeitaria-da-Cris.png" alt="foto do robo"/>
     <p class="modal-login-saudacoes">Olá, {{user}}!</p>
     <hr />
-    <a href="#" class="link"><RouterLink to="meus-pedidos">Ver meus pedidos</RouterLink></a>
-    <a href="#" class="link">Rastrear pedido</a>
+    <RouterLink to="meus-pedidos" class="link">Ver meus pedidos</RouterLink>
+    <a href="#" class="link">Editar endereço</a>
 
     <a href="#" class="btn" @click.prevent="logout()">Sair</a>
   </div>
@@ -59,7 +59,7 @@ import axios from 'axios';
 <style lang="scss">
 
 #modal-centralDoUsuario{
-    z-index: 10;
+    z-index: 11;
     top: 80px;
     right: 60px;
 

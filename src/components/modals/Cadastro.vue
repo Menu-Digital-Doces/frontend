@@ -94,7 +94,7 @@ import * as seila from './Login.vue';
       <p v-if="msgAccCreatedState">A sua conta foi criada. Fazer login.</p>
 
       
-      <input type="submit" class="btn" href="#"/>
+      <input type="submit" class="btn-btn" href="#"/>
       <a href="#" class="link" @click.prevent="changeLoginCadastro()">Login</a>
     </form>
 
@@ -104,6 +104,7 @@ import * as seila from './Login.vue';
 
 <style lang="scss">
     #modal-cadastro{
+        z-index: 11;
         top: 80px;
         right: 60px;
         padding-top: 75px;
@@ -120,11 +121,13 @@ import * as seila from './Login.vue';
             right: 25px;
         }
 
-        .btn{
-            color: $preto;
-            border: 2px solid $preto;
-            margin-top: 48px;
-            margin-bottom: 24px;
+        .link{
+          align-self: center;
+        }
+
+        .btn-btn{
+            margin: 24px 0;
+            align-self: center;
         }
     }
 

@@ -32,8 +32,15 @@ $padding: 0 50px; /*Padding wrapper da página*/
 }
 
 body {
-    background-color: #fffbf5; /* Fundo levemente cinza para destacar os cards brancos */
+    background-color: #fffbf5;
     overflow-x: hidden;
+    // background-image: 
+    //     linear-gradient(to bottom, rgba(255, 251, 245, 0.9), rgba(255, 251, 245, 0.9)), /* Gradiente semi-transparente com a cor de fundo */
+    //     url(../assets/fundo.jpg);
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: 700px;
+
 }
 
 hr {
@@ -137,10 +144,16 @@ p {
 .btn {
   padding: 10px 30px; /* Padding ajustado */
   border-radius: 15px; /* Mais arredondado */
-  font-weight: bold;
   text-align: center;
   display: inline-block;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  font-size: 14px;
+  font-weight: bold;
+
+    &:hover {
+      background-color: $rosa-escuro;
+      color: $branco !important;
+  }
 }
 
 

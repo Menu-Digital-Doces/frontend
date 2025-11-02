@@ -20,7 +20,7 @@
 
     #wrapper-historia{
         background-color: $cinza-claro;
-        padding-top: 600px;
+        padding-top: 650px;
         padding-bottom: 100px;
 
         @media screen and (max-width: 768px){
@@ -48,6 +48,7 @@
         p{
             text-align: justify;
             margin-top: 25px;
+            line-height: 3;
         }
 
         img{
@@ -61,6 +62,10 @@
             @media (max-width: 768px){
                 max-width: initial;
             }
+        }
+
+        .titulo{
+            font-size: 32px;
         }
         
     }

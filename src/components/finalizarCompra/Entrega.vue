@@ -54,6 +54,8 @@ function saveDeliveryMethod(){
         /* background-color: $branco; */
         border-radius: 15px;
         /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+        min-height: calc(100vh - 280px);
+
 
         .titulo-secao{
             font-size: 32px;
@@ -70,7 +72,7 @@ function saveDeliveryMethod(){
         }
 
         form{
-            @include flex(column, start, start);
+            @include flex(column, start, center);
             gap: 20px;
 
             .opcao-entrega{
@@ -135,7 +137,7 @@ function saveDeliveryMethod(){
             }
 
             .btn-btn{
-                margin: 60px auto 0 auto;
+                margin: 140px auto 0 auto;
             }
         }
     }

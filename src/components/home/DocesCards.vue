@@ -23,7 +23,7 @@ $cor-texto-card: #fff;
 $cor-destaque-card: #e91e63; // Simulação do rosa/vermelho de destaque
 
 .doce-card {
-    position: absolute;
+    position: relative;
     width: 250px; // Largura ajustada para o card
     height: 350px; // Altura ajustada para o card
     border-radius: 30px; // Bordas bem arredondadas, como na imagem
@@ -83,22 +83,11 @@ $cor-destaque-card: #e91e63; // Simulação do rosa/vermelho de destaque
           }
         }
 
-        &:nth-child(1), &:nth-child(2), &:nth-child(3){
-          top: -150px;
-        }
-
-        &:nth-child(2){
-          right: 0; left: 0;
-          margin: auto;
-        }
-        
-        &:nth-child(3){
-          right: 0;
-        }
+ 
       }
       
 
-      #doces-meio-baixo #doce-card-baixo{/* os dois de baixo */
+      #doces-meio-baixo #doce-card-baixo, #doces-meio #doce-card{/* os dois de baixo */
         position: relative;
         margin: unset;
         top: 0;

@@ -69,7 +69,7 @@ import axios from 'axios';
 
       <p v-if="nonAutorizhedState">Algo deu errado. Tente novamente.</p>
 
-      <input type="submit" class="btn"/>
+      <input type="submit" class="btn-btn"/>
 
       <a href="#" class="link" id="link-cadastro" @click.prevent="changeLoginCadastro()">Cadastre-se</a>
     </form>
@@ -81,17 +81,25 @@ import axios from 'axios';
 
 <style lang="scss">
     #modal-login{
+    z-index: 11;
     top: 80px;
     right: 60px;
     padding-top: 75px;
     z-index: 10;
+   
 
     form{
+      
       p{
         font-size: 12px;
         margin-top: 8px;
         color: $rosa-escuro;
-    
+        
+      }
+
+      #link-cadastro{
+        align-self: center;
+        margin-top: 20px;
       }
     }
 
@@ -102,7 +110,7 @@ import axios from 'axios';
 
     #login-logo{
       width: 100px;
-      margin-bottom: 64px;
+      margin-bottom: 32px;
     }
 
 
@@ -113,14 +121,11 @@ import axios from 'axios';
         right: 25px;
     }
 
-    .btn{
-        border: 2px solid $preto;
-        color: $preto;
+    .btn-btn{
         margin-bottom: 16px;
-        margin: 0 auto;
-        background-color: transparent;
-        border: 2px solid $preto;
-        
+        align-self: center;
+        cursor: pointer;
+        margin-top: 32px;
     }
 
 

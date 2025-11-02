@@ -11,7 +11,7 @@ var statePagePedidos = ref(propPagePedidos.propPagePedidos); /* true: página ca
 
 const actualRote3 = useRoute()
 const orderId3 = ref(actualRote3.params.orderId)
-const orderData3 = ref()
+const orderData3 = ref([])
 
 onMounted(() => {
     axios.request({
@@ -35,7 +35,8 @@ onMounted(() => {
 
 <template>
     <div class="container" id="pagina-detalhe-pedido" v-if="orderData3">
-        <h1 class="titulo-pagina">{{ orderData3.codigo }}</h1>
+        <!-- <h1 class="titulo-pagina">{{ orderData3.codigo }}</h1> -->
+        <h1 class="titulo-pagina">Código do pedido</h1>
         <hr class="divisor-pagina">
         <div class="lista-itens-pedido">
             <!-- Simulação de listagem de itens do pedido -->
@@ -45,7 +46,7 @@ onMounted(() => {
             <ItemPedido v-bind:="{propStatePedido: false, productData: {id: 99, nome: 'Item Exemplo', descricao: 'Descrição do item', quantidade: 10, quantidadeDesejada: 2, preco: 15.00, imagem: '1 - bolo de banana.png'}}"></ItemPedido>
             <ItemPedido v-bind:="{propStatePedido: false, productData: {id: 99, nome: 'Item Exemplo', descricao: 'Descrição do item', quantidade: 10, quantidadeDesejada: 2, preco: 15.00, imagem: '1 - bolo de banana.png'}}"></ItemPedido>
         </div>
-        <hr class="divisor-total">
+        <hr class="divisor-pagina">
         <p class="subtotal-pedido">Subtotal <span>R$00</span></p>
 
         <a href="#" class="btn-acao-pedido" v-show="statePagePedidos">Finalizar pedido</a>
@@ -58,6 +59,8 @@ onMounted(() => {
         width: 100%;
         @include flex(column, start, start);
         padding-top: 50px;
+        min-height: calc(100vh - 160px);
+
 
         .titulo-pagina{
             font-weight: bold;
@@ -80,25 +83,18 @@ onMounted(() => {
             padding-bottom: 30px;
         }
 
-        .divisor-total{
-            width: 100%;
-            border: 0;
-            height: 2px;
-            background-color: $rosa-escuro;
-            margin-top: 20px;
-            margin-bottom: 15px;
-        }
-
+   
         .subtotal-pedido{
             width: 100%;
             @include flex(row, space-between, center);
             font-weight: bold;
             font-size: 18px;
             color: $marrom-escuro;
-        
+            margin-bottom: 64px;
+
             span{
                 font-weight: bold;
-                color: $rosa-escuro;
+             
             }
         }
 

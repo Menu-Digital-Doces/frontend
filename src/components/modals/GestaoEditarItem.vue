@@ -136,6 +136,7 @@ function editarProduto(){
 
 <style lang="scss">
     #modal-gestao-editar-item{
+        z-index: 11;
         inset: 0;
         margin: 0 auto;
         top: 120px;

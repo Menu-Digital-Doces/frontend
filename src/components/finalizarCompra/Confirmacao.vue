@@ -62,6 +62,8 @@ import { ref } from 'vue';
     background-color: transparent;
     border-radius: 15px;
     /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+    padding-top: 40px;
+    
 
     .titulo-secao{
       font-size: 32px;
@@ -118,7 +120,7 @@ import { ref } from 'vue';
         width: 100%;
         margin-top: 15px;
         padding-top: 15px;
-        border-top: 2px solid $rosa-escuro;
+        border-top: 1px solid $cinza-claro;
         font-weight: bold;
         color: $marrom-escuro;
         font-weight: bold;

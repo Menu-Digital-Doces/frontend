@@ -36,6 +36,7 @@ onMounted(() => {
         <hr class="divisor-pagina">
         <div class="lista-pedidos">
             <CardPedido v-for="pedido in data" v-bind:="{data: pedido}" :key="pedido.id"></CardPedido>
+            <p v-if="data.length===0" id="notOrder">Não há pedidos</p>
         </div>
     </div>
 </template>
@@ -65,6 +66,11 @@ onMounted(() => {
             @include flex(column, center, center);
             gap: 50px; 
             padding-bottom: 30px;
+            min-height: calc(100vh - 160px);
+        }
+
+        #notOrder{
+            color: $cinza-claro;
         }
     }
 </style>

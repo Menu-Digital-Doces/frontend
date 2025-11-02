@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from 'vue';
+    import { ShoppingCartIcon } from '@heroicons/vue/24/outline'
+
 
 
 
@@ -46,7 +48,7 @@ function addProductToCart(product){
                      <input type="text" class="input-quantidade" :value="desiredQuantity" readonly/>
                     <a href="#" class="btn-quantidade" @click.prevent="changeDesiredQuantity('aumentar')">+</a>
                 </div>
-                <a href="#" class="btn-adicionar" @click.prevent="addProductToCart(productData)">Adicionar</a>
+                <a href="#" class="btn-adicionar" @click.prevent="addProductToCart(productData)"><ShoppingCartIcon class="icone"></ShoppingCartIcon>Adicionar</a>
             </div>
         </div>
     </div>
@@ -55,7 +57,7 @@ function addProductToCart(product){
 <style lang="scss">
     .card-produto{
         width: 350px; /* Ajustado para um tamanho mais comum em catálogos */
-        border-radius: 30px;
+        border-radius: 35px;
         overflow: hidden;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
         background-color: $branco;
@@ -67,7 +69,7 @@ function addProductToCart(product){
 
         img{
             width: 100%;
-            height: 200px; /* Altura da imagem reduzida para dar mais destaque ao conteúdo */
+            height: 400px; /* Altura da imagem reduzida para dar mais destaque ao conteúdo */
             object-fit: cover;
             border-radius: 15px 15px 0 0;
         }
@@ -92,14 +94,15 @@ function addProductToCart(product){
 
                 .card-preco{
                     font-weight: bold;
-                    color: $rosa-escuro;
+                    color: $marrom-escuro;
                     font-size: 18px;
                 }
             }
         
             .card-descricao{
                 margin: 0 0 8px 0;
-                font-size: 12px;
+                font-size: 14px;
+                font-weight: 200;
                 color: $cinza-escuro;
                 max-height: 36px; /* Limita a 3 linhas de texto */
                 overflow: hidden;
@@ -107,10 +110,12 @@ function addProductToCart(product){
                 display: -webkit-box;
                 -webkit-line-clamp: 3;
                 -webkit-box-orient: vertical;
+                margin-bottom: 30px;
             }
 
             .card-estoque{
-                font-size: 10px;
+                font-size: 14px;
+                font-weight: 200;
                 color: $cinza-escuro;
                 margin-bottom: 16px;
             }
@@ -122,7 +127,7 @@ function addProductToCart(product){
                 .controles-pedido{
                     width: 100px;
                     @include flex(row, space-between, center);
-                    border: 1px solid $cinza-claro;
+                    border: 1px solid transparent;
                     border-radius: 20px;
                     padding: 4px;
 
@@ -131,9 +136,10 @@ function addProductToCart(product){
                         text-align: center;
                         border: none;
                         background: none;
-                        font-weight: bold;
-                        color: $marrom-escuro;
+                        font-weight: normal;
+                        color: $preto;
                         padding: 0;
+                        font-size: 18px
                     }
 
                     .btn-quantidade{
@@ -141,30 +147,47 @@ function addProductToCart(product){
                         width: 24px;
                         height: 24px;
                         border-radius: 50%;
-                        background-color: $rosa-claro;
-                        color: $branco;
+                        background-color: $branco;
+                        border: 2px solid $cinza-escuro;
+                        color: $preto;
                         font-weight: bold;
                         font-size: 14px;
                         line-height: 1;
                         transition: background-color 0.2s;
 
                         &:hover {
-                            background-color: $rosa-medio;
-                        }
+                            background-color: $cinza-escuro;
+                            color: $branco;
+                    }
                     }
                 }
 
                 .btn-adicionar{
-                    background-color: $rosa-escuro;
-                    color: $branco;
+                    background-color: $branco;
+                    color: $rosa-escuro;
+                    border: 2px solid $rosa-escuro;
                     padding: 8px 16px;
-                    border-radius: 20px;
+                    border-radius: 15px;
                     font-weight: bold;
                     font-size: 14px;
                     transition: background-color 0.2s;
+                    @include flex(row, center, center);
+
+                    .icone{
+                        width: 16px;
+                        height: 16px;
+                        display: inline;
+                        margin-right: 8px;
+                        color: $rosa-escuro;
+                    }
 
                     &:hover {
-                        background-color: darken($rosa-escuro, 10%);
+                        background-color: $rosa-escuro;
+                        color: $branco;
+
+                        .icone{
+                            color: $branco;
+                        }
                     }
                 }
             }

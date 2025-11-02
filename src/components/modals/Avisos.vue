@@ -19,8 +19,9 @@ var { changeActiveComponent } = defineProps({changeActiveComponent: Function})
 
 <style lang="scss">
     
-    #avisos{
+    #avisos{ 
         #box{
+            z-index: 11;
             width: 100%;
             min-width: 100px;
             max-width: 400px;
