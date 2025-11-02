@@ -10,8 +10,8 @@
           <p style="font-weight: bold;">Prepare-se para uma experiência deliciosa!</p>
           <p>Mergulhe no nosso menu digital e descubra um jeito prático de fazer seus pedidos</p>
         </div>
-    
         <img src="../../assets/imagem-de-apresentacao.jpg" alt="bolo"/>
+    
     </section>
 </template>
 

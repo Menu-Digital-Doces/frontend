@@ -44,7 +44,7 @@ console.log(productData)
         border-radius: 25px;
         padding: 24px 24px;
         gap: 24px;
-        
+        background-color: $branco;
 
         img{
             width: 140px;

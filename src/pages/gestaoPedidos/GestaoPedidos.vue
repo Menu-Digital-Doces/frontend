@@ -42,9 +42,41 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
-    #wrapper-gestao-pedidos{
-        /* background-color: #f7f7f1; */
+    #pagina-gestao{
+        @include flex(column, start, start);
+        width: 100%;
+        padding-top: 30px;
 
+        .titulo-pagina {
+          margin-bottom: 10px;
+          font-weight: bold;
+          color: $marrom-escuro;
+          font-size: clamp(1.5rem, 6vw, 2.5rem);
+        }
+
+        .divisor-pagina{
+            border: 0;
+            height: 1px;
+            background-color: $cinza-claro;
+            margin-bottom: 30px;
+        }
+
+        .boxes-gestao{
+            @include flex(row, start, center);
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+
+            @media (max-width: 768px) {
+                justify-content: center;
+            }
+        }
+
+        .titulo-secao-gestao{
+            font-size: 20px;
+            font-weight: bold;
+            color: $rosa-escuro;
+            margin-top: 20px;
+        }
     }
-
 </style>

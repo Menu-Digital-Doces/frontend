@@ -1,7 +1,9 @@
 <script setup>
 import ItemPedido from '@/components/pedidos/ItemPedido.vue';
 import { computed, onMounted, reactive, ref } from 'vue';
+import { useRoute } from 'vue-router';
 
+const isModal = !(useRoute().path === '/carrinho')
 const cart = ref([])
 const filteredCart = computed(() =>
   cart.value.filter(product => verifyProductState(product.id))
@@ -9,12 +11,12 @@ const filteredCart = computed(() =>
 
 const activeProductsInCart = reactive({
   '1': true, 
-  '2': false, 
-  '3': false, 
-  '4': false, 
+  '2': true, 
+  '3': true, 
+  '4': true, 
   '5': true, 
-  '6': false, 
-  '7': false
+  '6': true, 
+  '7': true
 })
 
 onMounted(() => {
@@ -37,27 +39,74 @@ function removeItemFromCart(id){
 </script>
 
 <template>
-  <div class="container" id="container-carrinho">
-    <h1>Carrinho</h1>  
-    <hr>
-    <ItemPedido v-for="productData in filteredCart" :key="productData.id" v-bind:="{propStatePedido: true, productData: productData, removeItemFromCart: removeItemFromCart}"></ItemPedido>
-    <a href="" class="btn"><RouterLink to="finalizar-pedido">Confirmar</RouterLink></a>
+  <div class="container" id="pagina-carrinho">
+    <h1 class="titulo-pagina">Carrinho</h1>  
+    <hr class="divisor-pagina">
+    <div class="lista-itens-carrinho">
+        <!-- <ItemPedido v-for="productData in filteredCart" :key="productData.id" v-bind:="{propStatePedido: true, productData: productData, removeItemFromCart: removeItemFromCart}"></ItemPedido> -->
+        <ItemPedido v-for="productData in filteredCart" :key="productData.id" v-bind:="{propStatePedido: true, productData: productData, removeItemFromCart: removeItemFromCart}"></ItemPedido>
+    </div>
+    <div class="resumo-carrinho">
+        <p class="subtotal">Subtotal: <span>R$10,00</span></p> <!-- Calcular subtotal -->
+        <RouterLink to="finalizar-pedido" class="btn-btn">Finalizar Compra</RouterLink>
+        <p v-if="isModal">ou</p>
+        <a v-if="isModal" href="#" class="link" id="link-pagina-carrinho"><RouterLink to="carrinho"> ir para a página do carrinho</RouterLink></a>
+    </div>
   </div>
 </template>
 
 <style lang="scss">
-    #container-carrinho{
+    #pagina-carrinho{
         @include flex(column, start, start);
         width: 100%;
-        height: 100vh; /* rever */
+        padding-top: 30px;
+        
 
-        h1 {
+        .titulo-pagina {
           margin-bottom: 10px;
           font-weight: bold;
           color: $marrom-escuro;
           font-size: clamp(1rem, 6vw, 2rem);
+
         }
-        
+
+        .divisor-pagina{
+            border: 0;
+            height: 1px;
+            background-color: $cinza-claro;
+            margin-bottom: 20px;
+        }
+
+        .lista-itens-carrinho{
+            width: 100%;
+            @include flex(column, start, start);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .resumo-carrinho{
+            width: 100%;
+            @include flex(column, center, center);
+            gap: 15px;
+            border-top: 1px solid $cinza-claro;
+
+
+            .subtotal{
+                font-size: 18px;
+                font-weight: bold;
+                color: $marrom-escuro;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 40px;
+
+                span{
+                    color: $rosa-escuro;
+                }
+            }
+
+            
+        }
     }
 </style>
 

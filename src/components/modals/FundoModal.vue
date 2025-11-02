@@ -13,5 +13,6 @@
         backdrop-filter: blur(7px);
         position: fixed;
         top: 60px;  
+        z-index: 10;
     }
 </style>

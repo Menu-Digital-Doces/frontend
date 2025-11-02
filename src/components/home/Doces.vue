@@ -4,129 +4,95 @@
 </script>
 
 <template>
-  <!-- <div id="doces">
-    <h2 class="titulo">Confira os nossos <span class="destaque">doces</span></h2>
-    <div id="doces-cards-wrapper" class="wrapper"> Wrapper
+  <div id="doces">
+    <div id="doces-cima">
         <div class="container">
-            <DocesCards></DocesCards>
-            <DocesCards></DocesCards>
+            <h2 class="titulo">Confirxa os nossos <span class="destaque">doces</span></h2>
+
+        </div>
+
+    </div>
+    <div id="doces-meio">
+        <div class="container">
             <DocesCards></DocesCards>
             <DocesCards></DocesCards>
             <DocesCards></DocesCards>
 
         </div>
-
     </div>
-    <div id="doces-cards-baixo" class="wrapper"> Wrapper
+    <div id="doces-meio-baixo">
         <div class="container">
-            <a class="btn" href="#">Ver todos</a>
-
+            <DocesCards></DocesCards>
+            <DocesCards></DocesCards>
+            
         </div>
-
     </div>
+    <div id="doces-baixo">
+      
+        <a class="btn" href="#">Ver todos</a>
+    </div>
+    <img id="fundo-home" src="@/assets/fundohome.png" alt="">
 
-  </div> -->
+  </div>
 
-<section class="products-section">
-        <div class="container">
-            <h2 class="section-title">
-                Confira os nossos <span class="pink-text">doces</span>
-            </h2>
-
-            <div class="products-grid">
-                <!-- Linha 1 de produtos -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <!-- Imagem de placeholder para Brigadeiro -->
-                        <img src="https://picsum.photos/seed/brigadeiro/400/600" alt="Brigadeiro">
-                    </div>
-                    <div class="product-info">
-                        <p class="product-name">BRIGADEIRO</p>
-                        <p class="product-description">Descrição doce</p>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <!-- Imagem de placeholder para Beijinho -->
-                        <img src="https://picsum.photos/seed/beijinho/400/600" alt="Beijinho">
-                    </div>
-                    <div class="product-info">
-                        <p class="product-name">BEIJINHO</p>
-                        <p class="product-description">Descrição doce</p>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <!-- Imagem de placeholder para Bolo de Maçã -->
-                        <img src="https://picsum.photos/seed/bolomaca/400/600" alt="Bolo de Maçã">
-                    </div>
-                    <div class="product-info">
-                        <p class="product-name">BOLO DE MAÇÃ</p>
-                        <p class="product-description">Descrição doce</p>
-                    </div>
-                </div>
-
-                <!-- Linha 2 de produtos - Inicia a área rosa com a forma orgânica -->
-                <div class="product-card large-card">
-                    <div class="product-image">
-                        <!-- Imagem de placeholder para Bolo de Cenoura -->
-                        <img src="https://picsum.photos/seed/bolocenoura/400/600" alt="Bolo de Cenoura com Chocolate">
-                    </div>
-                    <div class="product-info">
-                        <p class="product-name">BOLO DE CENOURA COM CHOCOLATE</p>
-                        <p class="product-description">Descrição doce</p>
-                    </div>
-                </div>
-                <div class="product-card large-card">
-                    <div class="product-image">
-                        <!-- Imagem de placeholder para Bolo de Chocolate -->
-                        <img src="https://picsum.photos/seed/bolochocolate/400/600" alt="Bolo de Chocolate">
-                    </div>
-                    <div class="product-info">
-                        <p class="product-name">BOLO DE CHOCOLATE</p>
-                        <p class="product-description">Descrição doce</p>
-                    </div>
-                </div>
-            </div>
-            </div>
-            </section>
 </template>
 
 <style lang="scss">
     #doces{
-        background-color: red;
+        overflow-x: hidden;
 
-        h2{
-            text-align: center;
-        }
-    
-        #doces-cards-wrapper{
-            background-color: yellow;
-            height: 500px;
+        #doces-cima{
+            background-color: transparent;
+            height: 250px;
 
             .container{
-                @include flex(row, space-between, center);
-                gap: 50px;
-                text-align: center;
-                flex-wrap: wrap;
-                
-                @media (max-width: 768px){
-                    overflow-x: auto;
-                    flex-wrap: nowrap;
-                    
-                }
-                
-                
+                position: relative;
+                left: 0;
+            }
         }
-        }
+        #doces-meio{
+            background-color: $cinza-claro;
+            height: 450px;
+            position: relative;
 
-        #doces-cards-baixo{
-            background-color: transparent;
-            margin-top: 350px;
-            height: 200px;
-        
+            .container{
+                position: relative;
+                left: 0;
+            }
+        }
+        #doces-meio-baixo{
+            /* background-color: $rosa-medio; */
+            height: 0px;
+            position: relative;
+            
+            .container{
+                position: relative;
+                left: 0;
+                @include flex(row, space-evenly, center);
+                height: 0px;
+            }
+            
+        }
+        #doces-baixo{
+            background-color: $rosa-medio;
+            padding-top: 300px;
+            @include flex(row, center, center);
+            z-index: 2;
+
+
+            a{
+                margin-bottom: 10px;
+            }
+            
+        }
+        #fundo-home{
+            width: 150vw;
+            position: absolute;
+            left: -25%;
+            z-index: 1;
+            overflow-x: hidden;
+            margin-top: -20px;
         }
     }
-
     
 </style>

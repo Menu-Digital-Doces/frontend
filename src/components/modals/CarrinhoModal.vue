@@ -10,25 +10,33 @@ const { changeActiveComponent } = defineProps({changeActiveComponent: Function})
 <template>
     <FundoModal @click="changeActiveComponent()"></FundoModal>
     <div id="container-modal-carrinho" class="box-modal">
-        <Carrinho></Carrinho>
+        <Carrinho v-bind:is-modal="true"></Carrinho>
         <a href="#" class="btn-close" id="btn-close-modal" @click.prevent="changeActiveComponent()">X</a>
-        <p>ou</p>
-        <a href="#" class="link" id="link-pagina-carrinho"><RouterLink to="carrinho"> ir para a página do carrinho</RouterLink></a>
+        
     </div>
 </template>
 
 <style lang="scss">
     #container-modal-carrinho{
-        top: 80px;
+        top: 100px;
         right: 60px;
         width: 500px;
-        height: 600px;
+        height: calc(100vh - 60px - 80px);
+        z-index: 10;
+        padding-top: 0;
 
-        #pedidos{
+        #pagina-carrinho{
             overflow-y: auto;
+            height: auto;
+            
+            .lista-itens-carrinho{
+                height: 500px;
+                background-color: red;
+                overflow-y: a;
+            }
         }
 
-        #pedidos::-webkit-scrollbar{
+        #pagina-carrinho::-webkit-scrollbar{
             display: none;
         }
             
@@ -52,7 +60,7 @@ const { changeActiveComponent } = defineProps({changeActiveComponent: Function})
                 padding: 8px;
             }
 
-            #pedidos{
+            #pagina-carrinho{
                 width: 100%;
                 padding-bottom: 0;
             }

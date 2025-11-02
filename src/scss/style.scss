@@ -7,10 +7,10 @@ $marrom-escuro: #432b27;
 $rosa-claro: #f9bdb5;
 $rosa-medio: #ef7a71;
 $rosa-escuro: #c31644;
-$vermelho: red;
-$azul: #1a7892;
-$verde: #27c927;
-$amarelo: #dbdb3a;
+$vermelho: #dc3545; /* Cor mais padrão para vermelho de erro/remoção */
+$azul: #007bff; /* Cor mais padrão para azul de link */
+$verde: #28a745; /* Cor mais padrão para verde de sucesso */
+$amarelo: #ffc107; /* Cor mais padrão para amarelo de alerta */
 
 $padding: 0 50px; /*Padding wrapper da página*/
 
@@ -27,12 +27,20 @@ $padding: 0 50px; /*Padding wrapper da página*/
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
-  font-family: "Inter";
+  font-family: "Inter", sans-serif; /* Adicionado fallback */
   font-weight: normal;
+}
+
+body {
+    background-color: #fffbf5; /* Fundo levemente cinza para destacar os cards brancos */
+    overflow-x: hidden;
 }
 
 hr {
   width: 100%;
+  border: none;
+  height: 1px;
+  background-color: $marrom-escuro;
 }
 
 .titulo {
@@ -65,7 +73,7 @@ hr {
 
 p {
   color: $marrom-escuro;
-  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-size: 1rem; /* Tamanho base mais fixo */
 }
 
 .container {
@@ -94,6 +102,7 @@ p {
   padding: 50px 25px;
   border-radius: 20px;
   background-color: $branco;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .box-form {
@@ -101,33 +110,78 @@ p {
   width: 100%;
 
   label {
-    font-weight: 100;
+    font-weight: normal;
+    color: $marrom-escuro;
+    margin-bottom: 5px;
   }
 
   input[type="text"],
   input[type="email"],
   input[type="password"] {
     width: 100%;
-    height: 30px;
+    height: 40px; /* Altura aumentada */
     border-radius: 10px;
-    border: none;
-    box-shadow: 0 4px 4px -3px $preto;
-    padding-left: 10px;
+    border: 1px solid $cinza-claro; /* Borda sutil */
+    box-shadow: none; /* Removida a sombra */
+    padding-left: 15px;
+    margin-bottom: 15px;
+    transition: border-color 0.2s;
+
+    &:focus {
+        border-color: $rosa-escuro;
+        outline: none;
+    }
   }
 }
 
 .btn {
-  padding: 8px 32px;
-  border-radius: 10px;
+  padding: 10px 30px; /* Padding ajustado */
+  border-radius: 15px; /* Mais arredondado */
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+
+.btn-btn{
+  background-color: transparent;
+  color: $rosa-escuro;
+  border: 2px solid $rosa-escuro;
+  padding: 10px 50px;
+  border-radius: 15px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  cursor: pointer;
+
+  &:hover {
+      background-color: $rosa-escuro;
+      color: $branco;
+  }
 }
 
 .link {
   color: $azul;
+  text-decoration: none;
+
+  :visited{
+    color: $preto;
+  }
 }
 
 .link-forget-password {
   font-size: 12px;
-  margin-top: 10px;
-  margin-bottom: 32px;
+  margin-top: 5px;
+  margin-bottom: 20px;
   align-self: flex-end;
+  color: $cinza-escuro;
+}
+
+/* Estilos para o Login Adm */
+#wrapper-login-adm{
+    background-color: $cinza-claro; /* Fundo para a página de login */
+}
+
+#modal-login{
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }

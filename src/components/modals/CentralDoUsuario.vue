@@ -59,6 +59,7 @@ import axios from 'axios';
 <style lang="scss">
 
 #modal-centralDoUsuario{
+    z-index: 10;
     top: 80px;
     right: 60px;
 

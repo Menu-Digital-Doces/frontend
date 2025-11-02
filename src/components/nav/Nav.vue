@@ -139,6 +139,7 @@ import Cadastro from '../modals/Cadastro.vue';
         width: 100%;
         position: sticky;
         top: 0;
+        z-index: 10;
 
         img{
             width: 60px;

@@ -5,11 +5,15 @@ import Historia from "@/components/home/Historia.vue";
 </script>
 
 <template>
-  <div>
+  <div id="pagina-home">
     <Apresentacao></Apresentacao>
     <Doces></Doces>    
     <Historia></Historia>
   </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+   #pagina-home{
+        overflow-x: hidden;
+   }
+</style>

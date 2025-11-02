@@ -1,0 +1,133 @@
+$branco: #fff;
+$preto: #262323;
+$cinza-claro: #eeeeee;
+$cinza-escuro: #a1a1a1;
+$marrom-claro: #b48967;
+$marrom-escuro: #432b27;
+$rosa-claro: #f9bdb5;
+$rosa-medio: #ef7a71;
+$rosa-escuro: #c31644;
+$vermelho: red;
+$azul: #1a7892;
+$verde: #27c927;
+$amarelo: #dbdb3a;
+
+$padding: 0 50px; /*Padding wrapper da página*/
+
+@mixin flex($direction, $justify-content, $align-items) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-family: "Inter";
+  font-weight: normal;
+}
+
+hr {
+  width: 100%;
+}
+
+.titulo {
+  font-weight: 100;
+  color: $marrom-claro;
+}
+
+.titulo-gestao {
+  font-weight: bold;
+  color: $rosa-escuro;
+  margin-top: 32px;
+}
+
+.boxes-gestao {
+  margin-top: 32px;
+  width: 100%;
+  @include flex(row, start, center);
+  gap: 32px;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+}
+
+.destaque {
+  font-weight: bold;
+  color: $rosa-escuro;
+}
+
+p {
+  color: $marrom-escuro;
+  font-size: clamp(1rem, 3vw, 1.25rem);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.wrapper {
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+
+.btn-close {
+  width: 24px;
+  height: 24px;
+  color: $rosa-escuro;
+}
+
+.box-modal {
+  width: 300px;
+  height: fit-content;
+  @include flex(column, center, center);
+  position: fixed;
+  padding: 50px 25px;
+  border-radius: 20px;
+  background-color: $branco;
+}
+
+.box-form {
+  @include flex(column, center, start);
+  width: 100%;
+
+  label {
+    font-weight: 100;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 4px 4px -3px $preto;
+    padding-left: 10px;
+  }
+}
+
+.btn {
+  padding: 8px 32px;
+  border-radius: 10px;
+}
+
+.link {
+  color: $azul;
+}
+
+.link-forget-password {
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: 32px;
+  align-self: flex-end;
+}

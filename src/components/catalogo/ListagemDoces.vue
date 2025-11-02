@@ -29,9 +29,9 @@ onMounted(() => {
 
 <template>
     <div class="container" id="listagem-doces">
-        <div class="container-cards">
-            <h3>Doces</h3>
-            <hr>
+        <div class="container-categoria">
+            <h3 class="titulo-categoria">Doces</h3>
+            <hr class="divisor-categoria">
             <div class="wrapper-cards">
                 <Card v-for="productData in data" v-bind:productData="productData" :key="productData.id"></Card>
                 <Card v-for="productData in data" v-bind:productData="productData" :key="productData.id"></Card>
@@ -39,9 +39,9 @@ onMounted(() => {
                 <Card v-for="productData in data" v-bind:productData="productData" :key="productData.id"></Card>
             </div>
         </div>
-        <div class="container-cards">
-            <h3>Bolos</h3>
-            <hr>
+        <div class="container-categoria">
+            <h3 class="titulo-categoria">Bolos</h3>
+            <hr class="divisor-categoria">
             <div class="wrapper-cards">
                 <Card v-for="productData in data" v-bind:productData="productData" :key="productData.id"></Card>
             </div>
@@ -53,32 +53,42 @@ onMounted(() => {
     #listagem-doces{
         width: 100%;
         @include flex (column, center, start);
-        gap: 64px;
+        gap: 48px; /* Espaçamento entre as categorias */
 
 
-        .container-cards{
+        .container-categoria{
             @include flex (column, center, start);
             width: 100%;
 
-            h3{
+            .titulo-categoria{
                 margin-bottom: 8px;
                 color: $marrom-escuro;
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+            .divisor-categoria{
+                border: 0;
+                height: 2px;
+                background-color: $cinza-escuro;
+                margin-bottom: 16px;
             }
             
             
             .wrapper-cards{
                 width: 100%;
-                @include flex(row, start, center);
+                @include flex(row, center, stretch); /* Alinhamento centralizado e altura esticada */
                 flex-wrap: wrap;
                 padding: 32px 0;
-                gap: 32px;
+                gap: 32px; /* Espaçamento entre os cards */
 
-                @media (max-width: 768px){
-                    justify-content: center;
+                /* Responsividade */
+                @media (min-width: 1200px){
+                    justify-content: space-between; /* Distribui o espaço em telas maiores */
                 }
-
-                @media (min-width: 1114px){
-                    justify-content: space-between;
+                
+                @media (max-width: 640px){
+                    justify-content: center; /* Centraliza em telas muito pequenas */
                 }
             }
         }

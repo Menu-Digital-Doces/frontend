@@ -34,74 +34,87 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="container" id="pedidos" v-if="orderData3">
-        <h1 class="titulo" id="titulo-pedidos">{{ orderData3.codigo }}</h1>
-        <hr>
-        <div id="pedido">
-        <div class="item-pedido">
-            <img src="../../assets/1 - bolo de banana.png"/>
-            <div class="direita">
-            <div class="topo">
-                <h6>{{orderData3.nome}}</h6>
-            </div>
-            <p class="meio item-pedido-descricao">{{ orderData3.descricao }}</p>
-            <p class="meio">Estoque: {{ orderData3.quantidade }}</p>
-            <div class="baixo">
-                <p class="quantidade">Quantidade: {{ orderData3.quantidade }}</p>
-                <h6>R${{ orderData3.preco }}</h6>
-            </div>
+    <div class="container" id="pagina-detalhe-pedido" v-if="orderData3">
+        <h1 class="titulo-pagina">{{ orderData3.codigo }}</h1>
+        <hr class="divisor-pagina">
+        <div class="lista-itens-pedido">
+            <!-- Simulação de listagem de itens do pedido -->
+            <ItemPedido v-for="item in orderData3.itens" :key="item.id" v-bind:="{propStatePedido: false, productData: item}"></ItemPedido>
+            <ItemPedido v-bind:="{propStatePedido: false, productData: {id: 99, nome: 'Item Exemplo', descricao: 'Descrição do item', quantidade: 10, quantidadeDesejada: 2, preco: 15.00, imagem: '1 - bolo de banana.png'}}"></ItemPedido>
+            <ItemPedido v-bind:="{propStatePedido: false, productData: {id: 99, nome: 'Item Exemplo', descricao: 'Descrição do item', quantidade: 10, quantidadeDesejada: 2, preco: 15.00, imagem: '1 - bolo de banana.png'}}"></ItemPedido>
+            <ItemPedido v-bind:="{propStatePedido: false, productData: {id: 99, nome: 'Item Exemplo', descricao: 'Descrição do item', quantidade: 10, quantidadeDesejada: 2, preco: 15.00, imagem: '1 - bolo de banana.png'}}"></ItemPedido>
+            <ItemPedido v-bind:="{propStatePedido: false, productData: {id: 99, nome: 'Item Exemplo', descricao: 'Descrição do item', quantidade: 10, quantidadeDesejada: 2, preco: 15.00, imagem: '1 - bolo de banana.png'}}"></ItemPedido>
         </div>
-        </div>
-        </div>
-        <hr class="divisor">
-        <p id="pedido-subtotal">Subtotal <span>R$00</span></p>
+        <hr class="divisor-total">
+        <p class="subtotal-pedido">Subtotal <span>R$00</span></p>
 
-        <a href="#" class="btn" id="pedido-finalizar-btn" v-show="statePagePedidos">Finalizar pedido</a>
+        <a href="#" class="btn-acao-pedido" v-show="statePagePedidos">Finalizar pedido</a>
         
     </div>
 </template>
 
 <style lang="scss">
-    #pedidos{
+    #pagina-detalhe-pedido{
         width: 100%;
         @include flex(column, start, start);
+        padding-top: 50px;
 
-        #titulo-pedidos{
+        .titulo-pagina{
             font-weight: bold;
             color: $marrom-escuro;
-            font-size: clamp(1rem, 6vw, 2rem);
-            margin-bottom: 8px;
-        }
-    
-        #pedidos, #pedido{
-            padding-top: 30px;
-            @include flex(column, center, center);
-            gap: 30px; 
-            width: 100%;
-        }
-    
-        .divisor{
-            background-color: red;
-            margin-top: 80px;
-            margin-bottom: 16px;
+            font-size: 32px;
+            margin-bottom: 10px;
         }
 
-        #pedido-subtotal{
+        .divisor-pagina{
+            border: 0;
+            height: 1px;
+            background-color: $cinza-claro;
+            margin-bottom: 20px;
+        }
+    
+        .lista-itens-pedido{
+            width: 100%;
+            @include flex(column, center, center);
+            gap: 50px; 
+            padding-bottom: 30px;
+        }
+
+        .divisor-total{
+            width: 100%;
+            border: 0;
+            height: 2px;
+            background-color: $rosa-escuro;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        .subtotal-pedido{
             width: 100%;
             @include flex(row, space-between, center);
             font-weight: bold;
-            padding: 0 24px;
+            font-size: 18px;
+            color: $marrom-escuro;
         
             span{
                 font-weight: bold;
+                color: $rosa-escuro;
             }
         }
 
-        #pedido-finalizar-btn{
-            border: 2px solid $rosa-escuro;
-            color: $rosa-escuro;
+        .btn-acao-pedido{
+            background-color: $rosa-escuro;
+            color: $branco;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-weight: bold;
             align-self: center;
             margin: 40px 0 20px 0;
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: darken($rosa-escuro, 10%);
+            }
         }
     }
-</style> -->
+</style>

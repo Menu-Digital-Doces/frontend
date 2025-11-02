@@ -84,6 +84,7 @@ import axios from 'axios';
     top: 80px;
     right: 60px;
     padding-top: 75px;
+    z-index: 10;
 
     form{
       p{

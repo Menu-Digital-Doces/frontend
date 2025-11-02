@@ -31,104 +31,142 @@ function addProductToCart(product){
 </script>
 
 <template>
-    <div class="card">
-        <img :src="`/src/assets/${productData.imagem}`" alt="">
-        <div class="card-texts">
-            <h6>{{ productData.nome }}<span>R${{productData.preco}}</span></h6>
-            <p class="descricao">{{ productData.descricao }}</p>
-            <p class="estoque">Estoque: {{ productData.quantidade }}</p>
-            <div class="baixo">
+    <div class="card-produto">
+        <img :src="'/src/assets/1 - bolo de banana.png'" alt=""> <!--Imagem provisoria-->
+        <div class="card-conteudo">
+            <div class="card-topo">
+                <h6 class="card-titulo">{{ productData.nome }}</h6>
+                <span class="card-preco">R${{productData.preco}}</span>
+            </div>
+            <p class="card-descricao">{{ productData.descricao }}</p>
+            <p class="card-estoque">Estoque: {{ productData.quantidade }}</p>
+            <div class="card-acoes">
                 <div class="controles-pedido">
-                    <a href="#" class="btn-option" @click.prevent="changeDesiredQuantity('diminuir')">-</a>
-                    <!-- <span>{{desiredQuantity}}</span> -->
-                     <input type="value" :value="desiredQuantity"/>
-                    <a href="#" class="btn-option" @click.prevent="changeDesiredQuantity('aumentar')">+</a>
+                    <a href="#" class="btn-quantidade" @click.prevent="changeDesiredQuantity('diminuir')">-</a>
+                     <input type="text" class="input-quantidade" :value="desiredQuantity" readonly/>
+                    <a href="#" class="btn-quantidade" @click.prevent="changeDesiredQuantity('aumentar')">+</a>
                 </div>
-                <a href="#" class="btn" @click.prevent="addProductToCart(productData)">Adicionar</a>
+                <a href="#" class="btn-adicionar" @click.prevent="addProductToCart(productData)">Adicionar</a>
             </div>
         </div>
     </div>
 </template>
 
 <style lang="scss">
-    .card{
-        width: 350px;
+    .card-produto{
+        width: 350px; /* Ajustado para um tamanho mais comum em catálogos */
         border-radius: 30px;
         overflow: hidden;
-        box-shadow: 0px 4px 4px -3px $preto;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
+        background-color: $branco;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+        }
 
         img{
             width: 100%;
-            height: 350px;
+            height: 200px; /* Altura da imagem reduzida para dar mais destaque ao conteúdo */
             object-fit: cover;
-         
+            border-radius: 15px 15px 0 0;
         }
 
-        .card-texts{
-            padding: 24px;
-            height: 300px;
+        .card-conteudo{
+            padding: 16px;
+            @include flex(column, space-between, start);
+            min-height: 150px; /* Altura mínima para manter o layout consistente */
             
-            h6{
+            .card-topo{
                 @include flex(row, space-between, center);
-                text-transform: uppercase;
-                font-size: 18px;
-                font-weight: bold;
-                color: $marrom-escuro;
+                width: 100%;
+                margin-bottom: 8px;
 
-                span{
+                .card-titulo{
+                    text-transform: uppercase;
+                    font-size: 16px;
                     font-weight: bold;
+                    color: $marrom-escuro;
+                    margin: 0;
+                }
+
+                .card-preco{
+                    font-weight: bold;
+                    color: $rosa-escuro;
+                    font-size: 18px;
                 }
             }
         
-            p{
-                margin: 16px 0;
-                font-size: 14px;
+            .card-descricao{
+                margin: 0 0 8px 0;
+                font-size: 12px;
                 color: $cinza-escuro;
-            }
-
-            .descricao{
-                max-height: 100px;
-                text-overflow: ellipsis;
+                max-height: 36px; /* Limita a 3 linhas de texto */
                 overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
             }
 
-            .estoque{
-
+            .card-estoque{
+                font-size: 10px;
+                color: $cinza-escuro;
+                margin-bottom: 16px;
             }
 
-            .baixo{
+            .card-acoes{
                 @include flex(row, space-between, center);
+                width: 100%;
 
                 .controles-pedido{
-                    width: 90px;
+                    width: 100px;
                     @include flex(row, space-between, center);
+                    border: 1px solid $cinza-claro;
+                    border-radius: 20px;
+                    padding: 4px;
 
-                    input[type="value"]{
-                        width: 10px;
-                        /* background-color: red; */
+                    .input-quantidade{
+                        width: 30px;
+                        text-align: center;
                         border: none;
-                    }
-
-                    .btn-option{
-                        border: 2px solid $cinza-escuro;
-                        padding: 2px 8px;
-                        border-radius: 40px;
+                        background: none;
                         font-weight: bold;
-                        color: $preto;
+                        color: $marrom-escuro;
+                        padding: 0;
                     }
 
-                    span{
-                        font-size: 16px;
-                        color: $preto;
+                    .btn-quantidade{
+                        @include flex(row, center, center);
+                        width: 24px;
+                        height: 24px;
+                        border-radius: 50%;
+                        background-color: $rosa-claro;
+                        color: $branco;
+                        font-weight: bold;
+                        font-size: 14px;
+                        line-height: 1;
+                        transition: background-color 0.2s;
+
+                        &:hover {
+                            background-color: $rosa-medio;
+                        }
                     }
-
-            }
-
-                .btn{
-                    color: $rosa-escuro;
-                    border: solid 2px $rosa-escuro;
                 }
 
+                .btn-adicionar{
+                    background-color: $rosa-escuro;
+                    color: $branco;
+                    padding: 8px 16px;
+                    border-radius: 20px;
+                    font-weight: bold;
+                    font-size: 14px;
+                    transition: background-color 0.2s;
+
+                    &:hover {
+                        background-color: darken($rosa-escuro, 10%);
+                    }
+                }
             }
         }
     }

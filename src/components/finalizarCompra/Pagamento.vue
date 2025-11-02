@@ -23,42 +23,126 @@ function savePaymentMethod(){
 </script>
 
 <template>
-
-<div id="finalizarCompra-pagamento">
-
-
-
-
-  <h1>Selecione a forma de pagamento</h1>  
-  <hr>
-
-  <form>
-      <label for="pix">
-      
-      <img src="data:image/png;base64,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" alt=""/>
-      <p>Pix</p>
-     
-      <input type="radio" class="check-radius" id="pix" name="pagamento" :value="option1" v-model="activeCheck"/>
-      
-      </label>
-
-        <label for="dinheiro">
-      
-      <!-- <img src="data:image/png;base64,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" alt=""/> -->
-      <img src="https://png.pngtree.com/png-vector/20191024/ourlarge/pngtree-cash-icon-flat-style-png-image_1857089.jpg" alt="">
-      <p>Dinheiro</p>
-     
-      <input type="radio" class="check-radius" id="dinheiro" name="pagamento" :value="option2" v-model="activeCheck"/>
-      
-      </label>
-  </form>
-
-  </div>
-
-  <a href="" class="btn" @click.prevent="savePaymentMethod()">Continuar</a>
-  
+    <div id="finalizarCompra-pagamento" class="container-pagamento">
+        <h1 class="titulo-secao">Selecione a forma de pagamento</h1>
+        <hr class="divisor-secao">
+        <form @submit.prevent="savePaymentMethod()">
+            <div class="boxes">
+              <label for="pix" class="opcao-pagamento">
+                <div class="conteudo-opcao">
+                  <img src="https://artpoin.com/wp-content/uploads/2023/09/artpoin-logo-pix-724x1024.png" alt="">
+                  <p class="titulo-opcao">Pix</p>
+                </div>
+                <input type="radio" id="pix" :value="option1" v-model="activeCheck">
+              </label>
+              <label for="cartao" class="opcao-pagamento">
+                <div class="conteudo-opcao">
+                  <img src="https://cdn-icons-png.flaticon.com/512/2695/2695969.png" alt="">
+                  <p class="titulo-opcao">Cartão de Crédito/Débito</p>
+                </div>
+                <input type="radio" id="cartao" :value="option2" v-model="activeCheck">
+              </label>
+            </div>
+            <button type="submit" class="btn-btn">Próximo</button>
+        </form>
+    </div>
 </template>
 
 <style lang="scss">
+    #finalizarCompra-pagamento{
+        width: 100%;
+        /* max-width: 500px; */
+        margin: 0 auto;
+        padding: 20px;
+        /* background-color: $branco; */
+        border-radius: 15px;
+        /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
 
+        .titulo-secao{
+            font-size: 32px;
+            font-weight: bold;
+            color: $marrom-escuro;
+            margin-bottom: 10px;
+        }
+
+        .divisor-secao{
+            border: 0;
+            height: 1px;
+            background-color: $cinza-claro;
+            margin-bottom: 20px;
+        }
+
+        
+        form{
+          @include flex(column, center, center);
+          gap: 60px;
+          
+            .boxes{
+              @include flex(row, center, center);
+              gap: 40px
+            }
+            .opcao-pagamento{
+                @include flex(column, center, center);
+                width: 250px;
+                padding: 24px;
+                border: 2px solid $cinza-claro;
+                border-radius: 30px;
+                background-color: $branco;
+                cursor: pointer;
+                transition: border-color 0.2s, background-color 0.2s;
+
+                &:has(input:checked){
+                    border-color: $rosa-escuro;
+                    background-color: lighten($rosa-claro, 10%);
+                }
+
+                input[type="radio"]{
+                    appearance: none;
+                    width: 20px;
+                    height: 20px;
+                    border: 2px solid $cinza-escuro;
+                    border-radius: 50%;
+                    margin-top: 20px;
+                    position: relative;
+                    flex-shrink: 0;
+
+                    &:checked{
+                        border-color: $rosa-escuro;
+                        &::after{
+                            content: '';
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 10px;
+                            height: 10px;
+                            border-radius: 50%;
+                            background-color: $rosa-escuro;
+                        }
+                    }
+                }
+
+                .conteudo-opcao{
+                    @include flex(column, center, center);
+                    
+                    img{
+                      width: 100%;
+                      height: 100px;
+                      max-width: 100px;
+                    }
+
+                    .titulo-opcao{
+                        color: $marrom-escuro;
+                        font-size: 14px;
+                        margin: 5px 0;
+                    }
+
+                }
+            }
+
+            .btn-btn{
+                margin: auto;
+            }
+        }
+    }
 </style>
