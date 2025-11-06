@@ -47,8 +47,8 @@ import axios from 'axios';
     <img src="@/assets/logo-confeitaria-da-Cris.png" alt="foto do robo"/>
     <p class="modal-login-saudacoes">Olá, {{user}}!</p>
     <hr />
-    <RouterLink to="meus-pedidos" class="link">Ver meus pedidos</RouterLink>
-    <a href="#" class="link">Editar endereço</a>
+    <RouterLink :to="{name: 'meus-pedidos'}" class="link">Ver meus pedidos</RouterLink>
+    <!-- <a href="#" class="link">Editar endereço</a> -->
 
     <a href="#" class="btn" @click.prevent="logout()">Sair</a>
   </div>

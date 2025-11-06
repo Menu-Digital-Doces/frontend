@@ -39,8 +39,15 @@ function changeState(componentName){
       })
       .then(response => {
         modalConfirm.value = true
-        localStorage.setItem('id_pedidos', response.data.codigo)
+        // localStorage.setItem('id_pedidos', response.data.) //sem retorno do id do pedido
         localStorage.setItem('total_geral', response.data.total_geral)
+
+        localStorage.removeItem('cart')
+        localStorage.removeItem('deliveryMethod')
+        localStorage.removeItem('paymentMethod')
+        localStorage.removeItem('id_pedidos')
+        localStorage.removeItem('id_pedidos')
+        localStorage.removeItem('total_geral')
       })
       .catch(error => {
         console.log(error.response.data)
@@ -51,25 +58,26 @@ function changeState(componentName){
 }
 
 function payRequest(){
-  // axios.request({
-  //   method: 'POST',
-  //   url: `/pedidos/${localStorage.getItem(id_pedidos)}/pagamento`,
-  //   data: {
-  //     'metodo': 'pix',
-  //     'valor': localStorage.getItem('total_geral')
-  //   },
-  //   headers: {
-  //     'Authorization': `Bearer ${localStorage.getItem('token')}`,
-  //     'Content-Type': 'application/json'
-  //   }
-  // })
-  // .then(response => {
-  //   console.log(response)
-  // })
-  // .catch(error => {
-  //   console.log(error)
-  // })
-  modalPayed.value = true;
+  console.log(localStorage.getItem('id_pedidos'))
+  axios.request({
+    method: 'POST',
+    url: `/pedidos/${localStorage.getItem('id_pedidos')}/pagamento`,
+    data: {
+      'metodo': 'pix',
+      'valor': localStorage.getItem('total_geral')
+    },
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => {
+    modalPayed.value = true;
+
+  })
+  .catch(error => {
+    console.log(error)
+  })
 }
 
 </script>

@@ -57,9 +57,9 @@ function removeItemFromCart(id){
             <p v-if="cart.length===0" id="notOrder">Não há itens no carrinho</p>
         </div>
         <div v-if="cart.length > 0" class="modal-wrapper-bottom">
-            <a href="" class="btn-btn">Finalizar pedido</a>
+            <RouterLink :to="{name: 'finalizar-pedido'}" href="" class="btn-btn" @click="changeActiveComponent()">Finalizar pedido</RouterLink>
             <p>ou</p>
-            <RouterLink to="carrinho" class="link" @click="changeActiveComponent()">ir para a página do carrinho</RouterLink>
+            <RouterLink :to="{name: 'carrinho'}" class="link" @click="changeActiveComponent()">ir para a página do carrinho</RouterLink>
         </div>
         
     </div>

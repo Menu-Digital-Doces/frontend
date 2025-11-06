@@ -35,13 +35,13 @@ function savePaymentMethod(){
                 </div>
                 <input type="radio" id="pix" :value="option1" v-model="activeCheck">
               </label>
-              <label for="cartao" class="opcao-pagamento">
+              <!-- <label for="cartao" class="opcao-pagamento">
                 <div class="conteudo-opcao">
                   <img src="https://cdn-icons-png.flaticon.com/512/2695/2695969.png" alt="">
                   <p class="titulo-opcao">Cartão de Crédito/Débito</p>
                 </div>
                 <input type="radio" id="cartao" :value="option2" v-model="activeCheck">
-              </label>
+              </label> -->
             </div>
             <button type="submit" class="btn-btn">Próximo</button>
         </form>

@@ -6,13 +6,14 @@ import { RouterLink } from 'vue-router';
 
     const statusList = {
         2: "Pendente",
-        3: "Em produção",
+        3: "Confirmado",
         4: "Entregue",
     }
 
     function compare(status){
+        console.log(status)
         return status === statusList[2] ? 'st-red' : 
-        status === 3 ? statusList[3] :
+        status === statusList[3] ? 'st-yellow' :
         'st-green'
     }
 

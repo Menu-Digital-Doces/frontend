@@ -33,13 +33,13 @@ function saveDeliveryMethod(){
                 </div>
                 <input type="radio" id="estabelecimento" :value="option1" v-model="activeCheck">
             </label>
-            <label for="casa" class="opcao-entrega">
+            <!-- <label for="casa" class="opcao-entrega">
                 <div class="conteudo-opcao">
                     <p class="titulo-opcao">Receber em casa</p>
                     <p class="endereco">Rua Exemplo, 123 - Bairro, Cidade, UF - Brasil</p>
                 </div>
                 <input type="radio" id="casa" :value="option2" v-model="activeCheck">
-            </label>
+            </label> -->
             <button type="submit" class="btn-btn">Continuar</button>
         </form>
     </div>

@@ -39,8 +39,9 @@ onMounted(() => {
         <h1 class="titulo-pagina">Código do pedido</h1>
         <hr class="divisor-pagina">
         <div class="lista-itens-pedido">
-            <!-- Simulação de listagem de itens do pedido -->
-            <ItemPedido v-for="item in orderData3.itens" :key="item.id" v-bind:="{propStatePedido: false, productData: item}"></ItemPedido>
+            <!--Primeiro item só renderizará quando receber os dados do servidor-->
+            <ItemPedido v-for="item in orderData3.itens" :key="item.id" v-bind:="{propStatePedido: false, productData: item}"></ItemPedido> 
+            <!-- Linhas abaixo provisórias -->
             <ItemPedido v-bind:="{propStatePedido: false, productData: {id: 99, nome: 'Bolo de Banana', descricao: 'Perfeito para o café da tarde. Um bolo caseiro, macio e fofinho, com pedacinhos de banana e um toque de canela.', quantidade: 1, quantidadeDesejada: 2, preco: 15.00, imagem: '/src/assets/1 - bolo de banana.png'}}"></ItemPedido>
             <ItemPedido v-bind:="{propStatePedido: false, productData: {id: 99, nome: 'Brigadeiro', descricao: 'Nosso clássico favorito, feito com o mais puro cacau e um toque especial de carinho. A massa é cremosa e o sabor é inesquecível, derretendo na boca a cada mordida!', quantidade: 20, quantidadeDesejada: 1, preco: 6.50, imagem: '/src/assets/6 - brigadeiro.png'}}"></ItemPedido>
             <ItemPedido v-bind:="{propStatePedido: false, productData: {id: 99, nome: 'Bolo de Cenoura com Cobertura de Chocolate', descricao: 'A combinação que todos amam. O bolo de cenoura, macio e úmido, encontra uma generosa e irresistível cobertura de brigadeiro.  ', quantidade: 3, quantidadeDesejada: 1, preco: 50.00, imagem: '/src/assets/4 - bolo de canoura com chocolate.png'}}"></ItemPedido>

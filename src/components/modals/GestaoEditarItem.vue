@@ -2,6 +2,10 @@
 import axios from 'axios';
 import FundoModal from './FundoModal.vue';
 import { ref, watch } from 'vue';
+import Alerta from './Alerta.vue';
+
+const alertState = ref(false);
+const alertText = ref('')
 
 const props = defineProps({data: {type: Object, default: () => ({}) }, toggleEdit: Function, resetData: Function, mode: String});
 
@@ -12,7 +16,22 @@ watch(() => props.data, (newValue) => { product.value = JSON.parse(JSON.stringif
 
 // 
 
+const imgInput = ref(false)
+const message = ref(false)
 
+function changeImgInput(){
+    if(message.value === true){
+        message.value = false
+        imgInput.value = !imgInput.value
+    } else{
+        imgInput.value = !imgInput.value
+    }
+}
+function changeMessage(){
+    message.value = true
+    product.value.imagem = ''
+    console.log(product)
+}
 
 function editarProduto(){
     if(props.mode === 'Criar'){
@@ -25,7 +44,7 @@ function editarProduto(){
                 'descricao': product.value.descricao,
                 'preco': product.value.preco,
                 'quantidade': product.value.quantidade,
-                'imagem': product.value.img,
+                'imagem': product.value.imagem,
                 'status': product.value.status,
             },
             headers: {
@@ -39,10 +58,11 @@ function editarProduto(){
             
         })
         .catch(error => {
-            console.log(product.value)
-            console.log(error)
+            alertText.value = error.response.data.message
+            toggleAlert()
         })
     } else if(props.mode === 'Editar'){
+        console.log(product.value)
         axios.request({
             method: 'PUT',
             url: `/produtos/${product.value.id}`,
@@ -51,7 +71,7 @@ function editarProduto(){
                 'preco': product.value.preco,
                 'status': product.value.status,
                 'quantidade': product.value.quantidade,
-                'imagem': product.value.img,
+                'imagem': product.value.imagem,
                 'descricao': product.value.descricao
             },
             headers: {
@@ -65,12 +85,15 @@ function editarProduto(){
 
         })
         .catch(error => {
-            console.log(error)
+            alertText.value = error.response.data.message
+            toggleAlert()
         })
     }
 }
 
-
+function toggleAlert(){
+    alertState.value = !alertState.value
+}
 
 
 </script>
@@ -106,17 +129,18 @@ function editarProduto(){
                 <label>Imagem</label>
                 <img :src="product.imagem" alt="">
                 <div class="controles-imagem">
-                    <a href="" id="upload">Fazer upload</a><a href="" id="deletar">Deletar imagem</a>
-
+                    <a href="" id="upload" @click.prevent="changeImgInput()">Fazer upload</a><a href="" @click.prevent="changeMessage()" id="deletar">Deletar imagem</a>
+                    <span v-if="message">* Imagem removida.</span>
                 </div>
+                <label v-if="imgInput" for="imgInput">Digite o caminho da imagem</label>
+                <input v-if="imgInput" type="text" name="imgInput" v-model="product.imagem">
             </div>
 
             <div class="form-baixo">
                 <div>
                     <label for="unidade-produto">Unidade</label>
                     <select name="" id="unidade-produto">
-                        <option value="a">sas</option>
-                        <option value="">saaaaas</option>
+                        <option value="a">UN</option>
                     </select>
                 </div>
                 <div>
@@ -132,6 +156,7 @@ function editarProduto(){
             </div>
         </form>
     </div>
+    <Alerta v-if="alertState" v-bind:="{text: alertText, toggleAlert: () => toggleAlert()}"></Alerta>
 </template>
 
 <style lang="scss">

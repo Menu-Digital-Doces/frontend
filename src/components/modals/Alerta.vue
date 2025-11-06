@@ -1,33 +1,35 @@
 <script setup>
     import { RouterLink } from 'vue-router';
 
-    const props = defineProps({text: ""})
+    const props = defineProps({text: "", toggleAlert: Function})
 
 
 
 </script>
 
 <template>
-    <div class="box-modal" id="modal-alerta">
-    <p>{{text}}</p>
-    <RouterLink :to="{name: 'meus-pedidos'}" class="btn">Ok</RouterLink>
+    <div class="box-modal" id="alerta">
+    <p>{{props.text}}</p>
+    <a class="btn-btn" @click="props.toggleAlert()">Ok</a>
   </div>
 </template>
 
 <style lang="scss">
-    #modal-alerta{
+    #alerta{
         z-index: 11;
         inset: 0;
         margin: auto;
-        width: 350px;
-        height: 200px;
-        border: 1px solid black;
+        width: fit-content;
+        border-radius: 40px;
+        @include flex(column, center, center);
 
         p{
             font-size: 14px;
             font-weight: 200;
-            margin-bottom: 20px;
             text-align: center;
+            display: block !important;
+            margin-bottom: 16px !important;
+            align-self: center !important;
         }
 
         .btn{

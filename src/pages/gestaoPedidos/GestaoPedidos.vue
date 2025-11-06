@@ -23,7 +23,7 @@ onMounted(() => {
     .then(response => {
         data.value = response.data
         infoStatus.value.pendentes = response.data.filter(pedido => pedido.status === 'Pendente').length
-        infoStatus.value.em_producao = response.data.filter(pedido => pedido.status === 'Em producao').length
+        infoStatus.value.em_producao = response.data.filter(pedido => pedido.status === 'Confirmado').length
         infoStatus.value.entregue = response.data.filter(pedido => pedido.status === 'Entregue').length
     })
     .catch(error => {

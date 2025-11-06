@@ -2,7 +2,7 @@
     import { reactive } from 'vue';
 import DocesCards from './DocesCards.vue';
 import { ref, onMounted, onUnmounted } from 'vue';
-
+import { RouterLink } from 'vue-router';
 
 const windowWidth = ref(window.innerWidth);
 const windowHeight = ref(window.innerHeight);
@@ -56,7 +56,7 @@ onUnmounted(() => {
     </div>
     <div id="doces-baixo">
       
-        <a class="btn-btn" href="#">Ver todos</a>
+        <RouterLink class="btn-btn" href="#" :to="{name: 'catalogo'}">Ver todos</RouterLink>
     </div>
     
     <img id="fundo-home" src="@/assets/fundohome.png" alt="">

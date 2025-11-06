@@ -21,6 +21,7 @@ onMounted(() => {
     })
     .then(response => {
         data.value = response.data
+        console.log(response.data)
     })
     .catch(error => {
         console.log(error)
@@ -63,7 +64,7 @@ onMounted(() => {
     
         .lista-pedidos{
             width: 100%;
-            @include flex(column, center, center);
+            @include flex(column, start, center);
             gap: 50px; 
             padding-bottom: 30px;
             min-height: calc(100vh - 160px);

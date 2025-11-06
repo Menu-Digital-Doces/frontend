@@ -3,10 +3,15 @@ import { PencilSquareIcon, TrashIcon } from '@heroicons/vue/24/solid';
 import { ref, watch } from 'vue';
 import GestaoEditarItem from '../modals/GestaoEditarItem.vue';
 import axios from 'axios';
+import Alerta from '../modals/Alerta.vue';
+import { text } from '@fortawesome/fontawesome-svg-core';
 
 const props = defineProps({data: {type: Object, default: () => {} }, resetData: Function});
 const product = ref(props.data);
 const modalState = ref(false)
+
+const alertState = ref(false);
+const alertText = ref('')
 
 watch(() => props.data, (newValue) => { product.value = newValue; }, { immediate: true });
 
@@ -30,12 +35,19 @@ function deleteProduct(){
     })
     .catch(error => {
         console.log(error.response.data)
+        alertText.value = error.response.data.message
+        toggleAlert()
     })
+}
+
+function toggleAlert(){
+    alertState.value = !alertState.value
 }
 
 </script>
 
 <template>
+    <Alerta v-if="alertState" v-bind:="{text: alertText, toggleAlert: () => toggleAlert()}"></Alerta>
     <li class="list-item-estoque" id="lie">
         <span class="list-item--estoque-descricao">{{ product.nome }}</span>
         <span class="list-item--estoque-descricao">{{ product.descricao }}</span>

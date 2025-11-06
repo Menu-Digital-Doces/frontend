@@ -14,7 +14,24 @@ $amarelo: #ffc107; /* Cor mais padrão para amarelo de alerta */
 $fundo: #F4E7DD;
 $fundo2: #FFFBF5;
 
+// $branco: var(--#fff);
+// $preto: var(--#262323);
+// $cinza-claro: var(--#eeeeee);
+// $cinza-escuro: var(--#a1a1a1);
+// $marrom-claro: var(--#b48967);
+// $marrom-escuro: var(--#432b27);
+// $rosa-claro: var(--#f9bdb5);
+// $rosa-medio: var(--#ef7a71);
+// $rosa-escuro: var(--#c31644);
+// $vermelho: var(--#dc3545);
+// $azul: var(--#007bff);
+// $verde: var(--#28a745);
+// $amarelo: var(--#ffc107);
+// $fundo: var(--#F4E7DD);
+// $fundo2: var(--#FFFBF5);
+
 $padding: 0 50px; /*Padding wrapper da página*/
+
 
 @mixin flex($direction, $justify-content, $align-items) {
   display: flex;
@@ -53,26 +70,26 @@ body {
       url(../assets/fundo.jpg);
   }
   &.menuADM #nav {
-    ul {
-      &.userRoute {
-        display: none;
-      }
-    }
-    div.adminRoute {
-      display: initial;
+    // ul {
+    //   &.userRoute {
+    //     display: none;
+    //   }
+    // }
+    // div.adminRoute {
+    //   display: initial;
 
-      @include flex(row, space-between, center);
-      gap: 48px;
+    //   @include flex(row, space-between, center);
+    //   gap: 48px;
 
-      li,
-      a {
-        color: $preto;
-        font-weight: 100;
-      }
-    }
-    div.adminLoginRoute {
-      display: initial;
-    }
+    //   li,
+    //   a {
+    //     color: $preto;
+    //     font-weight: 100;
+    //   }
+    // }
+    // div.adminLoginRoute {
+    //   display: initial;
+    // }
   }
 }
 
@@ -245,3 +262,4 @@ p {
 // ::-webkit-scrollbar-thumb:hover {
 //     background: $rosa-escuro; // Cor mais escura ao passar o mouse
 // }
+// 2. CÓDIGO SCSS ORIGINAL DO USUÁRIO (FIM)

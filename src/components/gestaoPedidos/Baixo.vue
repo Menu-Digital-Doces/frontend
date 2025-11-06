@@ -1,26 +1,46 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue"; 
 import ListItemPedido from "./ListItemPedido.vue";
 import { RouterLink } from "vue-router";
 
-const { data } = defineProps({ data: Array });
+const props = defineProps({ data: Array });
 
-/* 
-        1 - Todos
-        2 - Pendente
-        3 - Em produção
-        4 - Entregue
-    */
+// Você definiu isso, vamos usá-lo!
+const statusList = {
+    2: "Pendente",
+    3: "Confirmado",
+    4: "Entregue",
+}
 
-var activeFilter = ref(1);
+// ... (compare permanece o mesmo) ...
+
+var activeFilter = ref(1); 
 
 function changeActiveFilter(num) {
   activeFilter.value = num;
 }
+
+// **Propriedade Computada para a Filtragem (CORREÇÃO FINAL)**
+const filteredData = computed(() => {
+    
+    if (activeFilter.value === 1) {
+        // Se o filtro for "Todos", retorna a lista completa
+        return props.data;
+    } else {
+        // 1. Pegamos a string de status desejada (ex: "Pendente")
+        //    usando o valor numérico do filtro (ex: 2)
+        const expectedStatus = statusList[activeFilter.value];
+
+        // 2. Filtramos comparando a propriedade 'status' do pedido
+        //    com a string de status desejada.
+        return props.data.filter(pedidoItem => pedidoItem.status === expectedStatus);
+    }
+});
+
 </script>
 
 <template>
-  <div id="gestao-de-pedidos-baixo">
+<div id="gestao-de-pedidos-baixo">
     <p class="configs">
       <a
         href="#"
@@ -48,9 +68,6 @@ function changeActiveFilter(num) {
       >
     </p>
     <ul>
-      <!-- <ListItemPedido></ListItemPedido>         -->
-      <!--  -->
-      <!-- <ListItemPedido v-if="activeFilter === 1 || activeFilter === 2" v-bind:status=2>b</ListItemPedido> -->
       <li class="list-item-pedido">
         <div class="left">
           <span class="link"><a href="#" class="link"><RouterLink id="ver">VER</RouterLink></a></span>
@@ -62,8 +79,8 @@ function changeActiveFilter(num) {
         </div>
       </li>
       <ListItemPedido
-        v-for="pedidoItem in data"
-        v-bind:pedido="pedidoItem"
+        v-for="pedidoItem in filteredData"
+        :key="pedidoItem.id" v-bind:="{pedido: pedidoItem}"
       ></ListItemPedido>
     </ul>
   </div>

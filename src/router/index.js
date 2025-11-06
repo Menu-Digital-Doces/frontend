@@ -14,18 +14,18 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {path: '/', component: Home, meta: {bodyClass: 'active'}},
-    {path: '/catalogo', component: Catalogo, meta: {bodyClass: 'active'}},
-    {path: '/finalizar-pedido', component: FinalizarCompra},
-    {path: '/meus-pedidos', component: Pedidos},
+    {path: '/home', component: Home, name: 'home', meta: {bodyClass: 'active'}},
+    {path: '/catalogo', component: Catalogo, name:'catalogo', meta: {bodyClass: 'active'}},
+    {path: '/finalizar-pedido', component: FinalizarCompra, name:'finalizar-pedido'},
+    {path: '/meus-pedidos', component: Pedidos, name:'meus-pedidos'},
     {path: '/meus-pedidos/:orderId', component: PedidosView, name: 'pedido'},
-    {path: '/carrinho', component: Carrinho},
-    {path: '/painel-do-admin/login', component: LoginAdm, meta: {bodyClass: 'active'}},
+    {path: '/carrinho', component: Carrinho, name: 'carrinho' },
+    {path: '/painel-do-admin/login', component: LoginAdm, name: 'login', meta: {bodyClass: ['active', 'loginADM']}},
     {path: '/painel-do-admin/gestao-de-pedidos', component: GestaoPedidos, meta: {bodyClass: 'menuADM'}, name: 'gestao-de-pedidos'},
     {path: '/painel-do-admin/gestao-de-estoque', component: GestaoEstoque, meta: {bodyClass: 'menuADM'}, name: 'gestao-de-estoque'},
     {path: '/painel-do-admin/pedido/:orderId', component: GestaoVerPedido, name: 'pedidoADM', meta: {bodyClass: ['active', 'menuADM']}},
     {path: '/painel-do-admin/cliente/:cliente', component: GestaoVerCliente, name: 'pedidosADM', meta: {bodyClass: 'menuADM'}},
-    {path: '/:pathMatch(.*)*', component: Home} /* Endereço não encontrado */
+    {path: '/:pathMatch(.*)*', component: Home, name: 'home'} /* Endereço não encontrado */
   ],
 })
 
@@ -46,11 +46,13 @@ router.beforeEach((to, from, next) => {
   // 1. **Remover** as classes da rota anterior
   if (previousClasses.length) {
     document.body.classList.remove(...previousClasses); 
+    document.getElementById('nav').classList.remove(...previousClasses); 
   }
 
   // 2. **Adicionar** as classes da nova rota
   if (nextClasses.length) {
     document.body.classList.add(...nextClasses);
+    document.getElementById('nav').classList.add(...nextClasses);
   }
 
   next();

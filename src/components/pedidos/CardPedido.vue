@@ -46,13 +46,13 @@ const { data } = defineProps({data: Object})
       color: $branco;
 
       &.pendente {
-        color: $amarelo;
+        color: $vermelho;
       }
       &.entregue {
         color: $verde;
       }
-      &.cancelado {
-        color: $vermelho;
+      &.confirmado {
+        color: $amarelo;
       }
       /* Adicionar mais status conforme necessário */
     }
