@@ -37,18 +37,18 @@ onUnmounted(() => {
     </div>
     <div id="doces-meio">
         <div class="container">
-            <DocesCards></DocesCards>
-            <DocesCards></DocesCards>
-            <DocesCards></DocesCards>
-            <DocesCards v-if="windowWidth<=968"></DocesCards>
-            <DocesCards v-if="windowWidth<=968"></DocesCards>
-
+            <DocesCards v-bind:="{img: '/src/assets/6 - brigadeiro.png', titulo: 'Brigadeiro', descricao: 'Nosso clássico favorito, feito com o mais puro cacau e um toque especial de carinho. A massa é cremosa e o sabor é inesquecível, derretendo na boca a cada mordida! '}"></DocesCards>
+            <DocesCards v-bind:="{img: '/src/assets/7 - beijinho.png', titulo: 'Beijinho', descricao: 'Nosso Beijinho é preparado com flocos de coco frescos e leite condensado, finalizado com coco ralado para uma textura delicada e um sabor irresistível. '}"></DocesCards>
+            <DocesCards v-bind:="{img: '/src/assets/2 - bolo de maça.png', titulo: 'Bolo de maçã', descricao: 'Preparado com maçãs frescas e um toque sutil de especiarias, é uma opção leve e surpreendente. '}"></DocesCards>
+            <DocesCards v-if="windowWidth<=968" v-bind:="{img: '/src/assets/4 - bolo de canoura com chocolate.png', titulo: 'Bolo de Cenoura c/ Cobertura de Chocolate ', descricao: 'A combinação que todos amam. O bolo de cenoura, macio e úmido, encontra uma generosa e irresistível cobertura de brigadeiro. '}"></DocesCards>
+            <DocesCards v-if="windowWidth<=968" v-bind:="{img: '/src/assets/3 - bolo de chocolate.png', titulo: 'Bolo de Chocolate', descricao: 'Nosso bolo de chocolate é feito com cacau 100%, garantindo um sabor profundo e uma massa extra macia. Ideal para os verdadeiros amantes de chocolate. '}"></DocesCards>
+            
         </div>
     </div>
     <div id="doces-meio-baixo">
         <div class="container">
-            <DocesCards v-if="windowWidth>968"></DocesCards>
-            <DocesCards v-if="windowWidth>968"></DocesCards>
+            <DocesCards v-if="windowWidth>968" v-bind:="{img: '/src/assets/4 - bolo de canoura com chocolate.png', titulo: 'Bolo de Cenoura c/ Cobertura de Chocolate ', descricao: 'A combinação que todos amam. O bolo de cenoura, macio e úmido, encontra uma generosa e irresistível cobertura de brigadeiro. '}"></DocesCards>
+            <DocesCards v-if="windowWidth>968" v-bind:="{img: '/src/assets/3 - bolo de chocolate.png', titulo: 'Bolo de Chocolate', descricao: 'Nosso bolo de chocolate é feito com cacau 100%, garantindo um sabor profundo e uma massa extra macia. Ideal para os verdadeiros amantes de chocolate. '}"></DocesCards>
 
 
             
@@ -56,8 +56,9 @@ onUnmounted(() => {
     </div>
     <div id="doces-baixo">
       
-        <a class="btn" href="#">Ver todos</a>
+        <a class="btn-btn" href="#">Ver todos</a>
     </div>
+    
     <img id="fundo-home" src="@/assets/fundohome.png" alt="">
 
   </div>
@@ -86,6 +87,11 @@ onUnmounted(() => {
 
            
         }
+
+        #cenoura{
+
+        }
+
         #doces-meio{
             background-color: $cinza-claro;
             height: 450px;
@@ -146,7 +152,14 @@ onUnmounted(() => {
 
 
             a{
-                margin-bottom: 10px;
+                margin-bottom: 20px;
+                color: $preto;
+                border-color: $preto;
+
+                &:hover{
+                    border-color: transparent;
+                    color: $branco;
+                }
             }
 
               @media all and (max-width: 768px){

@@ -7,9 +7,15 @@ const { idPedido, numPedido, totalPedido } = defineProps({idPedido: Number, numP
 </script>
 
 <template>
-    <li><a href="#" class="link"><RouterLink :to="{name: 'pedidoADM', params: {orderId: idPedido}}">{{ numPedido }}</RouterLink></a><span>R${{ totalPedido }},00</span></li>
+    <li id="li-ver-cliente"><a id="a-ver-cliente" href="#" class="link"><RouterLink :to="{name: 'pedidoADM', params: {orderId: idPedido}}" :style="{'color': '#007bff'}">{{ numPedido }}</RouterLink></a><span>R${{ totalPedido }},00</span></li>
 </template>
 
 <style lang="scss">
-
+    #li-ver-cliente, #a-ver-cliente{
+        color: $azul;
+        
+        &:visited{
+            color: $azul;
+        }
+    }
 </style>

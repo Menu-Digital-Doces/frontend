@@ -11,6 +11,8 @@ $vermelho: #dc3545; /* Cor mais padrão para vermelho de erro/remoção */
 $azul: #007bff; /* Cor mais padrão para azul de link */
 $verde: #28a745; /* Cor mais padrão para verde de sucesso */
 $amarelo: #ffc107; /* Cor mais padrão para amarelo de alerta */
+$fundo: #F4E7DD;
+$fundo2: #FFFBF5;
 
 $padding: 0 50px; /*Padding wrapper da página*/
 
@@ -32,15 +34,46 @@ $padding: 0 50px; /*Padding wrapper da página*/
 }
 
 body {
-    background-color: #fffbf5;
-    overflow-x: hidden;
-    // background-image: 
-    //     linear-gradient(to bottom, rgba(255, 251, 245, 0.9), rgba(255, 251, 245, 0.9)), /* Gradiente semi-transparente com a cor de fundo */
-    //     url(../assets/fundo.jpg);
-    background-repeat: repeat;
-    background-attachment: fixed;
-    background-size: 700px;
+  background-color: $fundo2;
+  overflow-x: hidden;
+  // background-image:
+  //     linear-gradient(to bottom, rgba(244, 231, 221, 0.9), rgba(255, 251, 245, 0.9)), /* Gradiente semi-transparente com a cor de fundo */
+  //     url(../assets/fundo.jpg);
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-size: 2000px;
 
+  &.active {
+    background-image: linear-gradient(
+        to bottom,
+        rgba(244, 231, 221, 0.9),
+        rgba(255, 251, 245, 0.9)
+      ),
+      url(../assets/fundo.jpg);
+  }
+  &.menuADM #nav {
+    ul {
+      &.userRoute {
+        display: none;
+      }
+    }
+    div.adminRoute {
+      display: initial;
+
+      @include flex(row, space-between, center);
+      gap: 48px;
+
+      li,
+      a {
+        color: $preto;
+        font-weight: 100;
+      }
+    }
+    div.adminLoginRoute {
+      display: initial;
+    }
+  }
 }
 
 hr {
@@ -58,14 +91,14 @@ hr {
 .titulo-gestao {
   font-weight: bold;
   color: $rosa-escuro;
-  margin-top: 32px;
+  margin: 64px 0;
 }
 
 .boxes-gestao {
   margin-top: 32px;
   width: 100%;
-  @include flex(row, start, center);
-  gap: 32px;
+  @include flex(row, space-between, center);
+  gap: 48px;
   flex-wrap: wrap;
 
   @media (max-width: 768px) {
@@ -135,8 +168,8 @@ p {
     transition: border-color 0.2s;
 
     &:focus {
-        border-color: $rosa-escuro;
-        outline: none;
+      border-color: $rosa-escuro;
+      outline: none;
     }
   }
 }
@@ -150,14 +183,13 @@ p {
   font-size: 14px;
   font-weight: bold;
 
-    &:hover {
-      background-color: $rosa-escuro;
-      color: $branco !important;
+  &:hover {
+    background-color: $rosa-escuro;
+    color: $branco !important;
   }
 }
 
-
-.btn-btn{
+.btn-btn {
   background-color: transparent;
   color: $rosa-escuro;
   border: 2px solid $rosa-escuro;
@@ -168,8 +200,8 @@ p {
   cursor: pointer;
 
   &:hover {
-      background-color: $rosa-escuro;
-      color: $branco;
+    background-color: $rosa-escuro;
+    color: $branco;
   }
 }
 
@@ -177,7 +209,7 @@ p {
   color: $azul;
   text-decoration: none;
 
-  :visited{
+  :visited {
     color: $preto;
   }
 }
@@ -190,11 +222,26 @@ p {
   color: $cinza-escuro;
 }
 
-/* Estilos para o Login Adm */
-#wrapper-login-adm{
-    background-color: $cinza-claro; /* Fundo para a página de login */
+#modal-login {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-#modal-login{
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+// /* Estilização da Scrollbar para navegadores baseados em Chromium (Chrome, Edge, Opera) */
+// ::-webkit-scrollbar {
+//     width: 8px; // Largura da barra de rolagem
+// }
+
+// ::-webkit-scrollbar-track {
+//     background: $cinza-claro; // Cor de fundo da trilha
+//     border-radius: 10px;
+// }
+
+// ::-webkit-scrollbar-thumb {
+//     background: $rosa-escuro; // Cor do "polegar" (a parte que se move)
+//     border-radius: 10px;
+//     border: 2px solid $cinza-claro; // Borda para dar um efeito de "flutuação"
+// }
+
+// ::-webkit-scrollbar-thumb:hover {
+//     background: $rosa-escuro; // Cor mais escura ao passar o mouse
+// }

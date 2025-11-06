@@ -34,7 +34,7 @@ function addProductToCart(product){
 
 <template>
     <div class="card-produto">
-        <img :src="'/src/assets/1 - bolo de banana.png'" alt=""> <!--Imagem provisoria-->
+        <img :src="productData.imagem" alt=""> <!--Imagem provisoria-->
         <div class="card-conteudo">
             <div class="card-topo">
                 <h6 class="card-titulo">{{ productData.nome }}</h6>
@@ -71,6 +71,7 @@ function addProductToCart(product){
             width: 100%;
             height: 400px; /* Altura da imagem reduzida para dar mais destaque ao conteúdo */
             object-fit: cover;
+            object-position: bottom;
             border-radius: 15px 15px 0 0;
         }
 
@@ -100,6 +101,7 @@ function addProductToCart(product){
             }
         
             .card-descricao{
+                display: block;
                 margin: 0 0 8px 0;
                 font-size: 14px;
                 font-weight: 200;
@@ -111,6 +113,7 @@ function addProductToCart(product){
                 -webkit-line-clamp: 3;
                 -webkit-box-orient: vertical;
                 margin-bottom: 30px;
+                width: 100%;
             }
 
             .card-estoque{

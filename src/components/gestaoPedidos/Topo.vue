@@ -10,9 +10,9 @@ const { data } = defineProps({data: Object})
     <div id="gestao-de-pedidos-topo">
         <h1 class="titulo titulo-gestao">Gestão de pedidos</h1>
         <div class="boxes-gestao">
-            <Box v-bind:="{icon: QueueListIcon,   text:'Pendentes', num:data.pendentes,  }"></Box>
-            <Box v-bind:="{icon: ClockIcon,       text:'Em produção', num:data.em_producao,}"></Box>
-            <Box v-bind:="{icon: CheckCircleIcon, text:'Entregue', num:data.entregue,   }"></Box>
+            <Box v-bind:="{icon: 'fluent:clock-bill-16-regular',   text:'Pendentes', num:data.pendentes,  }"></Box>
+            <Box v-bind:="{icon: 'solar:oven-mitts-linear',       text:'Em produção', num:data.em_producao,}"></Box>
+            <Box v-bind:="{icon: 'fe:list-task', text:'Entregue', num:data.entregue,   }"></Box>
         </div>
     </div>
 </template>

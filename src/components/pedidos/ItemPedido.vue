@@ -17,7 +17,7 @@ console.log(productData)
 
 <template>
     <div class="item-pedido">
-        <img src="../../assets/1 - bolo de banana.png"/>
+        <img :src="productData.imagem"/>
         <div class="direita">
             <div class="topo">
                 <h6>{{productData.nome}}</h6>

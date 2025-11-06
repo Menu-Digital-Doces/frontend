@@ -88,10 +88,10 @@ import * as seila from './Login.vue';
       <label for="">Repita a senha</label>
       <input type="password" name="" id="passwordConfirmation" v-model="inputPasswordConfirmationValue" required/>
 
-      <p v-if="wrongPasswordState">As senhas não coincidem</p>
-      <p v-if="lengthPasswordState">A senha deve ter no mínimo 6 caracteres</p>
-      <p v-if="msgEmailState">Esse email já existe. Faça login.</p>
-      <p v-if="msgAccCreatedState">A sua conta foi criada. Fazer login.</p>
+      <p class="error" v-if="wrongPasswordState">As senhas não coincidem</p>
+      <p class="error" v-if="lengthPasswordState">A senha deve ter no mínimo 6 caracteres</p>
+      <p class="error" v-if="msgEmailState">Esse email já existe. Faça login.</p>
+      <p class="error" v-if="msgAccCreatedState">A sua conta foi criada. Fazer login.</p>
 
       
       <input type="submit" class="btn-btn" href="#"/>
@@ -128,6 +128,10 @@ import * as seila from './Login.vue';
         .btn-btn{
             margin: 24px 0;
             align-self: center;
+        }
+
+        .error{
+          align-self: center;
         }
     }
 

@@ -67,7 +67,7 @@ import axios from 'axios';
       <input type="password" id="login-password" required v-model="inputPasswordValue"/>
       <a href="#" class="link link-forget-password">Esqueci minha senha</a>
 
-      <p v-if="nonAutorizhedState">Algo deu errado. Tente novamente.</p>
+      <p id="error" v-if="nonAutorizhedState">Algo deu errado. Tente novamente.</p>
 
       <input type="submit" class="btn-btn"/>
 
@@ -101,6 +101,10 @@ import axios from 'axios';
         align-self: center;
         margin-top: 20px;
       }
+    }
+
+    #error{
+      align-self: center;
     }
 
     @media (max-width: 768px){

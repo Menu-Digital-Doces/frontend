@@ -20,9 +20,9 @@
         
         .banner-catalogo{
             width: 100%;
-            height: 250px; /* Altura ajustada */
+            height: 350px; /* Altura ajustada */
             object-fit: cover;
-            filter: brightness(0.7); /* Escurece um pouco a imagem para o texto se destacar */
+            filter: brightness(0.5); /* Escurece um pouco a imagem para o texto se destacar */
         }
 
         .conteudo-topo{

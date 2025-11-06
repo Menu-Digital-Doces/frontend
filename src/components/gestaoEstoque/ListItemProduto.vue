@@ -36,11 +36,11 @@ function deleteProduct(){
 </script>
 
 <template>
-    <li class="list-item-estoque">
-        <span>{{ product.nome }}</span>
-        <span>{{ product.descricao }}</span>
-        <span>{{ product.preco }}</span>
-        <span><img :src="product.img"/></span>
+    <li class="list-item-estoque" id="lie">
+        <span class="list-item--estoque-descricao">{{ product.nome }}</span>
+        <span class="list-item--estoque-descricao">{{ product.descricao }}</span>
+        <span class="lie-preco">R${{ product.preco }}</span>
+        <span><img :src="product.imagem"/></span>
         <span>UN</span>
         <span>{{ product.quantidade }}</span>
         <span>
@@ -62,11 +62,16 @@ function deleteProduct(){
                 left: 0;
             }
         }
+
+        
+
     .list-item-estoque{
-            
+        flex-grow: 1;
+        min-width: 0;
+        width: 100%;
 
         @include flex(row, space-between, center);
-        padding: 16px 24px;
+        padding: 24px 24px;
         margin-bottom: 32px;
         background-color: $branco;
         border-radius: 10px;
@@ -75,11 +80,14 @@ function deleteProduct(){
             width: 50px;
             height: 50px;
             object-fit: cover;
+            border-radius: 15px;
+            object-position: bottom;
         }
 
         span{
             width: calc(100%/7);
             @include flex(row, space-evenly, center);
+            font-weight: 200;
 
             a{
                 width: 24px;
@@ -91,6 +99,36 @@ function deleteProduct(){
             .delete{
                 color: $rosa-escuro;
             }
+
+            &.lie-preco{
+                font-weight: bold;
+                color: $marrom-escuro;
+            }
+        }
+        
+        .list-item--estoque-descricao{
+            display: block;
+            text-align: justify;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-wrap: nowrap;
+            width: calc(100% / 7);
+        }
+
+        @media all and (max-width: 968px){
+            flex-direction: column;
+            justify-content: start;
+            align-items: start;
+            gap: 20px;
+            padding: 24px 32px;
+            border-radius: 50px;
+
+            span{
+                width: 100%;
+
+            }
         }
     }
+
+   
 </style>

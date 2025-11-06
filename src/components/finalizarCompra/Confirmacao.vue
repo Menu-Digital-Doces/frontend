@@ -63,7 +63,7 @@ import { ref } from 'vue';
     border-radius: 15px;
     /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
     padding-top: 40px;
-    
+    height: calc(100vh - 160px);
 
     .titulo-secao{
       font-size: 32px;

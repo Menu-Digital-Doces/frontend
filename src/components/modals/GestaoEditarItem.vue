@@ -126,8 +126,8 @@ function editarProduto(){
             </div>
 
             <div class="botoes-form">
-                <a href="#" class="btn" id="cancelar" @click.prevent="props.toggleEdit()">Cancelar</a>
-                <a href="#" class="btn" id="confirmar" @click.prevent="editarProduto()">Confirmar</a>
+                <a href="#" class="btn-btn" id="cancelar" @click.prevent="props.toggleEdit()">Cancelar</a>
+                <a href="#" class="btn-btn" id="confirmar" @click.prevent="editarProduto()">Confirmar</a>
 
             </div>
         </form>
@@ -140,7 +140,8 @@ function editarProduto(){
         inset: 0;
         margin: 0 auto;
         top: 120px;
-
+        max-height: calc(80vh);
+        overflow: auto;
         width: 750px;
 
         background-color: $branco;
@@ -185,6 +186,7 @@ function editarProduto(){
                     border-radius: 10px;
                     padding-left: 16px;
                     border: 1px solid gray;
+                    font-weight: 200;
                 }
 
                 textarea{
@@ -195,6 +197,8 @@ function editarProduto(){
                     border-radius: 10px;
                     padding: 8px 0 0 16px;
                     border: 1px solid gray;
+                    font-weight: 200;
+
 
 
                 }
@@ -204,6 +208,8 @@ function editarProduto(){
                     height: 100px;
                     object-fit: cover;
                     margin-bottom: 16px;
+                    border-radius: 5px;
+                    object-position: bottom;
                 }
 
                 .controles-imagem{
@@ -223,6 +229,13 @@ function editarProduto(){
                     width: 125px;
                 }
 
+                select, option{
+                    font-weight: 200;
+
+                }
+
+                
+
                 
             }
             
@@ -241,15 +254,20 @@ function editarProduto(){
             .botoes-form{
                 flex-direction: row;
                 gap: 32px;
-              
+                margin-top: 32px;
+
                 #cancelar{
-                    border: 2px solid $rosa-escuro;
-                    color: $rosa-escuro;
+                   
                 }
 
                 #confirmar{
                     border: 2px solid $preto;
                     color: $preto;
+
+                    &:hover{
+                        background-color: $preto;
+                        color: $branco;
+                    }
                 }
                  
                 

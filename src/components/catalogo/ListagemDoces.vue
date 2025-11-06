@@ -18,6 +18,7 @@ onMounted(() => {
     })
     .then(response => {
         data.value = response.data
+        console.log(response.data)
     })
     .catch(error => {
         console.log(error)
@@ -33,9 +34,6 @@ onMounted(() => {
             <h3 class="titulo-categoria">Doces</h3>
             <hr class="divisor-categoria">
             <div class="wrapper-cards">
-                <Card v-for="productData in data" v-bind:productData="productData" :key="productData.id"></Card>
-                <Card v-for="productData in data" v-bind:productData="productData" :key="productData.id"></Card>
-                <Card v-for="productData in data" v-bind:productData="productData" :key="productData.id"></Card>
                 <Card v-for="productData in data" v-bind:productData="productData" :key="productData.id"></Card>
             </div>
         </div>
@@ -54,7 +52,7 @@ onMounted(() => {
         width: 100%;
         @include flex (column, center, start);
         gap: 48px; /* Espaçamento entre as categorias */
-
+        padding-bottom: 120px;
 
         .container-categoria{
             @include flex (column, center, start);
@@ -77,14 +75,14 @@ onMounted(() => {
             
             .wrapper-cards{
                 width: 100%;
-                @include flex(row, center, stretch); /* Alinhamento centralizado e altura esticada */
+                @include flex(row, start, stretch); /* Alinhamento centralizado e altura esticada */
                 flex-wrap: wrap;
                 padding: 32px 0;
                 gap: 100px 48px; /* Espaçamento entre os cards */
 
                 /* Responsividade */
                 @media (min-width: 1200px){
-                    justify-content: space-between; /* Distribui o espaço em telas maiores */
+                    justify-content: start; /* Distribui o espaço em telas maiores */
                 }
                 
                 @media (max-width: 640px){

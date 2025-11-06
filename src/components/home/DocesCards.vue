@@ -1,16 +1,16 @@
 <script setup>
 
-
+const data = defineProps({img: String, titulo: String, descricao: String})
 
 </script>
 
 <template>
   <div class="doce-card" id="doce-card-baixo">
-        <img src="../../assets/1 - bolo de banana.png" alt="" />
+        <img :src="data.img" alt="" />
         <div id="gradient"></div>
         <div>
-          <h3>Brigadeiro</h3>
-          <p>Doce de brigadeiro</p>
+          <h3>{{data.titulo}}</h3>
+          <p>{{data.descricao}}</p>
         </div>
       </div>
   
@@ -42,6 +42,7 @@ $cor-destaque-card: #e91e63; // Simulação do rosa/vermelho de destaque
         height: 100%;
         object-fit: cover;
         z-index: 1;
+        object-position: bottom;
     }
 
     // Gradiente de sobreposição
@@ -67,16 +68,17 @@ $cor-destaque-card: #e91e63; // Simulação do rosa/vermelho de destaque
         text-align: left; // Texto alinhado à esquerda
 
         h3 {
-            font-size: 1.2rem;
+            font-size: 1rem;
             margin: 0;
             font-weight: bold;
             text-transform: uppercase;
             line-height: 1.2;
             color: beige;
-        }
+          
+          }
 
         p {
-            font-size: .8rem;
+            font-size: .5rem;
             margin: 5px 0 0 0;
             font-weight: bold;
             color: $rosa-claro; // Cor de destaque para a descrição

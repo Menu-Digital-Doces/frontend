@@ -126,26 +126,8 @@ function removeItemFromCart(id){
             width: 90%;
             inset: 0;
             margin: auto;
-            padding: 0;
+            top: 60px;
 
-            
-
-            .item-pedido{
-                padding: 8px;
-            }
-
-            #pagina-carrinho{
-                width: 100%;
-                padding-bottom: 0;
-            }
-
-            #pedido-finalizar-btn{
-                margin-bottom: 16px;
-            }
-
-            #link-pagina-carrinho{
-                margin-top: 16px;
-            }
         }
     }
 

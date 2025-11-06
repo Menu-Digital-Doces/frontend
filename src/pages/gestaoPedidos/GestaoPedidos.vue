@@ -62,8 +62,9 @@ onMounted(() => {
         }
 
         .boxes-gestao{
-            @include flex(row, start, center);
-            gap: 20px;
+            @include flex(row, space-between, center);
+            width: 100%;
+            gap: 100px;
             flex-wrap: wrap;
             margin-bottom: 40px;
 

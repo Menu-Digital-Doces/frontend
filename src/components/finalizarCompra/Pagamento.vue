@@ -71,7 +71,7 @@ function savePaymentMethod(){
         .divisor-secao{
             border: 0;
             height: 1px;
-            background-color: $cinza-claro;
+            background-color: $cinza-escuro;
             margin-bottom: 20px;
         }
 
@@ -83,14 +83,18 @@ function savePaymentMethod(){
           
             .boxes{
               @include flex(row, center, center);
-              gap: 40px
+              gap: 40px;
+
+              @media all and (max-width: 768px){
+                flex-direction: column;
+              }
             }
             .opcao-pagamento{
                 @include flex(column, center, center);
                 width: 250px;
                 padding: 24px;
                 border: 2px solid $cinza-claro;
-                border-radius: 30px;
+                border-radius: 50px;
                 background-color: $branco;
                 cursor: pointer;
                 transition: border-color 0.2s, background-color 0.2s;

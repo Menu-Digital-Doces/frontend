@@ -2,6 +2,9 @@
 import Apresentacao from "@/components/home/Apresentacao.vue";
 import Doces from "@/components/home/Doces.vue";
 import Historia from "@/components/home/Historia.vue";
+import { ref } from "vue";
+import { useRoute } from "vue-router";
+const rotaHome = ref(useRoute().path)
 </script>
 
 <template>

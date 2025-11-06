@@ -15,7 +15,6 @@ console.log(props.data)
 
 <style lang="scss">
     #pedidos-cliente{
-        background-color: beige;
     
         #baixo{
             width: 100%;            
@@ -23,7 +22,7 @@ console.log(props.data)
             li{
                 width: 100%;
                 @include flex(row, space-between, center);
-                padding: 16px 24px;
+                padding: 32px 42px;
                 margin-bottom: 32px;
                 background-color: $branco;
                 border-radius: 10px;

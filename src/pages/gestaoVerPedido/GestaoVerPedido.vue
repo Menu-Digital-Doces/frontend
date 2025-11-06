@@ -73,7 +73,7 @@ onMounted(() => {
                 <p>PIX<b>R$00,00</b></p>
             </div>
             <p id="total">Total<b>R${{ orderData.total }}</b></p>
-            <a href="#" class="btn">Imprimir</a>
+            <a href="#" class="btn-btn">Imprimir</a>
         </div>
     </div>
 
@@ -82,6 +82,7 @@ onMounted(() => {
 <style lang="scss">
     #wrapper-pedido{
         @include flex(row, center, center);
+        min-height: calc(100vh - 60px);
 
         #box-pedido{
             width: 500px;
@@ -89,11 +90,15 @@ onMounted(() => {
             border-radius: 15px;
             @include flex(column, start, center);
             padding: 32px;
+            background-color: $branco
+        }
 
-            .topo{
-                @include flex(column, center, start);
-                width: 100%;
-                margin-bottom: 32px;
+        .topo{
+            @include flex(column, center, start);
+            width: 100%;
+            margin-bottom: 32px;
+            
+            
                 
                 img{
                     width: 100px;
@@ -107,6 +112,8 @@ onMounted(() => {
                 }
 
             }
+
+    
 
             .itens{
                 width: 100%;
@@ -158,5 +165,5 @@ onMounted(() => {
 
         }
 
-    }
+    
 </style>

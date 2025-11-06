@@ -11,6 +11,7 @@ import CarrinhoModal from '../modals/CarrinhoModal.vue';
 import CentralDoUsuario from '../modals/CentralDoUsuario.vue';
 import Login from '../modals/Login.vue';
 import Cadastro from '../modals/Cadastro.vue';
+const name = localStorage.getItem('name')
     
 
     var menuOn = ref(true);
@@ -95,16 +96,27 @@ import Cadastro from '../modals/Cadastro.vue';
 
 <template>
     
-    <nav>
+    <nav id="nav">
         
         <a href="#"><img src="@/assets/logo.png" alt="logo confeitaria da cris"/></a>
-        <ul v-show="menuOn">
-            <li><a href='#'><RouterLink to="Home" @click="changeActiveComponent('')">Home</RouterLink></a></li>
-            <li><a href='#'><RouterLink to="Catalogo" @click="changeActiveComponent('')">Catalogo</RouterLink></a></li>
-            <li><a href='#' @click.prevent="changeActiveComponent('avisos')">Avisos</a></li>
+        <ul v-show="menuOn" class="userRoute">
+            <li><a href='#'><RouterLink style="color: black" to="Home" @click="changeActiveComponent('')">Home</RouterLink></a></li>
+            <li><a href='#'><RouterLink style="color: black" to="Catalogo" @click="changeActiveComponent('')">Catalogo</RouterLink></a></li>
+            <li><a href='#' style="color: black;" @click.prevent="changeActiveComponent('avisos')">Avisos</a></li>
             <li><a href="#" @click.prevent="changeActiveComponent('cart')"><ShoppingCartIcon class="icone"/></a></li>
             <li><a href="#" @click.prevent="changeActiveComponent(verifyIsLogged())"><UserCircleIcon class="icone"/></a></li>
         </ul>
+        <div class="adminRoute">
+            <li><a href='#'><RouterLink to="gestao-de-pedidos" @click="changeActiveComponent('')">Gestão de pedidos</RouterLink></a></li>
+            <li><a href='#'><RouterLink to="gestao-de-estoque" @click="changeActiveComponent('')">Gestão de estoque</RouterLink></a></li>
+        </div>
+        <div class="adminRoute">
+            <li>Olá, {{ name }}!</li>
+            <li><a href="">Sair</a></li>
+        </div>
+        <!-- <div class="adminLoginRoute">
+            <li>Painel do administrador</li>
+        </div> -->
         <span id="menu-btn" @click="toggleMenu"><Bars3Icon class="icone"/></span>
     </nav>
 
@@ -167,6 +179,14 @@ import Cadastro from '../modals/Cadastro.vue';
                 color: $preto;
             }
         }   
+
+        div.adminRoute{
+            display: none;
+        }
+        div.adminLoginRoute{
+            display: none;
+        }
+        
     }
 
     @media screen and (max-width: 768px) {

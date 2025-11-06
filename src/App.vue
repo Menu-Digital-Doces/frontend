@@ -17,7 +17,6 @@ import Catalogo from './pages/catalogo/Catalogo.vue';
 
 
 
-
   var StateModalAvisos = ref(false);
 
   function toggleAvisos(){

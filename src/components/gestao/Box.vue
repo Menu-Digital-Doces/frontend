@@ -2,7 +2,8 @@
 
 
 
-const { icon, text, num } = defineProps({icon: [Object, Function], text: String, num: [Number, String]})
+const { icon, text, num } = defineProps({icon: [Object, String], text: String, num: [Number, String]})
+import { Icon } from "@iconify/vue";
 
 
 
@@ -11,7 +12,7 @@ const { icon, text, num } = defineProps({icon: [Object, Function], text: String,
 
 <template>
   <div class="box">
-    <span class="box-icon"><icon /></span>
+    <Icon class="box-icon" :icon="icon"></Icon>
     <div class="box-right">
       <p>{{ num }}</p>
       <h2>{{ text }}</h2>
@@ -23,16 +24,16 @@ const { icon, text, num } = defineProps({icon: [Object, Function], text: String,
 
 
 .box {
-  width: calc((100% / 3) - 32px);
+  width: calc((100% / 3) - 48px);
   height: 150px;
   background-color: $branco;
-  border-radius: 30px;
+  border-radius: 40px;
   @include flex(row, center, center);
-  gap: 16px;
+  gap: 32px;
   padding: 16px;
 
   .box-icon {
-    width: 75px;
+    font-size: 75px;
     color: $marrom-escuro;
   }
 
@@ -42,7 +43,6 @@ const { icon, text, num } = defineProps({icon: [Object, Function], text: String,
 
     p {
       font-size: 24px;
-      font-weight: bold;
     }
 
     h2 {
