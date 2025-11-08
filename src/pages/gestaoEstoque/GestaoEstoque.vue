@@ -24,10 +24,10 @@ onMounted(() => {
     .then(response => {
         data.value = response.data
         console.log(response.data)
-        infoStatus.value.zerados = response.data.filter(pedido => pedido.quantidade === 0).length
+        infoStatus.value.zerados = response.data.filter(pedido => pedido.estoque.quantidade === 0).length
         
         infoStatus.value.total_estoque = response.data.reduce((total, item) => {
-            const quantidade = parseFloat(item.quantidade) || 0;
+            const quantidade = parseFloat(item.estoque.quantidade) || 0;
             const preco = parseFloat(item.preco) || 0;
             
             // Multiplica a quantidade pelo preço do item atual

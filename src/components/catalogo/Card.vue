@@ -52,7 +52,7 @@ function addProductToCart(product){
                 <span class="card-preco">R${{productData.preco}}</span>
             </div>
             <p class="card-descricao">{{ productData.descricao }}</p>
-            <p class="card-estoque">Estoque: {{ productData.quantidade }}</p>
+            <p class="card-estoque">Estoque: {{ productData.estoque.quantidade }}</p>
             <div class="card-acoes">
                 <div class="controles-pedido">
                     <a href="#" class="btn-quantidade" @click.prevent="changeDesiredQuantity('diminuir')">-</a>

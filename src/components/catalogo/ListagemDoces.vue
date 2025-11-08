@@ -28,34 +28,31 @@ onMounted(() => {
     });
 });
 
+const productsData = computed(() => {
+    return data.value
+})
+
 // 2. Crie uma propriedade computada para filtrar apenas os DOCES.
 // Assumi que seus produtos têm uma propriedade 'categoria'. Ajuste se o nome for outro.
-const docesFiltrados = computed(() => {
-    // O .filter só vai rodar se data.value tiver algo, evitando erros.
-    return data.value.filter(produto => produto.nome === 'Brigadeiro' || produto.nome === 'Beijinho');
-});
+// const docesFiltrados = computed(() => {
+//     // O .filter só vai rodar se data.value tiver algo, evitando erros.
+//     return data.value.filter(produto => produto.nome === 'Brigadeiro' || produto.nome === 'Beijinho');
+// });
 
-// 3. Crie outra propriedade computada para filtrar apenas os BOLOS.
-const bolosFiltrados = computed(() => {
-    return data.value.filter(produto => produto.nome !== 'Brigadeiro' || produto.nome !== 'Beijinho');
-});
+// // 3. Crie outra propriedade computada para filtrar apenas os BOLOS.
+// const bolosFiltrados = computed(() => {
+//     return data.value.filter(produto => produto.nome !== 'Brigadeiro' || produto.nome !== 'Beijinho');
+// });
 
 </script>
 
 <template>
     <div class="container" id="listagem-doces">
         <div class="container-categoria">
-            <h3 class="titulo-categoria">Doces</h3>
+            <h3 class="titulo-categoria">Todos os produtos</h3>
             <hr class="divisor-categoria">
             <div class="wrapper-cards">
-                <Card v-for="productData in docesFiltrados" v-bind:productData="productData" :key="productData.id"></Card>
-            </div>
-        </div>
-        <div class="container-categoria">
-            <h3 class="titulo-categoria">Bolos</h3>
-            <hr class="divisor-categoria">
-            <div class="wrapper-cards">
-                <Card v-for="productData in bolosFiltrados" v-bind:productData="productData" :key="productData.id"></Card>
+                <Card v-for="productData in productsData" v-bind:productData="productData" :key="productData.id"></Card>
             </div>
         </div>
     </div>

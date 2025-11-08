@@ -39,7 +39,7 @@ function changeActiveFilter(num) {
     activeProducts.value = props.data; console.log(activeProducts.value)
   } else if(num === 2){
     activeProducts.value = props.data.filter(product => {
-      if(product.quantidade === 0){
+      if(product.estoque.quantidade === 0){
         return product;
       }
     })

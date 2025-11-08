@@ -54,7 +54,7 @@ function toggleAlert(){
         <span class="lie-preco">R${{ product.preco }}</span>
         <span><img :src="product.imagem"/></span>
         <span>UN</span>
-        <span>{{ product.quantidade }}</span>
+        <span>{{ product.estoque?.quantidade }}</span>
         <span class="icons">
             <a href="#" class="edit" @click.prevent="toggleEdit()"><PencilSquareIcon></PencilSquareIcon></a>
             <a href="#" class="delete" @click.prevent="deleteProduct()"><TrashIcon></TrashIcon></a>

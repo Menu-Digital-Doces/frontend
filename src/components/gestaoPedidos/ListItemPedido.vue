@@ -27,7 +27,7 @@ import { RouterLink } from 'vue-router';
 
         </div>
         <div class="right">
-            <span class="item-valor-pedido">R$20,00</span>
+            <span class="item-valor-pedido">R${{ pedido.total }}</span>
             <span class="item-status-pedido" :class="compare(pedido.status)">{{ pedido.status }}</span>
         </div>
     </li>
