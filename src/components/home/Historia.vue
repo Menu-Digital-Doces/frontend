@@ -19,7 +19,7 @@
 <style lang="scss">
 
     #wrapper-historia{
-        background-color: $cinza-claro;
+        background-color: var(--cinza-claro);
         padding-top: 650px;
         padding-bottom: 100px;
 

@@ -13,15 +13,12 @@ import FinalizarCompra from './pages/finalizarCompra/FinalizarCompra.vue';
 import Pedidos from './pages/pedidos/Pedidos.vue';
 import CarrinhoModal from './components/modals/CarrinhoModal.vue';
 import Catalogo from './pages/catalogo/Catalogo.vue';
+import { useTheme } from './general/useTheme';
 
 
 
 
-  var StateModalAvisos = ref(false);
-
-  function toggleAvisos(){
-      StateModalAvisos.value = !StateModalAvisos.value;
-  }
+  useTheme()
 
 </script>
 

@@ -14,7 +14,7 @@ import { Icon } from "@iconify/vue";
   <div class="box">
     <Icon class="box-icon" :icon="icon"></Icon>
     <div class="box-right">
-      <p>{{ num }}</p>
+      <p id="box-title">{{ num }}</p>
       <h2>{{ text }}</h2>
     </div>
   </div>
@@ -26,7 +26,7 @@ import { Icon } from "@iconify/vue";
 .box {
   width: calc((100% / 3) - 48px);
   height: 150px;
-  background-color: $branco;
+  background-color: var(--branco);
   border-radius: 40px;
   @include flex(row, center, center);
   gap: 32px;
@@ -34,12 +34,12 @@ import { Icon } from "@iconify/vue";
 
   .box-icon {
     font-size: 75px;
-    color: $marrom-escuro;
+    color: var(--marrom-escuro);
   }
 
   div {
     text-align: center;
-    color: $marrom-escuro;
+    color: var(--marrom-escuro);
 
     p {
       font-size: 24px;

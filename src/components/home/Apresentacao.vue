@@ -16,21 +16,16 @@
 </template>
 
 <style lang="scss">
-    
-// Variáveis de cores e fontes (simuladas)
-$cor-destaque: #e91e63; // Simulação do rosa/vermelho de destaque
-$cor-texto: #333;
-$cor-fundo-claro: #f8f4f0; // Fundo da seção de apresentação (Bege claro)
 
 // Mixin para o título (para evitar repetição)
 @mixin titulo-estilo {
     font-family: 'Arial', sans-serif; // Fonte simulada
     font-weight: 300;
-    color: $cor-texto;
+    color: var(--marrom-escuro);
     line-height: 1;
 
     .destaque {
-        color: $cor-destaque;
+        color: var(--rosa-escuro);
         font-weight: 700;
     }
 }
@@ -72,7 +67,7 @@ $cor-fundo-claro: #f8f4f0; // Fundo da seção de apresentação (Bege claro)
 
         p {
             font-family: 'Arial', sans-serif;
-            color: $marrom-escuro;
+            color: var(--marrom-escuro);
             margin-top: 1.5rem;
             line-height: 1.6;
             max-width: 80%; // Limita a largura do texto

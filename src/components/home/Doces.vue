@@ -93,7 +93,7 @@ onUnmounted(() => {
         }
 
         #doces-meio{
-            background-color: $cinza-claro;
+            background-color: var(--cinza-claro);
             height: 450px;
             position: relative;
 
@@ -145,7 +145,7 @@ onUnmounted(() => {
             
         }
         #doces-baixo{
-            background-color: $rosa-medio;
+            background-color: var(--rosa-medio);
             padding-top: 300px;
             @include flex(row, center, center);
             z-index: 2;
@@ -153,12 +153,12 @@ onUnmounted(() => {
 
             a{
                 margin-bottom: 20px;
-                color: $preto;
-                border-color: $preto;
+                color: var(--preto);
+                border-color: var(--preto);
 
                 &:hover{
                     border-color: transparent;
-                    color: $branco;
+                    color: var(--branco);
                 }
             }
 

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
   const { changeState } = defineProps({
     changeState: Function
@@ -8,6 +8,11 @@ import { ref } from 'vue';
   const deliveryMethod = ref(localStorage.getItem('deliveryMethod'))
   const cart = ref(JSON.parse(localStorage.getItem('cart') || "[]"))
 
+  const totalCart = computed(() => {
+    return cart.value.reduce((total, product) => {
+      return total + (product.preco * product.quantidadeDesejada)
+    }, 0)
+  })
 
 </script>
 
@@ -21,7 +26,7 @@ import { ref } from 'vue';
         <ul class="lista-itens">
           <li v-for="produto in cart" :key="produto.id" class="item-resumo">
             <span class="item-nome">{{ produto.nome }}</span>
-            <span class="item-quantidade">{{ produto.quantidadeDesejada }}</span>
+            <span class="item-quantidade">R${{ produto.preco }} * {{ produto.quantidadeDesejada }}</span>
           </li>
         </ul>
       </div>
@@ -44,7 +49,7 @@ import { ref } from 'vue';
       </div>
       <div class="bloco-total">
         <span class="total-texto">Total</span>
-        <span class="total-valor">R$15</span> <!--Calcular total-->
+        <span class="total-valor">R${{totalCart}}</span> <!--Calcular total-->
       </div>
     </div>
     <a href="" class="btn-btn" @click.prevent="changeState('confirmacao')">Finalizar Pedido</a>
@@ -53,7 +58,7 @@ import { ref } from 'vue';
 
 <style lang="scss">
 
-  #finalizarCompra-confirmacao{
+#finalizarCompra-confirmacao{
     @include flex(column, start, start);
     width: 100%;
     /* max-width: 500px; */
@@ -63,19 +68,19 @@ import { ref } from 'vue';
     border-radius: 15px;
     /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
     padding-top: 40px;
-    height: calc(100vh - 160px);
+    min-height: calc(100vh - 160px);
 
     .titulo-secao{
       font-size: 32px;
       font-weight: bold;
-      color: $marrom-escuro;
+      color: var(--marrom-escuro);
       margin-bottom: 10px;
     }
 
     .divisor-secao{
       border: 0;
       height: 1px;
-      background-color: $cinza-claro;
+      background-color: var(--cinza-claro);
       margin-bottom: 20px;
     }
 
@@ -90,7 +95,7 @@ import { ref } from 'vue';
         
         .titulo-bloco{
           font-weight: bold;
-          color: $rosa-escuro;
+          color: var(--rosa-escuro);
           margin-bottom: 8px;
           font-size: 16px;
         }
@@ -104,9 +109,9 @@ import { ref } from 'vue';
             @include flex(row, space-between, center);
             width: 100%;
             font-size: 14px;
-            color: $marrom-escuro;
+            color: var(--marrom-escuro);
             padding: 5px 0;
-            border-bottom: 1px dotted $cinza-claro;
+            border-bottom: 1px dotted var(--cinza-claro);
 
             &:last-child{
               border-bottom: none;
@@ -120,9 +125,9 @@ import { ref } from 'vue';
         width: 100%;
         margin-top: 15px;
         padding-top: 15px;
-        border-top: 1px solid $cinza-claro;
+        border-top: 1px solid var(--cinza-claro);
         font-weight: bold;
-        color: $marrom-escuro;
+        color: var(--marrom-escuro);
         font-weight: bold;
         
 

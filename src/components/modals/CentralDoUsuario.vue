@@ -94,8 +94,8 @@ import axios from 'axios';
     .btn{
         margin-top: 30px;
         align-self: center;
-        border: 2px solid $rosa-escuro;
-        color: $rosa-escuro;
+        border: 2px solid var(--rosa-escuro);
+        color: var(--rosa-escuro);
         font-weight: normal;
     }
 }

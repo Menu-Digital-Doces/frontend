@@ -25,6 +25,8 @@ onMounted(() => {
         infoStatus.value.pendentes = response.data.filter(pedido => pedido.status === 'Pendente').length
         infoStatus.value.em_producao = response.data.filter(pedido => pedido.status === 'Confirmado').length
         infoStatus.value.entregue = response.data.filter(pedido => pedido.status === 'Entregue').length
+
+        console.log(response.data)
     })
     .catch(error => {
         console.log(error)
@@ -50,14 +52,14 @@ onMounted(() => {
         .titulo-pagina {
           margin-bottom: 10px;
           font-weight: bold;
-          color: $marrom-escuro;
+          color: var(--marrom-escuro);
           font-size: clamp(1.5rem, 6vw, 2.5rem);
         }
 
         .divisor-pagina{
             border: 0;
             height: 1px;
-            background-color: $cinza-claro;
+            background-color: var(--cinza-claro);
             margin-bottom: 30px;
         }
 
@@ -76,7 +78,7 @@ onMounted(() => {
         .titulo-secao-gestao{
             font-size: 20px;
             font-weight: bold;
-            color: $rosa-escuro;
+            color: var(--rosa-escuro);
             margin-top: 20px;
         }
     }

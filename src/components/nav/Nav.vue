@@ -6,15 +6,21 @@ export const isLogged = ref(false);
 <script setup>
 import { UserCircleIcon } from "@heroicons/vue/24/solid";
 import { ShoppingCartIcon, Bars3Icon, Battery50Icon } from "@heroicons/vue/24/outline";
-import { ref, onMounted, onUnmounted, watchEffect, reactive } from "vue";
+import { ref, onMounted, onUnmounted, watchEffect, reactive, computed } from "vue";
 import Avisos from "../modals/Avisos.vue";
 import CarrinhoModal from "../modals/CarrinhoModal.vue";
 import CentralDoUsuario from "../modals/CentralDoUsuario.vue";
 import Login from "../modals/Login.vue";
 import Cadastro from "../modals/Cadastro.vue";
 import axios from "axios";
+import { toggleTheme, useTheme } from "@/general/useTheme";
+import Logo from "@/general/logo.vue";
+
+
 
 const name = localStorage.getItem("name");
+
+
 
 var menuOn = ref(true);
 // var isLogged = ref(false)
@@ -121,6 +127,21 @@ function logout() {
     });
 }
 
+
+
+// 2. Use o composable para obter o tema atual
+const { currentTheme } = useTheme();
+
+// 3. Crie a propriedade computada que define se o toggle está "ativo" (ligado)
+//    O toggle estará ativo (true) se o tema for 'dark'.
+const isToggleActive = computed(() => currentTheme.value === 'dark');
+
+// 4. Crie a propriedade computada para a classe de tema (exatamente como antes)
+//    Isso vai adicionar 'theme-light' ou 'theme-dark' ao elemento do toggle.
+const themeClass = computed(() => {
+  return currentTheme.value === 'dark' ? 'theme-dark' : 'theme-light';
+});
+
 </script>
 
 <template>
@@ -128,7 +149,7 @@ function logout() {
     <a href="#"
       >
       <RouterLink :to="{name: 'home'}">
-        <img src="@/assets/logo.png" alt="logo confeitaria da cris"/>
+        <Logo></Logo>
 
       </RouterLink>
     </a>
@@ -171,9 +192,30 @@ function logout() {
           ><UserCircleIcon class="icone"
         /></a>
       </li>
-            
+             
+
+      
+      
+      <label 
+              class="toggle-switch" 
+              :class="themeClass" 
+              @click.prevent="toggleTheme"  
+            >
+              <!-- 
+                O @click agora chama 'toggleTheme' DIRETAMENTE.
+                Não precisamos mais de 'set' ou 'v-model'.
+              -->
+              <div class="toggle-track" :class="{ 'is-active': isToggleActive }">
+                <!-- 
+                  A classe 'is-active' é controlada pela computada 'isToggleActive',
+                  garantindo que o visual do toggle (bolinha deslizada) esteja
+                  sempre sincronizado com o tema atual.
+                -->
+                <div class="toggle-thumb"></div>
+              </div>
+            </label> 
     </ul>
-    <div class="adminRoute">
+    <div v-show="menuOn" class="adminRoute">
       <li>
         <a href="#"
           ><RouterLink :to="{name: 'gestao-de-pedidos'}" @click="changeActiveComponent('')"
@@ -189,18 +231,54 @@ function logout() {
         >
       </li>
     </div>
-    <div class="adminRoute">
+    <div v-show="menuOn" class="adminRoute">
       <li>Olá, {{ name }}!</li>
       <li>
         <RouterLink href="" @click.prevent="logout()" :to="{name: 'login'}"
           >Sair</RouterLink
         >
       </li>
+            <label 
+            class="toggle-switch" 
+            :class="themeClass" 
+            @click.prevent="toggleTheme"  
+          >
+            <!-- 
+              O @click agora chama 'toggleTheme' DIRETAMENTE.
+              Não precisamos mais de 'set' ou 'v-model'.
+            -->
+            <div class="toggle-track" :class="{ 'is-active': isToggleActive }">
+              <!-- 
+                A classe 'is-active' é controlada pela computada 'isToggleActive',
+                garantindo que o visual do toggle (bolinha deslizada) esteja
+                sempre sincronizado com o tema atual.
+              -->
+              <div class="toggle-thumb"></div>
+            </div>
+          </label> 
     </div>
     <div class="adminLoginRoute">
       <li>Painel do administrador</li>
+      <label 
+            class="toggle-switch" 
+            :class="themeClass" 
+            @click.prevent="toggleTheme"  
+          >
+            <!-- 
+              O @click agora chama 'toggleTheme' DIRETAMENTE.
+              Não precisamos mais de 'set' ou 'v-model'.
+            -->
+            <div class="toggle-track" :class="{ 'is-active': isToggleActive }">
+              <!-- 
+                A classe 'is-active' é controlada pela computada 'isToggleActive',
+                garantindo que o visual do toggle (bolinha deslizada) esteja
+                sempre sincronizado com o tema atual.
+              -->
+              <div class="toggle-thumb"></div>
+            </div>
+          </label> 
     </div>
-    <span id="menu-btn" @click="toggleMenu"><Bars3Icon class="icone" /></span>
+     <span id="menu-btn" @click="toggleMenu"><Bars3Icon class="icone" /></span>
   </nav>
 
   <Avisos
@@ -243,17 +321,17 @@ function logout() {
   display: none;
 }
 .icone {
-  color: $preto;
+  color: var(--preto);
   width: 24px;
   height: 24px;
 }
 
 nav {
-  background-color: $branco;
+  background-color: var(--branco);
   height: 60px;
   padding: $padding;
-  color: $preto;
-  box-shadow: 0px 2px 10px -5px $preto;
+  color: var(--preto);
+  box-shadow: 0px 2px 10px -5px var(--preto);
   @include flex(row, space-between, center);
   width: 100%;
   position: sticky;
@@ -272,10 +350,11 @@ nav {
       font-weight: lighter;
       font-size: 0.9rem;
       display: flex;
+      color: var(--preto) !important;
     }
 
     a:hover {
-      background-color: $cinza-claro;
+      background-color: var(--cinza-claro);
       height: 60px;
       align-items: center;
       align-self: center;
@@ -283,12 +362,13 @@ nav {
     }
 
     a:visited {
-      color: $preto;
+      color: var(--preto);
     }
   }
 
   div.adminRoute {
     display: none;
+
   }
   div.adminLoginRoute {
     display: none;
@@ -299,10 +379,13 @@ nav {
         display: none;
     }
     div.adminLoginRoute{
-        display: initial;
-        li{
-            font-weight: 200;
+        display: flex;
+        gap: 12px;
+        align-items: center;
 
+        li{
+            font-weight: 100;
+            font-size: 14px;
         }
     }
   }
@@ -317,15 +400,21 @@ nav {
       display: initial;
 
       @include flex(row, space-between, center);
-      gap: 48px;
+          gap: 20px;
+
 
       li,
       a {
-        color: $preto;
+        color: var(--preto);
         font-weight: 100;
       }
     }
   }
+}
+
+nav.loginADM #menu-btn,
+nav.menuADM #menu-btn {
+  display: none !important;
 }
 
 @media screen and (max-width: 768px) {
@@ -334,8 +423,8 @@ nav {
   }
 
   nav {
-    ul {
-      background-color: $branco;
+    ul, .adminRoute {
+      background-color: var(--branco);
       position: absolute;
       width: calc(100% - 100px);
       height: 400px;
@@ -344,11 +433,11 @@ nav {
       padding: 50px;
       flex-direction: column;
       justify-content: space-between;
-      border: 1px solid $preto;
-      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
+      border-radius: 30px;
 
       a:hover {
-        background-color: $cinza-claro;
+        background-color: var(--cinza-claro);
         height: initial;
         background-color: initial;
         display: initial;
@@ -356,6 +445,87 @@ nav {
         transition: 0.3s;
       }
     }
+
+    .adminRoute{
+      flex-direction: column !important;
+      justify-content: center !important;
+    }
   }
 }
+
+
+
+
+.toggle-switch {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+
+.toggle-track, .toggle-thumb {
+  transition: all 0.3s ease-in-out;
+}
+
+.toggle-track {
+  /* --- NOVAS MEDIDAS --- */
+  width: 30px;
+  height: 16px;
+  border-radius: 8px; /* Metade da altura (16px / 2) */
+  position: relative;
+}
+
+.toggle-thumb {
+  /* --- TAMANHO E POSIÇÃO RECALCULADOS --- */
+  width: 12px;   /* Um bom tamanho para a nova altura */
+  height: 12px;  /* Mantém o círculo perfeito */
+  border-radius: 50%;
+  position: absolute;
+  
+  /* 
+    CÁLCULO DA CENTRALIZAÇÃO:
+    (Altura da Pista - Altura da Bolinha) / 2
+    (16px - 12px) / 2 = 2px
+    Isso centraliza a bolinha verticalmente.
+  */
+  top: 1px;
+  left: 2px;
+  
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Sombra ainda mais sutil */
+}
+
+/* --- Estilos de Tema (sem alterações, apenas herdam os novos tamanhos) --- */
+.toggle-switch.theme-light .toggle-track {
+  background-color: #E9E9EA;
+  border: 1px solid #E0E0E0;
+}
+.toggle-switch.theme-light .toggle-thumb {
+  background-color: #FFFFFF;
+}
+.toggle-switch.theme-light .toggle-track.is-active {
+  background-color: #34C759;
+}
+
+.toggle-switch.theme-dark .toggle-track {
+  background-color: #39393D;
+  border: 1px solid #4A4A4A;
+}
+.toggle-switch.theme-dark .toggle-thumb {
+  background-color: #1C1C1E;
+  border: 1px solid #545458;
+}
+.toggle-switch.theme-dark .toggle-track.is-active {
+  background-color: var(--fundo2);
+}
+
+/* --- LÓGICA DO DESLIZE (RECALCULADA) --- */
+.toggle-track.is-active .toggle-thumb {
+  /* 
+    CÁLCULO DO DESLIZE:
+    Largura da Pista - Largura da Bolinha - Espaçamento da Esquerda
+    40px - 12px - 2px = 26px
+  */
+  transform: translateX(12px);
+}
+
 </style>

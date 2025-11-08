@@ -33,8 +33,8 @@
         }
 
         .btn{
-            border: 2px solid $preto;
-            color: $preto;
+            border: 2px solid var(--preto);
+            color: var(--preto);
             margin-bottom: 0;
         }
 

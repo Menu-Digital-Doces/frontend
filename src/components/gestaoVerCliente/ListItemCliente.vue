@@ -12,10 +12,10 @@ const { idPedido, numPedido, totalPedido } = defineProps({idPedido: Number, numP
 
 <style lang="scss">
     #li-ver-cliente, #a-ver-cliente{
-        color: $azul;
+        color: var(--azul);
         
         &:visited{
-            color: $azul;
+            color: var(--azul);
         }
     }
 </style>

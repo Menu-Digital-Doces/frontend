@@ -111,7 +111,7 @@ function toggleEdit() {
 
   #stats{
     a{
-        color: $marrom-escuro;
+        color: var(--marrom-escuro);
 
         &.active{
             font-weight: bold;

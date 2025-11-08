@@ -55,7 +55,7 @@ function toggleAlert(){
         <span><img :src="product.imagem"/></span>
         <span>UN</span>
         <span>{{ product.quantidade }}</span>
-        <span>
+        <span class="icons">
             <a href="#" class="edit" @click.prevent="toggleEdit()"><PencilSquareIcon></PencilSquareIcon></a>
             <a href="#" class="delete" @click.prevent="deleteProduct()"><TrashIcon></TrashIcon></a>
         </span>
@@ -85,7 +85,7 @@ function toggleAlert(){
         @include flex(row, space-between, center);
         padding: 24px 24px;
         margin-bottom: 32px;
-        background-color: $branco;
+        background-color: var(--branco);
         border-radius: 10px;
 
         img{
@@ -106,15 +106,15 @@ function toggleAlert(){
                 height: 24px;
             }
             .edit{
-                color: $azul;
+                color: var(--azul);
             }
             .delete{
-                color: $rosa-escuro;
+                color: var(--rosa-escuro);
             }
 
             &.lie-preco{
                 font-weight: bold;
-                color: $marrom-escuro;
+                color: var(--marrom-escuro);
             }
         }
         
@@ -129,15 +129,35 @@ function toggleAlert(){
 
         @media all and (max-width: 968px){
             flex-direction: column;
-            justify-content: start;
-            align-items: start;
+            justify-content: center;
+            align-items: center;
             gap: 20px;
-            padding: 24px 32px;
+            padding: 32px 32px;
             border-radius: 50px;
+            border-radius: 15px;
 
             span{
                 width: 100%;
+                justify-content: start;
+                align-items: start;
+            
+                &:first-child{
+                    font-weight: bold;
+                }
+            }
 
+            
+
+            .list-item--estoque-descricao{
+                width: 100%;
+                text-wrap: wrap;
+            }
+
+            .icons{
+                width: 100%;
+                justify-content: space-evenly;
+                align-items: start;
+                
             }
         }
     }

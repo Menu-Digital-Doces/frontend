@@ -46,12 +46,12 @@ function saveDeliveryMethod(){
 </template>
 
 <style lang="scss">
-    #finalizarCompra-entrega{
+     #finalizarCompra-entrega{
         width: 100%;
         /* max-width: 500px; */
         margin: 60px auto;
         padding: 0 20px;
-        /* background-color: $branco; */
+        /* background-color: var(--branco); */
         border-radius: 15px;
         /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
         min-height: calc(100vh - 280px);
@@ -60,14 +60,14 @@ function saveDeliveryMethod(){
         .titulo-secao{
             font-size: 32px;
             font-weight: bold;
-            color: $marrom-escuro;
+            color: var(--marrom-escuro);
             margin-bottom: 10px;
         }
 
         .divisor-secao{
             border: 0;
             height: 1px;
-            background-color: $cinza-claro;
+            background-color: var(--cinza-claro);
             margin-bottom: 20px;
         }
 
@@ -79,31 +79,31 @@ function saveDeliveryMethod(){
                 @include flex(row, space-between, center);
                 width: 100%;
                 padding: 30px;
-                border: 2px solid $cinza-claro;
+                border: 2px solid var(--cinza-claro);
                 border-radius: 30px;
                 cursor: pointer;
                 transition: border-color 0.2s, background-color 0.2s;
                 box-shadow: 0px 4px 1px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
-                background-color: $branco;
+                background-color: var(--branco);
 
 
                 &:has(input:checked){
-                    border-color: $rosa-escuro;
-                    background-color: lighten($rosa-claro, 10%);
+                    border-color: var(--rosa-escuro);
+                    background-color: var(--rosa-claro); // ATENÇÃO: $rosa-claro deve ser uma variável SCSS definida antes deste bloco.
                 }
 
                 input[type="radio"]{
                     appearance: none;
                     width: 20px;
                     height: 20px;
-                    border: 2px solid $cinza-escuro;
+                    border: 2px solid var(--cinza-escuro);
                     border-radius: 50%;
                     margin-right: 15px;
                     position: relative;
                     flex-shrink: 0;
 
                     &:checked{
-                        border-color: $rosa-escuro;
+                        border-color: var(--rosa-escuro);
                         &::after{
                             content: '';
                             position: absolute;
@@ -113,7 +113,7 @@ function saveDeliveryMethod(){
                             width: 10px;
                             height: 10px;
                             border-radius: 50%;
-                            background-color: $rosa-escuro;
+                            background-color: var(--rosa-escuro);
                         }
                     }
                 }
@@ -123,7 +123,7 @@ function saveDeliveryMethod(){
 
                     .titulo-opcao{
                         /* font-weight: bold; */
-                        color: $marrom-escuro;
+                        color: var(--marrom-escuro);
                         font-size: 16px;
                         margin-bottom: 5px;
                     }
@@ -131,7 +131,7 @@ function saveDeliveryMethod(){
                     .endereco{
                         font-weight: bold;
                         font-size: 14px;
-                        color: $marrom-escuro;
+                        color: var(--marrom-escuro);
                     }
                 }
             }

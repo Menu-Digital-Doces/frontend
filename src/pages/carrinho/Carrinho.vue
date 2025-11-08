@@ -1,42 +1,33 @@
 <script setup>
 import ItemPedido from '@/components/pedidos/ItemPedido.vue';
-import { computed, onMounted, reactive, ref } from 'vue';
+import { useCart } from '@/general/useCart';
+import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+
+
 
 const { changeActiveComponent } = defineProps({changeActiveComponent: Function})
 
 const isModal = !(useRoute().path === '/carrinho')
-const cart = ref([])
-const filteredCart = computed(() =>
-  cart.value.filter(product => verifyProductState(product.id))
-);
 
-const activeProductsInCart = reactive({
-  '1': true, 
-  '2': true, 
-  '3': true, 
-  '4': true, 
-  '5': true, 
-  '6': true, 
-  '7': true
+const { 
+  cart, 
+  filteredCart, 
+  loadCart, 
+  removeItemFromCart, 
+  increaseQuantity, 
+  decreaseQuantity 
+} = useCart()
+
+const totalCart = computed(() => {
+  return filteredCart.value.reduce((total, product) => {
+    return total + (product.preco * product.quantidadeDesejada)
+  }, 0)
 })
 
 onMounted(() => {
-  const localCartString = localStorage.getItem('cart');  
-  const localCart = JSON.parse(localCartString || '[]');
-  cart.value = Array.isArray(localCart) ? localCart : [];
+  loadCart()
 })
-
-function removeItemFromCart(id){
-    const actualCart = JSON.parse(localStorage.getItem('cart') || "[]")
-    const newCart = actualCart.filter(product => product.id !== id);
-    localStorage.setItem('cart', JSON.stringify(newCart))
-    activeProductsInCart[id] = false;
-  }
-  
-  function verifyProductState(id){
-    return !!activeProductsInCart[id];
-  }
 
 </script>
 
@@ -46,11 +37,11 @@ function removeItemFromCart(id){
     <hr class="divisor-pagina">
     <div class="lista-itens-carrinho">
         <!-- <ItemPedido v-for="productData in filteredCart" :key="productData.id" v-bind:="{propStatePedido: true, productData: productData, removeItemFromCart: removeItemFromCart}"></ItemPedido> -->
-        <ItemPedido v-for="productData in filteredCart" :key="productData.id" v-bind:="{propStatePedido: true, productData: productData, removeItemFromCart: removeItemFromCart}"></ItemPedido>
+        <ItemPedido v-for="productData in filteredCart" :key="productData.id" v-bind:="{propStatePedido: true, productData: productData, removeItemFromCart: removeItemFromCart, increaseQuantity: increaseQuantity, decreaseQuantity: decreaseQuantity}"></ItemPedido>
         <p v-if="cart.length===0" id="notOrder">Não há itens no carrinho</p>
       </div>
     <div v-if="cart.length!==0" class="resumo-carrinho">
-        <p class="subtotal">Subtotal: <span>R$10,00</span></p> <!-- Calcular subtotal -->
+        <p class="subtotal">Subtotal: <span>R$ {{ totalCart.toFixed(2) }}</span></p>
         <RouterLink :to="{name: 'finalizar-pedido'}" class="btn-btn">Finalizar pedido</RouterLink>
         <p v-if="isModal">ou</p>
         <RouterLink :to="{name: 'carrinho'}" v-if="isModal" href="#" class="link" id="link-pagina-carrinho" @click="changeActiveComponent()"> ir para a página do carrinho</RouterLink>
@@ -68,7 +59,7 @@ function removeItemFromCart(id){
         .titulo-pagina {
           margin-bottom: 10px;
           font-weight: bold;
-          color: $marrom-escuro;
+          color: var(--marrom-escuro);
           font-size: clamp(1rem, 6vw, 2rem);
 
         }
@@ -76,7 +67,7 @@ function removeItemFromCart(id){
         .divisor-pagina{
             border: 0;
             height: 1px;
-            background-color: $cinza-claro;
+            background-color: var(--cinza-claro);
             margin-bottom: 20px;
         }
 
@@ -93,20 +84,20 @@ function removeItemFromCart(id){
             width: 100%;
             @include flex(column, center, center);
             gap: 15px;
-            border-top: 1px solid $cinza-claro;
+            border-top: 1px solid var(--cinza-claro);
 
 
             .subtotal{
                 font-size: 18px;
                 font-weight: bold;
-                color: $marrom-escuro;
+                color: var(--marrom-escuro);
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
                 margin-bottom: 40px;
 
                 span{
-                    color: $rosa-escuro;
+                    color: var(--rosa-escuro);
                 }
             }
 
@@ -116,7 +107,7 @@ function removeItemFromCart(id){
        
 
         #notOrder{
-          color: $cinza-claro;
+          color: var(--cinza-claro);
         }
     }
 </style>

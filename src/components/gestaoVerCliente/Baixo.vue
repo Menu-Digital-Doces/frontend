@@ -9,7 +9,7 @@ console.log(props.data)
 <template>
         <ul id="baixo">
             <li id="legenda"><span>Nº do pedido</span><span>Total</span></li>
-            <ListItemCliente v-for="pedido in props.data" v-bind:="{idPedido: pedido.id, numPedido: pedido.codigo, totalPedido: pedido.total}"></ListItemCliente>
+            <ListItemCliente v-for="pedido in props.data" v-bind:="{idPedido: pedido.codigo, numPedido: pedido.codigo, totalPedido: pedido.total}"></ListItemCliente>
         </ul>
 </template>
 
@@ -18,15 +18,16 @@ console.log(props.data)
     
         #baixo{
             width: 100%;            
-            
+            padding-bottom: 120px;
+
             li{
                 width: 100%;
                 @include flex(row, space-between, center);
                 padding: 32px 42px;
                 margin-bottom: 32px;
-                background-color: $branco;
+                background-color: var(--branco);
                 border-radius: 10px;
-                color: $marrom-escuro;
+                color: var(--marrom-escuro);
                 
                 span{
                     font-weight: bold;

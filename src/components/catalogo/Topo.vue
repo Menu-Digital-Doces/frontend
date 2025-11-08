@@ -33,14 +33,14 @@
             padding: 60px 20px;
 
             .titulo-pagina{
-                color: $marrom-escuro;
+                color: var(--marrom-escuro);
                 font-weight: bold;
                 font-size: clamp(1rem, 6vw, 2.5rem);
                 margin-bottom: 10px;
             }
 
             .subtitulo-pagina{
-                color: $marrom-escuro;
+                color: var(--marrom-escuro);
                 margin: 0 0 20px 0;
                 font-size: clamp(.9rem, 2vw, 1rem);
             }

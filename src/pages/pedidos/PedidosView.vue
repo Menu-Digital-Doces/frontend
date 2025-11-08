@@ -35,16 +35,15 @@ onMounted(() => {
 
 <template>
     <div class="container" id="pagina-detalhe-pedido" v-if="orderData3">
-        <!-- <h1 class="titulo-pagina">{{ orderData3.codigo }}</h1> -->
-        <h1 class="titulo-pagina">Código do pedido</h1>
+        <h1 class="titulo-pagina">{{ orderData3[0].codigo }}</h1>
         <hr class="divisor-pagina">
         <div class="lista-itens-pedido">
             <!--Primeiro item só renderizará quando receber os dados do servidor-->
-            <ItemPedido v-for="item in orderData3.itens" :key="item.id" v-bind:="{propStatePedido: false, productData: item}"></ItemPedido> 
+            <ItemPedido v-for="item in orderData3" :key="item.id" v-bind:="{propStatePedido: false, productData: item}"></ItemPedido> 
             <!-- Linhas abaixo provisórias -->
-            <ItemPedido v-bind:="{propStatePedido: false, productData: {id: 99, nome: 'Bolo de Banana', descricao: 'Perfeito para o café da tarde. Um bolo caseiro, macio e fofinho, com pedacinhos de banana e um toque de canela.', quantidade: 1, quantidadeDesejada: 2, preco: 15.00, imagem: '/src/assets/1 - bolo de banana.png'}}"></ItemPedido>
+            <!-- <ItemPedido v-bind:="{propStatePedido: false, productData: {id: 99, nome: 'Bolo de Banana', descricao: 'Perfeito para o café da tarde. Um bolo caseiro, macio e fofinho, com pedacinhos de banana e um toque de canela.', quantidade: 1, quantidadeDesejada: 2, preco: 15.00, imagem: '/src/assets/1 - bolo de banana.png'}}"></ItemPedido>
             <ItemPedido v-bind:="{propStatePedido: false, productData: {id: 99, nome: 'Brigadeiro', descricao: 'Nosso clássico favorito, feito com o mais puro cacau e um toque especial de carinho. A massa é cremosa e o sabor é inesquecível, derretendo na boca a cada mordida!', quantidade: 20, quantidadeDesejada: 1, preco: 6.50, imagem: '/src/assets/6 - brigadeiro.png'}}"></ItemPedido>
-            <ItemPedido v-bind:="{propStatePedido: false, productData: {id: 99, nome: 'Bolo de Cenoura com Cobertura de Chocolate', descricao: 'A combinação que todos amam. O bolo de cenoura, macio e úmido, encontra uma generosa e irresistível cobertura de brigadeiro.  ', quantidade: 3, quantidadeDesejada: 1, preco: 50.00, imagem: '/src/assets/4 - bolo de canoura com chocolate.png'}}"></ItemPedido>
+            <ItemPedido v-bind:="{propStatePedido: false, productData: {id: 99, nome: 'Bolo de Cenoura com Cobertura de Chocolate', descricao: 'A combinação que todos amam. O bolo de cenoura, macio e úmido, encontra uma generosa e irresistível cobertura de brigadeiro.  ', quantidade: 3, quantidadeDesejada: 1, preco: 50.00, imagem: '/src/assets/4 - bolo de canoura com chocolate.png'}}"></ItemPedido> -->
         </div>
         <hr class="divisor-pagina">
         <p class="subtotal-pedido">Subtotal <span>R$96,50</span></p>
@@ -64,7 +63,7 @@ onMounted(() => {
 
         .titulo-pagina{
             font-weight: bold;
-            color: $marrom-escuro;
+            color: var(--marrom-escuro);
             font-size: 32px;
             margin-bottom: 10px;
         }
@@ -72,7 +71,7 @@ onMounted(() => {
         .divisor-pagina{
             border: 0;
             height: 1px;
-            background-color: $cinza-claro;
+            background-color: var(--cinza-claro);
             margin-bottom: 20px;
         }
     
@@ -89,7 +88,7 @@ onMounted(() => {
             @include flex(row, space-between, center);
             font-weight: bold;
             font-size: 18px;
-            color: $marrom-escuro;
+            color: var(--marrom-escuro);
             margin-bottom: 64px;
 
             span{
@@ -99,8 +98,8 @@ onMounted(() => {
         }
 
         .btn-acao-pedido{
-            background-color: $rosa-escuro;
-            color: $branco;
+            background-color: var(--rosa-escuro);
+            color: var(--branco);
             padding: 10px 30px;
             border-radius: 25px;
             font-weight: bold;
@@ -109,7 +108,7 @@ onMounted(() => {
             transition: background-color 0.2s;
 
             &:hover {
-                background-color: darken($rosa-escuro, 10%);
+                background-color: var(--rosa-escuro);
             }
         }
     }

@@ -15,11 +15,11 @@
     #footer{
         width: 100%;
         height: 100px;
-        background-color: $preto;
+        background-color: var(--preto);
         @include flex(row, center, center);
     
         p{
-            color: $cinza-escuro;
+            color: var(--cinza-escuro);
             font-weight: 100;
         }
     }

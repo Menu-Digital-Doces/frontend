@@ -3,6 +3,7 @@
     import { useRouter } from 'vue-router';
 import FundoModal from './FundoModal.vue';
 import axios from 'axios';
+import Logo from '@/general/logo.vue';
 
     var { changeActiveComponent, changeLoginCadastro, changeIsLogged, isAdmLogin } = defineProps({
       changeActiveComponent: Function,
@@ -57,7 +58,7 @@ import axios from 'axios';
     <FundoModal @click="changeActiveComponent()"></FundoModal>
   <div id="modal-login" class="box-modal">
     <a href="#" class="btn-close" @click="changeActiveComponent()">X</a>
-    <img src="../../assets/logo.png" alt="" id="login-logo">
+    <Logo></Logo>
 
     <form class="box-form" @submit.prevent="sendData(inputEmailValue, inputPasswordValue)">
       <label for="login-email">Login</label>
@@ -65,13 +66,14 @@ import axios from 'axios';
         <br>
       <label for="login-password">Senha</label>
       <input type="password" id="login-password" required v-model="inputPasswordValue"/>
-      <a href="#" class="link link-forget-password">Esqueci minha senha</a>
+      <!-- <a href="#" class="link link-forget-password">Esqueci minha senha</a> -->
 
       <p id="error" v-if="nonAutorizhedState">Algo deu errado. Tente novamente.</p>
 
       <input type="submit" class="btn-btn"/>
 
       <a href="#" class="link" id="link-cadastro" @click.prevent="changeLoginCadastro()">Cadastre-se</a>
+      <a href="#" class="link" id="link-cadastro"><RouterLink class="link" id="link-b" :to="{name: 'login'}" @click="changeActiveComponent()">Painel do admin</RouterLink></a>
     </form>
 
 
@@ -93,7 +95,7 @@ import axios from 'axios';
       p{
         font-size: 12px;
         margin-top: 8px;
-        color: $rosa-escuro;
+        color: var(--rosa-escuro);
         
       }
 
@@ -132,6 +134,9 @@ import axios from 'axios';
         margin-top: 32px;
     }
 
+    #link-b{
+      color: var(--azul);
+    }
 
     }
 </style>

@@ -111,7 +111,7 @@ import * as seila from './Login.vue';
 
         p{
           font-size: 12px;
-          color: $rosa-escuro;
+          color: var(--rosa-escuro);
           margin-top: 8px;
         }
 

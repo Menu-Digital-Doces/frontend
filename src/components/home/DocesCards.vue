@@ -29,8 +29,8 @@ $cor-destaque-card: #e91e63; // Simulação do rosa/vermelho de destaque
     border-radius: 30px; // Bordas bem arredondadas, como na imagem
     overflow: hidden;
     /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); // Sombra sutil */
-    background-color: #fff; // Fundo branco para o card
-    border: 15px solid $cinza-claro;
+    background-color: var(--branco); // Fundo branco para o card
+    border: 15px solid var(--cinza-claro);
    
 
     // Estilos da imagem
@@ -64,7 +64,7 @@ $cor-destaque-card: #e91e63; // Simulação do rosa/vermelho de destaque
         width: 100%;
         z-index: 3;
         padding: 20px;
-        color: $cor-texto-card;
+        color: var(--branco);
         text-align: left; // Texto alinhado à esquerda
 
         h3 {
@@ -81,7 +81,7 @@ $cor-destaque-card: #e91e63; // Simulação do rosa/vermelho de destaque
             font-size: .5rem;
             margin: 5px 0 0 0;
             font-weight: bold;
-            color: $rosa-claro; // Cor de destaque para a descrição
+            color: var(--rosa-claro); // Cor de destaque para a descrição
           }
         }
 

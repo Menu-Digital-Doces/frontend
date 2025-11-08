@@ -1,51 +1,31 @@
 <script setup>
 import FundoModal from './FundoModal.vue';
-import { computed, onMounted, reactive, ref } from 'vue';
-import Carrinho from '@/pages/carrinho/Carrinho.vue';
+import { onMounted } from 'vue';
 import { RouterLink } from 'vue-router';
 import ItemPedido from '../pedidos/ItemPedido.vue';
+import { useCart } from '@/general/useCart';
 
 
 const { changeActiveComponent } = defineProps({changeActiveComponent: Function})
 
-const cart = ref([])
-const filteredCart = computed(() =>
-  cart.value.filter(product => verifyProductState(product.id))
-);
-
-const activeProductsInCart = reactive({
-  '1': true, 
-  '2': true, 
-  '3': true, 
-  '4': true, 
-  '5': true, 
-  '6': true, 
-  '7': true
-})
+const { 
+  cart, 
+  filteredCart, 
+  loadCart, 
+  removeItemFromCart, 
+  increaseQuantity, 
+  decreaseQuantity 
+} = useCart()
 
 onMounted(() => {
-  const localCartString = localStorage.getItem('cart');  
-  const localCart = JSON.parse(localCartString || '[]');
-  cart.value = Array.isArray(localCart) ? localCart : [];
+  loadCart()
 })
-
-function removeItemFromCart(id){
-    const actualCart = JSON.parse(localStorage.getItem('cart') || "[]")
-    const newCart = actualCart.filter(product => product.id !== id);
-    localStorage.setItem('cart', JSON.stringify(newCart))
-    activeProductsInCart[id] = false;
-  }
-  
-  function verifyProductState(id){
-    return !!activeProductsInCart[id];
-  }
 
 </script>
 
 <template>
     <FundoModal @click="changeActiveComponent()"></FundoModal>
     <div id="container-modal-carrinho" class="box-modal">
-        <!-- <Carrinho v-bind:="{changeActiveComponent: changeActiveComponent}"></Carrinho> -->
         <div class="modal-wrapper-top">
             <h1 class="titulo-pagina">Carrinho</h1>  
             <hr class="divisor-pagina">
@@ -53,7 +33,17 @@ function removeItemFromCart(id){
             <a href="#" class="btn-close" id="btn-close-modal" @click.prevent="changeActiveComponent()">X</a>
         </div>
         <div class="lista-itens-carrinho">
-            <ItemPedido v-for="productData in filteredCart" :key="productData.id" v-bind:="{propStatePedido: true, productData: productData, removeItemFromCart: removeItemFromCart}"></ItemPedido>
+            <ItemPedido 
+                v-for="productData in filteredCart" 
+                :key="productData.id" 
+                v-bind:="{
+                    propStatePedido: true, 
+                    productData: productData, 
+                    removeItemFromCart: removeItemFromCart,
+                    increaseQuantity: increaseQuantity,
+                    decreaseQuantity: decreaseQuantity
+                }">
+            </ItemPedido>
             <p v-if="cart.length===0" id="notOrder">Não há itens no carrinho</p>
         </div>
         <div v-if="cart.length > 0" class="modal-wrapper-bottom">
@@ -84,14 +74,14 @@ function removeItemFromCart(id){
             .titulo-pagina {
                 margin-bottom: 10px;
                 font-weight: bold;
-                color: $marrom-escuro;
+                color: var(--marrom-escuro);
                 font-size: clamp(1rem, 6vw, 2rem);
             }
     
             .divisor-pagina{
                 border: 0;
                 height: 1px;
-                background-color: $cinza-claro;
+                background-color: var(--cinza-claro);
             }
         }
 

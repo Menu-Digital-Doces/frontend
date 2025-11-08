@@ -1,18 +1,39 @@
-$branco: #fff;
-$preto: #262323;
-$cinza-claro: #eeeeee;
-$cinza-escuro: #a1a1a1;
-$marrom-claro: #b48967;
-$marrom-escuro: #432b27;
-$rosa-claro: #f9bdb5;
-$rosa-medio: #ef7a71;
-$rosa-escuro: #c31644;
-$vermelho: red;
-$azul: #1a7892;
-$verde: #27c927;
-$amarelo: #dbdb3a;
+// $branco: #fff;
+// $preto: #262323;
+// $cinza-claro: #eeeeee;
+// $cinza-escuro: #a1a1a1;
+// $marrom-claro: #b48967;
+// $marrom-escuro: #432b27;
+// $rosa-claro: #f9bdb5;
+// $rosa-medio: #ef7a71;
+// $rosa-escuro: #c31644;
+// $vermelho: #dc3545; /* Cor mais padrão para vermelho de erro/remoção */
+// $azul: #007bff; /* Cor mais padrão para azul de link */
+// $verde: #28a745; /* Cor mais padrão para verde de sucesso */
+// $amarelo: #ffc107; /* Cor mais padrão para amarelo de alerta */
+// $fundo: #F4E7DD;
+// $fundo2: #FFFBF5;
+
+:root{
+  --branco: #fff;
+  --preto: #262323;
+  --cinza-claro: #eeeeee;
+  --cinza-escuro: #a1a1a1;
+  --marrom-claro: #b48967;
+  --marrom-escuro: #432b27;
+  --rosa-claro: #f9bdb5;
+  --rosa-medio: #ef7a71;
+  --rosa-escuro: #c31644;
+  --vermelho: #dc3545; /* Cor mais padrão para vermelho de erro/remoção */
+  --azul: #007bff; /* Cor mais padrão para azul de link */
+  --verde: #28a745; /* Cor mais padrão para verde de sucesso */
+  --amarelo: #ffc107; /* Cor mais padrão para amarelo de alerta */
+  --fundo: #F4E7DD;
+  --fundo2: #FFFBF5;
+}
 
 $padding: 0 50px; /*Padding wrapper da página*/
+
 
 @mixin flex($direction, $justify-content, $align-items) {
   display: flex;
@@ -27,12 +48,58 @@ $padding: 0 50px; /*Padding wrapper da página*/
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
-  font-family: "Inter";
+  font-family: "Inter", sans-serif; /* Adicionado fallback */
   font-weight: normal;
+}
+
+body {
+  background-color: $fundo2;
+  overflow-x: hidden;
+  // background-image:
+  //     linear-gradient(to bottom, rgba(244, 231, 221, 0.9), rgba(255, 251, 245, 0.9)), /* Gradiente semi-transparente com a cor de fundo */
+  //     url(../assets/fundo.jpg);
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-size: 2000px;
+
+  &.active {
+    background-image: linear-gradient(
+        to bottom,
+        rgba(244, 231, 221, 0.9),
+        rgba(255, 251, 245, 0.9)
+      ),
+      url(../assets/fundo.jpg);
+  }
+  &.menuADM #nav {
+    // ul {
+    //   &.userRoute {
+    //     display: none;
+    //   }
+    // }
+    // div.adminRoute {
+    //   display: initial;
+
+    //   @include flex(row, space-between, center);
+    //   gap: 48px;
+
+    //   li,
+    //   a {
+    //     color: $preto;
+    //     font-weight: 100;
+    //   }
+    // }
+    // div.adminLoginRoute {
+    //   display: initial;
+    // }
+  }
 }
 
 hr {
   width: 100%;
+  border: none;
+  height: 1px;
+  background-color: $marrom-escuro;
 }
 
 .titulo {
@@ -43,14 +110,14 @@ hr {
 .titulo-gestao {
   font-weight: bold;
   color: $rosa-escuro;
-  margin-top: 32px;
+  margin: 64px 0;
 }
 
 .boxes-gestao {
   margin-top: 32px;
   width: 100%;
-  @include flex(row, start, center);
-  gap: 32px;
+  @include flex(row, space-between, center);
+  gap: 48px;
   flex-wrap: wrap;
 
   @media (max-width: 768px) {
@@ -65,7 +132,7 @@ hr {
 
 p {
   color: $marrom-escuro;
-  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-size: 1rem; /* Tamanho base mais fixo */
 }
 
 .container {
@@ -94,6 +161,7 @@ p {
   padding: 50px 25px;
   border-radius: 20px;
   background-color: $branco;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .box-form {
@@ -101,33 +169,99 @@ p {
   width: 100%;
 
   label {
-    font-weight: 100;
+    font-weight: normal;
+    color: $marrom-escuro;
+    margin-bottom: 5px;
   }
 
   input[type="text"],
   input[type="email"],
   input[type="password"] {
     width: 100%;
-    height: 30px;
+    height: 40px; /* Altura aumentada */
     border-radius: 10px;
-    border: none;
-    box-shadow: 0 4px 4px -3px $preto;
-    padding-left: 10px;
+    border: 1px solid $cinza-claro; /* Borda sutil */
+    box-shadow: none; /* Removida a sombra */
+    padding-left: 15px;
+    margin-bottom: 15px;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: $rosa-escuro;
+      outline: none;
+    }
   }
 }
 
 .btn {
-  padding: 8px 32px;
-  border-radius: 10px;
+  padding: 10px 30px; /* Padding ajustado */
+  border-radius: 15px; /* Mais arredondado */
+  text-align: center;
+  display: inline-block;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  font-size: 14px;
+  font-weight: bold;
+
+  &:hover {
+    background-color: $rosa-escuro;
+    color: $branco !important;
+  }
+}
+
+.btn-btn {
+  background-color: transparent;
+  color: $rosa-escuro;
+  border: 2px solid $rosa-escuro;
+  padding: 10px 50px;
+  border-radius: 15px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $rosa-escuro;
+    color: $branco;
+  }
 }
 
 .link {
   color: $azul;
+  text-decoration: none;
+
+  :visited {
+    color: $preto;
+  }
 }
 
 .link-forget-password {
   font-size: 12px;
-  margin-top: 10px;
-  margin-bottom: 32px;
+  margin-top: 5px;
+  margin-bottom: 20px;
   align-self: flex-end;
+  color: $cinza-escuro;
 }
+
+#modal-login {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+// /* Estilização da Scrollbar para navegadores baseados em Chromium (Chrome, Edge, Opera) */
+// ::-webkit-scrollbar {
+//     width: 8px; // Largura da barra de rolagem
+// }
+
+// ::-webkit-scrollbar-track {
+//     background: $cinza-claro; // Cor de fundo da trilha
+//     border-radius: 10px;
+// }
+
+// ::-webkit-scrollbar-thumb {
+//     background: $rosa-escuro; // Cor do "polegar" (a parte que se move)
+//     border-radius: 10px;
+//     border: 2px solid $cinza-claro; // Borda para dar um efeito de "flutuação"
+// }
+
+// ::-webkit-scrollbar-thumb:hover {
+//     background: $rosa-escuro; // Cor mais escura ao passar o mouse
+// }
+// 2. CÓDIGO SCSS ORIGINAL DO USUÁRIO (FIM)

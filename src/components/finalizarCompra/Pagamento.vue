@@ -49,12 +49,12 @@ function savePaymentMethod(){
 </template>
 
 <style lang="scss">
-    #finalizarCompra-pagamento{
+#finalizarCompra-pagamento{
         width: 100%;
         /* max-width: 500px; */
         margin: 0 auto;
         padding: 20px;
-        /* background-color: $branco; */
+        /* background-color: var(--branco); */
         border-radius: 15px;
         /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
         padding-top: 60px;
@@ -64,14 +64,14 @@ function savePaymentMethod(){
         .titulo-secao{
             font-size: 32px;
             font-weight: bold;
-            color: $marrom-escuro;
+            color: var(--marrom-escuro);
             margin-bottom: 10px;
         }
 
         .divisor-secao{
             border: 0;
             height: 1px;
-            background-color: $cinza-escuro;
+            background-color: var(--cinza-escuro);
             margin-bottom: 20px;
         }
 
@@ -93,29 +93,29 @@ function savePaymentMethod(){
                 @include flex(column, center, center);
                 width: 250px;
                 padding: 24px;
-                border: 2px solid $cinza-claro;
+                border: 2px solid var(--cinza-claro);
                 border-radius: 50px;
-                background-color: $branco;
+                background-color: var(--branco);
                 cursor: pointer;
                 transition: border-color 0.2s, background-color 0.2s;
 
                 &:has(input:checked){
-                    border-color: $rosa-escuro;
-                    background-color: lighten($rosa-claro, 10%);
+                    border-color: var(--rosa-escuro);
+                    background-color: var(--rosa-claro); // ATENÇÃO: $rosa-claro deve ser uma variável SCSS definida antes deste bloco.
                 }
 
                 input[type="radio"]{
                     appearance: none;
                     width: 20px;
                     height: 20px;
-                    border: 2px solid $cinza-escuro;
+                    border: 2px solid var(--cinza-escuro);
                     border-radius: 50%;
                     margin-top: 20px;
                     position: relative;
                     flex-shrink: 0;
 
                     &:checked{
-                        border-color: $rosa-escuro;
+                        border-color: var(--rosa-escuro);
                         &::after{
                             content: '';
                             position: absolute;
@@ -125,7 +125,7 @@ function savePaymentMethod(){
                             width: 10px;
                             height: 10px;
                             border-radius: 50%;
-                            background-color: $rosa-escuro;
+                            background-color: var(--rosa-escuro);
                         }
                     }
                 }
@@ -140,7 +140,7 @@ function savePaymentMethod(){
                     }
 
                     .titulo-opcao{
-                        color: $marrom-escuro;
+                        color: var(--marrom-escuro);
                         font-size: 14px;
                         margin: 5px 0;
                     }

@@ -68,7 +68,7 @@ const filteredData = computed(() => {
       >
     </p>
     <ul>
-      <li class="list-item-pedido">
+      <li class="list-item-pedido first">
         <div class="left">
           <span class="link"><a href="#" class="link"><RouterLink id="ver">VER</RouterLink></a></span>
           <span class="item-num-pedido">Nº do pedido</span>
@@ -78,6 +78,9 @@ const filteredData = computed(() => {
           <span class="item-status-pedido">Status</span>
         </div>
       </li>
+
+    </ul>
+    <ul>
       <ListItemPedido
         v-for="pedidoItem in filteredData"
         :key="pedidoItem.id" v-bind:="{pedido: pedidoItem}"
@@ -98,10 +101,10 @@ const filteredData = computed(() => {
     
 
     a {
-      color: $marrom-escuro;
+      color: var(--marrom-escuro);
 
       &:visited {
-        color: $marrom-escuro;
+        color: var(--marrom-escuro);
       }
       &.active {
         font-weight: bold;
@@ -121,33 +124,16 @@ const filteredData = computed(() => {
     max-height: 500px;
     overflow-y: auto;
     
-
-    li:first-child {
-      background-color: $fundo;
-      border-radius: 0;
-      position: sticky;
-      top: 0;
-
-      div {
-        &.left {
-          width: calc(55% - 32px);
-          justify-content: start;
-        }
-        &.right {
-          width: calc(45% - 32px);
-          justify-content: end;
-
-            span{
-                flex: 1;
-            }
-        }
-      }
-
-      .link {
+    .first{
+      background-color: transparent;
+      #ver{
         visibility: hidden;
       }
-
+      .item-status-pedido{
+        color: var(--marrom-escuro);
+      }
     }
+  
     
   }
 }

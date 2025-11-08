@@ -1,30 +1,44 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import Card from './Card.vue';
-
 import axios from 'axios';
 
-let data = ref()
+// 1. Inicialize 'data' como um array vazio.
+// Isso evita erros no template antes da API retornar os dados.
+const data = ref([]);
 
-
+// onMounted busca os dados da API quando o componente é montado
 onMounted(() => {
     axios.request({
         method: 'GET',
-        url: '/produtos',
+        url: '/produtos', // Seu endpoint da API
         headers: {
             "Content-Type": 'application/json',
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     })
     .then(response => {
-        data.value = response.data
-        console.log(response.data)
+        // Atualiza a ref 'data' com os dados da resposta
+        data.value = response.data;
+        console.log("Dados recebidos:", response.data);
     })
     .catch(error => {
-        console.log(error)
-    })
-})
+        console.error("Erro ao buscar produtos:", error);
+        // É uma boa prática tratar o erro, talvez exibindo uma mensagem ao usuário
+    });
+});
 
+// 2. Crie uma propriedade computada para filtrar apenas os DOCES.
+// Assumi que seus produtos têm uma propriedade 'categoria'. Ajuste se o nome for outro.
+const docesFiltrados = computed(() => {
+    // O .filter só vai rodar se data.value tiver algo, evitando erros.
+    return data.value.filter(produto => produto.nome === 'Brigadeiro' || produto.nome === 'Beijinho');
+});
+
+// 3. Crie outra propriedade computada para filtrar apenas os BOLOS.
+const bolosFiltrados = computed(() => {
+    return data.value.filter(produto => produto.nome !== 'Brigadeiro' || produto.nome !== 'Beijinho');
+});
 
 </script>
 
@@ -34,21 +48,21 @@ onMounted(() => {
             <h3 class="titulo-categoria">Doces</h3>
             <hr class="divisor-categoria">
             <div class="wrapper-cards">
-                <Card v-for="productData in data" v-bind:productData="productData" :key="productData.id"></Card>
+                <Card v-for="productData in docesFiltrados" v-bind:productData="productData" :key="productData.id"></Card>
             </div>
         </div>
         <div class="container-categoria">
             <h3 class="titulo-categoria">Bolos</h3>
             <hr class="divisor-categoria">
             <div class="wrapper-cards">
-                <Card v-for="productData in data" v-bind:productData="productData" :key="productData.id"></Card>
+                <Card v-for="productData in bolosFiltrados" v-bind:productData="productData" :key="productData.id"></Card>
             </div>
         </div>
     </div>
 </template>
 
 <style lang="scss">
-    #listagem-doces{
+#listagem-doces{
         width: 100%;
         @include flex (column, center, start);
         gap: 48px; /* Espaçamento entre as categorias */
@@ -60,7 +74,7 @@ onMounted(() => {
 
             .titulo-categoria{
                 margin-bottom: 8px;
-                color: $marrom-escuro;
+                color: var(--marrom-escuro); // <-- Alterado
                 font-size: 24px;
                 font-weight: bold;
             }
@@ -68,7 +82,7 @@ onMounted(() => {
             .divisor-categoria{
                 border: 0;
                 height: 2px;
-                background-color: $cinza-escuro;
+                background-color: var(--cinza-escuro); // <-- Alterado
                 margin-bottom: 16px;
             }
             

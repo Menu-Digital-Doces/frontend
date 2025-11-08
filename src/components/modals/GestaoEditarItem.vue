@@ -169,7 +169,7 @@ function toggleAlert(){
         overflow: auto;
         width: 750px;
 
-        background-color: $branco;
+        background-color: var(--branco);
         @include flex(column, start, start);
         padding: 24px 32px;
 
@@ -242,11 +242,11 @@ function toggleAlert(){
                     gap: 16px;
 
                     #upload{
-                        color: $azul;
+                        color: var(--azul);
                     }
 
                     #deletar{
-                        color: $rosa-escuro;
+                        color: var(--rosa-escuro);
                     }
                 }
 
@@ -286,12 +286,12 @@ function toggleAlert(){
                 }
 
                 #confirmar{
-                    border: 2px solid $preto;
-                    color: $preto;
+                    border: 2px solid var(--preto);
+                    color: var(--preto);
 
                     &:hover{
-                        background-color: $preto;
-                        color: $branco;
+                        background-color: var(--preto);
+                        color: var(--branco);
                     }
                 }
                  

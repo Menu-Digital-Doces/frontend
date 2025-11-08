@@ -32,7 +32,7 @@ import { isLogged } from '@/components/nav/Nav.vue';
             position: relative;
             inset: 0;
             padding-top: 36px;
-            box-shadow: 0px 4px 4px -3px $preto;
+            box-shadow: 0px 4px 4px -3px var(--preto);
 
             .btn-close{
                 display: none;

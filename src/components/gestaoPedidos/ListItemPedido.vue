@@ -22,7 +22,7 @@ import { RouterLink } from 'vue-router';
 <template>
     <li class="list-item-pedido">
         <div class="left">
-            <span class="link"><a href="#" class="link"><RouterLink :to="{name: 'pedidoADM', params: {orderId: pedido.id}}" :style="{'color': '#007bff', 'font-weight': 'bold'}">VER</RouterLink></a></span>
+            <span class="link"><a href="#" class="link"><RouterLink :to="{name: 'pedidoADM', params: {orderId: pedido.codigo}}" :style="{'color': '#007bff', 'font-weight': 'bold'}">VER</RouterLink></a></span>
             <span class="item-num-pedido">{{ pedido.codigo }}</span>
 
         </div>
@@ -38,7 +38,7 @@ import { RouterLink } from 'vue-router';
         @include flex(row, space-between, center);
         padding: 24px 24px;
         margin-bottom: 32px;
-        background-color: $branco;
+        background-color: var(--branco);
         border-radius: 10px;
 
         div{
@@ -62,12 +62,12 @@ import { RouterLink } from 'vue-router';
         }
 
         .item-num-pedido{
-            color: $marrom-escuro;
+            color: var(--marrom-escuro);
             font-weight: 400;
         }
 
         .item-valor-pedido{
-            color: $preto;
+            color: var(--preto);
             font-weight: bold;
             text-transform: uppercase;
         }
@@ -77,15 +77,15 @@ import { RouterLink } from 'vue-router';
         }
 
         .st-green{
-            color: $verde;
+            color: var(--verde);
         }
 
         .st-red{
-            color: $vermelho;
+            color: var(--vermelho);
         }
 
         .st-yellow{
-            color: $amarelo;
+            color: var(--amarelo);
         }
 
         @media all and (max-width: 768px){
