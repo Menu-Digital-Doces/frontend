@@ -2,19 +2,19 @@ import { ref, reactive, computed } from 'vue'
 
 const cart = ref([])
 
-const activeProductsInCart = reactive({
-  '1': true, 
-  '2': true, 
-  '3': true, 
-  '4': true, 
-  '5': true, 
-  '6': true, 
-  '7': true
-})
+// const activeProductsInCart = reactive({
+//   '1': true, 
+//   '2': true, 
+//   '3': true, 
+//   '4': true, 
+//   '5': true, 
+//   '6': true, 
+//   '7': true
+// })
 
 export function useCart() {
   const filteredCart = computed(() =>
-    cart.value.filter(product => verifyProductState(product.id))
+    cart.value
   )
 
   function loadCart() {
@@ -26,11 +26,11 @@ export function useCart() {
   function removeItemFromCart(id) {
     cart.value = cart.value.filter(product => product.id !== id)
     localStorage.setItem('cart', JSON.stringify(cart.value))
-    activeProductsInCart[id] = false
+    // activeProductsInCart[id] = false
   }
 
   function verifyProductState(id) {
-    return !!activeProductsInCart[id]
+    // return !!activeProductsInCart[id]
   }
 
   function increaseQuantity(id) {
@@ -58,7 +58,7 @@ export function useCart() {
   return {
     cart,
     filteredCart,
-    activeProductsInCart,
+    // activeProductsInCart,
     loadCart,
     removeItemFromCart,
     verifyProductState,
